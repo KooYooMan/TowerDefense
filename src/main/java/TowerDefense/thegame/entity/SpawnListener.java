@@ -1,9 +1,7 @@
 package TowerDefense.thegame.entity;
 
-import mrmathami.thegame.GameField;
-
-import javax.annotation.Nonnull;
+import TowerDefense.thegame.GameField;
 
 public interface SpawnListener extends GameEntity {
-	void onSpawn(@Nonnull GameField field);
+	void onSpawn(GameField field);
 }

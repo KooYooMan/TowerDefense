@@ -1,9 +1,7 @@
 package TowerDefense.thegame.entity;
 
-import mrmathami.thegame.GameField;
-
-import javax.annotation.Nonnull;
+import TowerDefense.thegame.GameField;
 
 public interface EffectEntity extends DestroyableEntity {
-	boolean onEffect(@Nonnull GameField field, @Nonnull LivingEntity livingEntity);
+	boolean onEffect(GameField field, LivingEntity livingEntity);
 }

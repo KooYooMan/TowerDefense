@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="TowerDefense:ear exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/TowerDefense_ear_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="TowerDefense/javaeeApplication/javaEEApplication" />
+    </root>
+  </artifact>
+</component>

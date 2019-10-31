@@ -1,14 +1,12 @@
 package TowerDefense.thegame;
 
-import mrmathami.thegame.entity.GameEntity;
-import mrmathami.thegame.entity.tile.Mountain;
-import mrmathami.thegame.entity.tile.Road;
-import mrmathami.thegame.entity.tile.Target;
-import mrmathami.thegame.entity.tile.spawner.NormalSpawner;
-import mrmathami.thegame.entity.tile.tower.NormalTower;
+import TowerDefense.thegame.entity.GameEntity;
+import TowerDefense.thegame.entity.tile.Mountain;
+import TowerDefense.thegame.entity.tile.Road;
+import TowerDefense.thegame.entity.tile.Target;
+import TowerDefense.thegame.entity.tile.spawner.NormalSpawner;
+import TowerDefense.thegame.entity.tile.tower.NormalTower;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
@@ -16,17 +14,15 @@ import java.util.*;
 public final class GameStage {
 	private final long width;
 	private final long height;
-	@Nonnull
 	private final List<GameEntity> entities;
 
-	private GameStage(long width, long height, @Nonnull List<GameEntity> entities) {
+	private GameStage(long width, long height, List<GameEntity> entities) {
 		this.width = width;
 		this.height = height;
 		this.entities = List.copyOf(entities);
 	}
 
-	@Nullable
-	public static GameStage load(@Nonnull String name) {
+	public static GameStage load(String name) {
 		try (final InputStream stream = GameStage.class.getResourceAsStream(name)) {
 			if (stream == null) throw new IOException("Resource not found! Resource name: " + name);
 			final Scanner scanner = new Scanner(stream);
@@ -166,7 +162,6 @@ public final class GameStage {
 		return height;
 	}
 
-	@Nonnull
 	public final List<GameEntity> getEntities() {
 		return entities;
 	}

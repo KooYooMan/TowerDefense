@@ -1,16 +1,15 @@
 package TowerDefense.thegame;
 
-import mrmathami.thegame.entity.EffectEntity;
-import mrmathami.thegame.entity.GameEntity;
-import mrmathami.thegame.entity.LivingEntity;
-import mrmathami.thegame.entity.bullet.NormalBullet;
-import mrmathami.thegame.entity.enemy.NormalEnemy;
-import mrmathami.thegame.entity.tile.Mountain;
-import mrmathami.thegame.entity.tile.Target;
-import mrmathami.utilities.Pair;
-import mrmathami.utilities.UnorderedPair;
+import TowerDefense.thegame.entity.EffectEntity;
+import TowerDefense.thegame.entity.GameEntity;
+import TowerDefense.thegame.entity.LivingEntity;
+import TowerDefense.thegame.entity.bullet.NormalBullet;
+import TowerDefense.thegame.entity.enemy.NormalEnemy;
+import TowerDefense.thegame.entity.tile.Mountain;
+import TowerDefense.thegame.entity.tile.Target;
+import TowerDefense.utilities.Pair;
+import TowerDefense.utilities.UnorderedPair;
 
-import javax.annotation.Nonnull;
 import java.util.*;
 
 public final class GameEntities {
@@ -189,7 +188,7 @@ public final class GameEntities {
 	 * @param entityClassB entity class
 	 * @return if two entity can collide
 	 */
-	public static boolean isCollidable(@Nonnull Class<? extends GameEntity> entityClassA, @Nonnull Class<? extends GameEntity> entityClassB) {
+	public static boolean isCollidable(Class<? extends GameEntity> entityClassA, Class<? extends GameEntity> entityClassB) {
 		return COLLISION_PAIR_SET.contains(UnorderedPair.immutableOf(entityClassA, entityClassB));
 	}
 
@@ -223,7 +222,7 @@ public final class GameEntities {
 	 * @param livingClass living entity class
 	 * @return if effect entity can affect living entity
 	 */
-	public static boolean isAffectable(@Nonnull Class<? extends EffectEntity> effectClass, @Nonnull Class<? extends LivingEntity> livingClass) {
+	public static boolean isAffectable(Class<? extends EffectEntity> effectClass, Class<? extends LivingEntity> livingClass) {
 		return EFFECT_LIVING_SET.contains(Pair.immutableOf(effectClass, livingClass));
 	}
 

@@ -6,11 +6,9 @@ import javafx.scene.text.Font;
 import TowerDefense.thegame.entity.GameEntity;
 import TowerDefense.thegame.entity.tile.Road;
 
-import javax.annotation.Nonnull;
-
 public final class RoadDrawer implements EntityDrawer {
 	@Override
-	public void draw(long tickCount, @Nonnull GraphicsContext graphicsContext, @Nonnull GameEntity entity, double screenPosX, double screenPosY, double screenWidth, double screenHeight, double zoom) {
+	public void draw(long tickCount, GraphicsContext graphicsContext, GameEntity entity, double screenPosX, double screenPosY, double screenWidth, double screenHeight, double zoom) {
 		graphicsContext.setFill(Color.LIGHTGREEN);
 		graphicsContext.fillRect(screenPosX, screenPosY, screenWidth, screenHeight);
 //		if (entity instanceof Road) {

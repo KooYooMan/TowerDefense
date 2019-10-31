@@ -8,8 +8,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
-import mrmathami.thegame.drawer.GameDrawer;
-import mrmathami.utilities.ThreadFactoryBuilder;
+import TowerDefense.thegame.drawer.GameDrawer;
+import TowerDefense.utilities.ThreadFactoryBuilder;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

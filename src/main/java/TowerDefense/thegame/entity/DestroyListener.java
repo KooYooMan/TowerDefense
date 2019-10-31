@@ -1,9 +1,7 @@
 package TowerDefense.thegame.entity;
 
-import mrmathami.thegame.GameField;
-
-import javax.annotation.Nonnull;
+import TowerDefense.thegame.GameField;
 
 public interface DestroyListener extends DestroyableEntity {
-	void onDestroy(@Nonnull GameField field);
+	void onDestroy(GameField field);
 }

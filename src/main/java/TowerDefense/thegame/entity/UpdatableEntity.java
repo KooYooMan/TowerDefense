@@ -1,9 +1,7 @@
 package TowerDefense.thegame.entity;
 
-import mrmathami.thegame.GameField;
-
-import javax.annotation.Nonnull;
+import TowerDefense.thegame.GameField;
 
 public interface UpdatableEntity extends GameEntity {
-	void onUpdate(@Nonnull GameField field);
+	void onUpdate(GameField field);
 }
