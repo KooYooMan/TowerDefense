@@ -56,7 +56,8 @@ public final class GameDrawer {
 	public final void render() {
 		final GameField gameField = this.gameField;
 		final List<GameEntity> entities = new ArrayList<>(gameField.getEntities());
-		graphicsContext.clearRect(0.0, 0.0, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
+		graphicsContext.setFill(Color.BLUE);
+		graphicsContext.fillRect(0.0, 0.0, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		for (final GameEntity entity : entities) {
 			final EntityDrawer drawer = getEntityDrawer(entity);
 			if (drawer != null) {
