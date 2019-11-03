@@ -1,9 +1,16 @@
 package TowerDefense.thegame.entity.bullet;
 
 import TowerDefense.thegame.Config;
+import TowerDefense.thegame.GameField;
+import TowerDefense.thegame.entity.LivingEntity;
 
 public final class NormalBullet extends AbstractBullet {
-	public NormalBullet(long createdTick, double posX, double posY, double deltaX, double deltaY) {
-		super(createdTick, posX, posY, deltaX, deltaY, Config.NORMAL_BULLET_SPEED, Config.NORMAL_BULLET_STRENGTH, Config.NORMAL_BULLET_TTL);
+	public NormalBullet(double posX, double posY, double deltaX, double deltaY) {
+		super(posX, posY, deltaX, deltaY, 400);
+	}
+
+	@Override
+	public boolean onEffect(GameField field, LivingEntity livingEntity) {
+		return false;
 	}
 }
