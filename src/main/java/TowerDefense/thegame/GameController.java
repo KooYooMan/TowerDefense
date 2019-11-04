@@ -16,7 +16,6 @@ public class GameController extends AnimationTimer {
         this.graphicsContext = graphicsContext;
         this.gameField = new GameField(new GameStage());
         this.drawer = new GameDrawer(graphicsContext, gameField);
-        System.out.println(this.gameField.getEntities().size());
     }
 
     final void closeRequestHandler(WindowEvent windowEvent) {

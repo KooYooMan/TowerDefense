@@ -1,12 +1,12 @@
 package TowerDefense.thegame.drawer;
 
 import TowerDefense.thegame.Config;
-import TowerDefense.thegame.drawer.bullet.ExplodingBulletDrawer;
-import TowerDefense.thegame.entity.bullet.ExplodingBullet;
+import TowerDefense.thegame.drawer.bullet.*;
+import TowerDefense.thegame.drawer.bullet.HighDamageBulletDrawer;
+import TowerDefense.thegame.entity.bullet.*;
 import javafx.scene.canvas.GraphicsContext;
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.GameEntity;
-import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,11 +15,21 @@ import java.util.Map;
 
 public final class GameDrawer {
 	private static final List<Class<?>> ENTITY_DRAWING_ORDER = List.of(
-		ExplodingBullet.class
+		NormalBullet.class,
+		ExplodingBullet.class,
+		FastBullet.class,
+		FrozenBullet.class,
+		BurningBullet.class,
+		HighDamageBulletDrawer.class
 	);
 
 	private static final Map<Class<? extends GameEntity>, EntityDrawer> ENTITY_DRAWER_MAP = new HashMap<>(Map.ofEntries(
-		Map.entry(ExplodingBullet.class, new ExplodingBulletDrawer())
+			Map.entry(ExplodingBullet.class, new ExplodingBulletDrawer()),
+			Map.entry(NormalBullet.class, new NormalBulletDrawer()),
+			Map.entry(BurningBullet.class, new BurningBulletDrawer()),
+			Map.entry(FrozenBullet.class, new FrozenBulletDrawer()),
+			Map.entry(HighDamageBullet.class, new HighDamageBulletDrawer()),
+			Map.entry(FastBullet.class, new FastBulletDrawer())
 	));
 
 	private final GraphicsContext graphicsContext;
@@ -56,8 +66,7 @@ public final class GameDrawer {
 	public final void render() {
 		final GameField gameField = this.gameField;
 		final List<GameEntity> entities = new ArrayList<>(gameField.getEntities());
-		graphicsContext.setFill(Color.BLUE);
-		graphicsContext.fillRect(0.0, 0.0, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
+		graphicsContext.clearRect(0.0, 0.0, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		for (final GameEntity entity : entities) {
 			final EntityDrawer drawer = getEntityDrawer(entity);
 			if (drawer != null) {
