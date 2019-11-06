@@ -3,11 +3,18 @@ package TowerDefense.thegame.drawer;
 import TowerDefense.thegame.Config;
 import TowerDefense.thegame.drawer.bullet.*;
 import TowerDefense.thegame.drawer.bullet.HighDamageBulletDrawer;
+import TowerDefense.thegame.drawer.enemy.NormalEnemyDrawer;
 import TowerDefense.thegame.entity.bullet.*;
+import TowerDefense.thegame.entity.enemy.NormalEnemy;
+import TowerDefense.thegame.entity.enemy.path.Path;
+import TowerDefense.utilities.Pair;
 import javafx.scene.canvas.GraphicsContext;
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.GameEntity;
+import javafx.scene.image.Image;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +27,8 @@ public final class GameDrawer {
 		FastBullet.class,
 		FrozenBullet.class,
 		BurningBullet.class,
-		HighDamageBulletDrawer.class
+		HighDamageBulletDrawer.class,
+		NormalEnemy.class
 	);
 
 	private static final Map<Class<? extends GameEntity>, EntityDrawer> ENTITY_DRAWER_MAP = new HashMap<>(Map.ofEntries(
@@ -29,7 +37,8 @@ public final class GameDrawer {
 			Map.entry(BurningBullet.class, new BurningBulletDrawer()),
 			Map.entry(FrozenBullet.class, new FrozenBulletDrawer()),
 			Map.entry(HighDamageBullet.class, new HighDamageBulletDrawer()),
-			Map.entry(FastBullet.class, new FastBulletDrawer())
+			Map.entry(FastBullet.class, new FastBulletDrawer()),
+			Map.entry(NormalEnemy.class, new NormalEnemyDrawer())
 	));
 
 	private final GraphicsContext graphicsContext;
@@ -67,8 +76,10 @@ public final class GameDrawer {
 		final GameField gameField = this.gameField;
 		final List<GameEntity> entities = new ArrayList<>(gameField.getEntities());
 		graphicsContext.clearRect(0.0, 0.0, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
+
 		for (final GameEntity entity : entities) {
 			final EntityDrawer drawer = getEntityDrawer(entity);
+
 			if (drawer != null) {
 				drawer.draw(this.graphicsContext, entity, entity.getPosX(), entity.getPosY(), entity.getWidth(), entity.getHeight());
 			}

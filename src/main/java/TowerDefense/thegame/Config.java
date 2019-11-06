@@ -22,5 +22,12 @@ public final class Config {
 
 	public static final double FROZEN_SPEED = 10;
 
+	/// enemy region
+	public static final double NORMAL_ENEMY_SIZE = 30;
+	public static final long NORMAL_ENEMY_HEALTH = 100;
+	public static final long NORMAL_ENEMY_ARMOR = 3;
+	public static final double NORMAL_ENEMY_SPEED = 0.3;
+	public static final long NORMAL_ENEMY_REWARD = 1;
+
 	public static final String GAME_NAME = "Tower Defense";
 }

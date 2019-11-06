@@ -4,6 +4,7 @@ import TowerDefense.thegame.entity.GameEntity;
 import TowerDefense.thegame.entity.bullet.ExplodingBullet;
 import TowerDefense.thegame.entity.bullet.FastBullet;
 import TowerDefense.thegame.entity.bullet.NormalBullet;
+import TowerDefense.thegame.entity.enemy.NormalEnemy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public final class GameStage {
         this.width = 400;
         this.height = 400;
         this.entities = new ArrayList<>();
+        this.entities.add(new NormalEnemy(10, 10));
         this.entities.add(new FastBullet(10, 10, 10, 10));
         this.entities.add(new ExplodingBullet(10, 10, 10, 10));
         this.entities.add(new NormalBullet(10, 10, 10, 10));

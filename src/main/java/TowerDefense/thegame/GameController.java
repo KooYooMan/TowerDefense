@@ -7,6 +7,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
 
+import java.io.FileNotFoundException;
+
 public class GameController extends AnimationTimer {
     private final GraphicsContext graphicsContext;
     private GameField gameField;

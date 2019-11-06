@@ -6,6 +6,6 @@ import java.io.FileInputStream;
 
 public final class FrozenBulletDrawer extends AbstractBulletDrawer {
     public FrozenBulletDrawer() {
-        super("target/classes/bullet/135.png");
+        super("resources/asset/PNG/Bullet/1.png");
     }
 }

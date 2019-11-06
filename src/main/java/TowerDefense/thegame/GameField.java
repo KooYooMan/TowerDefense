@@ -40,7 +40,7 @@ public final class GameField {
         //2.Update EffectEntity & Living Entity
 
         //3.Update Destroyable Entity
-        final List<GameEntity>destroyedEntities = new ArrayList<>();
+        final List<GameEntity> destroyedEntities = new ArrayList<>();
         for (final GameEntity entity : entities) {
             if (entity instanceof DestroyableEntity && ((DestroyableEntity) entity).isDestroyed()) {
                 if (entity instanceof DestroyListener) ((DestroyListener) entity).onDestroy(this);

@@ -6,6 +6,6 @@ import java.io.FileInputStream;
 
 public class HighDamageBulletDrawer extends AbstractBulletDrawer {
     public HighDamageBulletDrawer() {
-        super("target/classes/bullet/135.png");
+        super("resources/asset/PNG/Bullet/2.png");
     }
 }

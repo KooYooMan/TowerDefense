@@ -6,6 +6,6 @@ import java.io.FileInputStream;
 
 public class FastBulletDrawer extends AbstractBulletDrawer {
     public FastBulletDrawer() {
-        super("target/classes/bullet/135.png");
+        super("resources/asset/PNG/Bullet/2.png");
     }
 }
