@@ -1,17 +1,12 @@
 package TowerDefense.thegame.entity;
 
-/**
- * Abstract class for game entity.
- */
 public abstract class AbstractEntity implements GameEntity {
-	private final long createdTick;
 	private double posX;
 	private double posY;
 	private double width;
 	private double height;
 
-	protected AbstractEntity(long createdTick, double posX, double posY, double width, double height) {
-		this.createdTick = createdTick;
+	protected AbstractEntity(double posX, double posY, double width, double height) {
 		this.posX = posX;
 		this.posY = posY;
 		this.width = width;
@@ -19,19 +14,10 @@ public abstract class AbstractEntity implements GameEntity {
 	}
 
 	@Override
-	public final long getCreatedTick() {
-		return createdTick;
-	}
-
-	@Override
 	public final double getPosX() {
 		return posX;
 	}
 
-	/**
-	 * Set entity field pos x. Should only be called in doUpdate of UpdatableEntity
-	 * @param posX field pos x
-	 */
 	protected final void setPosX(double posX) {
 		this.posX = posX;
 	}
@@ -41,10 +27,6 @@ public abstract class AbstractEntity implements GameEntity {
 		return posY;
 	}
 
-	/**
-	 * Set entity field pos y. Should only be called in doUpdate of UpdatableEntity
-	 * @param posY field pos y
-	 */
 	protected final void setPosY(double posY) {
 		this.posY = posY;
 	}
@@ -54,10 +36,6 @@ public abstract class AbstractEntity implements GameEntity {
 		return width;
 	}
 
-	/**
-	 * Set entity field width. Should only be called in doUpdate of UpdatableEntity
-	 * @param width field width
-	 */
 	protected final void setWidth(double width) {
 		this.width = width;
 	}
@@ -67,10 +45,6 @@ public abstract class AbstractEntity implements GameEntity {
 		return height;
 	}
 
-	/**
-	 * Set entity field height. Should only be called in doUpdate of UpdatableEntity
-	 * @param height field height
-	 */
 	protected final void setHeight(double height) {
 		this.height = height;
 	}
