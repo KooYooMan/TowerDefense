@@ -2,6 +2,7 @@ package TowerDefense.thegame.entity.tower;
 
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.AbstractEntity;
+import TowerDefense.thegame.entity.gun.AbstractGun;
 import TowerDefense.thegame.entity.UpdatableEntity;
 import TowerDefense.thegame.entity.bullet.AbstractBullet;
 
