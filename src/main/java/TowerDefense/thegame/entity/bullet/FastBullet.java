@@ -6,8 +6,8 @@ import TowerDefense.thegame.entity.Effect.ShootEffect;
 import TowerDefense.thegame.entity.LivingEntity;
 
 public class FastBullet extends AbstractBullet {
-    public FastBullet(double posX, double posY, double deltaX, double deltaY) {
+    public FastBullet(double posX, double posY, double deltaX, double deltaY, int timeToLive) {
         super(posX, posY, deltaX, deltaY, Config.FAST_BULLET_SPEED,
-                new ShootEffect(Config.NORMAL_BULLET_DAMAGE));
+                new ShootEffect(Config.NORMAL_BULLET_DAMAGE), timeToLive);
     }
 }

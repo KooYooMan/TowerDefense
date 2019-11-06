@@ -1,20 +1,27 @@
 package TowerDefense.thegame.drawer;
 
 import TowerDefense.thegame.Config;
+import TowerDefense.thegame.drawer.Gun.MachineGunDrawer;
+import TowerDefense.thegame.drawer.Gun.NormalGunDrawer;
+import TowerDefense.thegame.drawer.Gun.SniperGunDrawer;
 import TowerDefense.thegame.drawer.bullet.*;
 import TowerDefense.thegame.drawer.bullet.HighDamageBulletDrawer;
-import TowerDefense.thegame.drawer.enemy.NormalEnemyDrawer;
+import TowerDefense.thegame.drawer.tower.MachineTowerDrawer;
+import TowerDefense.thegame.drawer.tower.NormalTowerDrawer;
+import TowerDefense.thegame.drawer.tower.SniperTowerDrawer;
+import TowerDefense.thegame.entity.Gun.MachineGun;
+import TowerDefense.thegame.entity.Gun.NormalGun;
+import TowerDefense.thegame.entity.Gun.SniperGun;
+import TowerDefense.thegame.entity.RotatableEntity;
+import TowerDefense.thegame.entity.Tower.MachineGunTower;
+import TowerDefense.thegame.entity.Tower.NormalTower;
+import TowerDefense.thegame.entity.Tower.SniperTower;
 import TowerDefense.thegame.entity.bullet.*;
-import TowerDefense.thegame.entity.enemy.NormalEnemy;
-import TowerDefense.thegame.entity.enemy.path.Path;
-import TowerDefense.utilities.Pair;
 import javafx.scene.canvas.GraphicsContext;
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.GameEntity;
-import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,23 +29,38 @@ import java.util.Map;
 
 public final class GameDrawer {
 	private static final List<Class<?>> ENTITY_DRAWING_ORDER = List.of(
+		MachineGunTower.class,
+		NormalTower.class,
+		SniperTower.class,
+
+		MachineGun.class,
+		NormalGun.class,
+		SniperGun.class,
+
 		NormalBullet.class,
 		ExplodingBullet.class,
 		FastBullet.class,
 		FrozenBullet.class,
 		BurningBullet.class,
-		HighDamageBulletDrawer.class,
-		NormalEnemy.class
+		HighDamageBulletDrawer.class
+
 	);
 
 	private static final Map<Class<? extends GameEntity>, EntityDrawer> ENTITY_DRAWER_MAP = new HashMap<>(Map.ofEntries(
+			Map.entry(MachineGunTower.class, new MachineTowerDrawer()),
+			Map.entry(NormalTower.class, new NormalTowerDrawer()),
+			Map.entry(SniperTower.class, new SniperTowerDrawer()),
+
+			Map.entry(MachineGun.class, new MachineGunDrawer()),
+			Map.entry(NormalGun.class, new NormalGunDrawer()),
+			Map.entry(SniperGun.class, new SniperGunDrawer()),
+
 			Map.entry(ExplodingBullet.class, new ExplodingBulletDrawer()),
 			Map.entry(NormalBullet.class, new NormalBulletDrawer()),
 			Map.entry(BurningBullet.class, new BurningBulletDrawer()),
 			Map.entry(FrozenBullet.class, new FrozenBulletDrawer()),
 			Map.entry(HighDamageBullet.class, new HighDamageBulletDrawer()),
-			Map.entry(FastBullet.class, new FastBulletDrawer()),
-			Map.entry(NormalEnemy.class, new NormalEnemyDrawer())
+			Map.entry(FastBullet.class, new FastBulletDrawer())
 	));
 
 	private final GraphicsContext graphicsContext;
@@ -76,12 +98,16 @@ public final class GameDrawer {
 		final GameField gameField = this.gameField;
 		final List<GameEntity> entities = new ArrayList<>(gameField.getEntities());
 		graphicsContext.clearRect(0.0, 0.0, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
-
 		for (final GameEntity entity : entities) {
 			final EntityDrawer drawer = getEntityDrawer(entity);
-
 			if (drawer != null) {
-				drawer.draw(this.graphicsContext, entity, entity.getPosX(), entity.getPosY(), entity.getWidth(), entity.getHeight());
+				if (entity instanceof RotatableEntity) {
+					drawer.draw(this.graphicsContext, entity, entity.getPosX(), entity.getPosY(), entity.getWidth(),
+							entity.getHeight(), ((RotatableEntity) entity).getDegreeRotate());
+				} else {
+					drawer.draw(this.graphicsContext, entity, entity.getPosX(), entity.getPosY(), entity.getWidth(),
+							entity.getHeight(), 0);
+				}
 			}
 		}
 	}
