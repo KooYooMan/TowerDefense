@@ -17,9 +17,10 @@ public class Path {
     public void addInstruction (Pair<Double, Integer> instruction) {
         instructions.add(instruction);
     }
-    public Pair<Double, Integer> getInstruction (int i) {
-        return instructions.get(i);
-
+    public Double getLength (int i) {
+        return instructions.get(i).getA();
     }
-
+    public Integer getDirect (int i) {
+        return instructions.get(i).getB();
+    }
 }

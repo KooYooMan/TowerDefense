@@ -1,11 +1,6 @@
 package TowerDefense.thegame.entity.enemy;
 
 import TowerDefense.thegame.Config;
-import TowerDefense.thegame.entity.Effect.AbstractEffect;
-import javafx.scene.image.Image;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 public class NormalEnemy extends AbstractEnemy {
     public NormalEnemy(double posX, double posY) {

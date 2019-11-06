@@ -1,4 +1,4 @@
-package TowerDefense.thegame.drawer.Gun;
+package TowerDefense.thegame.drawer.gun;
 
 import TowerDefense.thegame.Config;
 

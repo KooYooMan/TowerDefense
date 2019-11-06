@@ -1,4 +1,4 @@
-package TowerDefense.thegame.entity.Effect;
+package TowerDefense.thegame.entity.effect;
 
 import TowerDefense.thegame.entity.LivingEntity;
 

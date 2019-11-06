@@ -1,9 +1,7 @@
 package TowerDefense.thegame.entity.bullet;
 
 import TowerDefense.thegame.Config;
-import TowerDefense.thegame.GameField;
-import TowerDefense.thegame.entity.Effect.ShootEffect;
-import TowerDefense.thegame.entity.LivingEntity;
+import TowerDefense.thegame.entity.effect.ShootEffect;
 
 public class NormalBullet extends AbstractBullet {
     public NormalBullet(double posX, double posY, double deltaX, double deltaY, int timeToLive) {

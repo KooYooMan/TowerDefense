@@ -1,26 +1,27 @@
 package TowerDefense.thegame.drawer;
 
 import TowerDefense.thegame.Config;
-import TowerDefense.thegame.drawer.Gun.MachineGunDrawer;
-import TowerDefense.thegame.drawer.Gun.NormalGunDrawer;
-import TowerDefense.thegame.drawer.Gun.SniperGunDrawer;
+import TowerDefense.thegame.drawer.gun.MachineGunDrawer;
+import TowerDefense.thegame.drawer.gun.NormalGunDrawer;
+import TowerDefense.thegame.drawer.gun.SniperGunDrawer;
 import TowerDefense.thegame.drawer.bullet.*;
 import TowerDefense.thegame.drawer.bullet.HighDamageBulletDrawer;
+import TowerDefense.thegame.drawer.enemy.NormalEnemyDrawer;
 import TowerDefense.thegame.drawer.tower.MachineTowerDrawer;
 import TowerDefense.thegame.drawer.tower.NormalTowerDrawer;
 import TowerDefense.thegame.drawer.tower.SniperTowerDrawer;
-import TowerDefense.thegame.entity.Gun.MachineGun;
-import TowerDefense.thegame.entity.Gun.NormalGun;
-import TowerDefense.thegame.entity.Gun.SniperGun;
+import TowerDefense.thegame.entity.gun.MachineGun;
+import TowerDefense.thegame.entity.gun.NormalGun;
+import TowerDefense.thegame.entity.gun.SniperGun;
 import TowerDefense.thegame.entity.RotatableEntity;
-import TowerDefense.thegame.entity.Tower.MachineGunTower;
-import TowerDefense.thegame.entity.Tower.NormalTower;
-import TowerDefense.thegame.entity.Tower.SniperTower;
+import TowerDefense.thegame.entity.tower.MachineGunTower;
+import TowerDefense.thegame.entity.tower.NormalTower;
+import TowerDefense.thegame.entity.tower.SniperTower;
 import TowerDefense.thegame.entity.bullet.*;
+import TowerDefense.thegame.entity.enemy.NormalEnemy;
 import javafx.scene.canvas.GraphicsContext;
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.GameEntity;
-import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,7 +61,8 @@ public final class GameDrawer {
 			Map.entry(BurningBullet.class, new BurningBulletDrawer()),
 			Map.entry(FrozenBullet.class, new FrozenBulletDrawer()),
 			Map.entry(HighDamageBullet.class, new HighDamageBulletDrawer()),
-			Map.entry(FastBullet.class, new FastBulletDrawer())
+			Map.entry(FastBullet.class, new FastBulletDrawer()),
+			Map.entry(NormalEnemy.class, new NormalEnemyDrawer())
 	));
 
 	private final GraphicsContext graphicsContext;

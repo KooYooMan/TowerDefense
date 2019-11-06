@@ -2,25 +2,24 @@ package TowerDefense.thegame.entity.enemy;
 
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.*;
-import TowerDefense.thegame.entity.Effect.AbstractEffect;
+import TowerDefense.thegame.entity.effect.AbstractEffect;
 import TowerDefense.thegame.entity.enemy.path.Path;
 import TowerDefense.utilities.Pair;
-import javafx.scene.effect.Effect;
 
 import javax.annotation.Nonnull;
-import javax.servlet.jsp.JspPage;
-import java.util.Collection;
-import java.util.Collections;
 
-public abstract class AbstractEnemy extends AbstractEntity implements UpdatableEntity, EffectEntity, LivingEntity, DestroyListener {
+public abstract class AbstractEnemy extends AbstractEntity implements UpdatableEntity, EffectEntity, LivingEntity, DestroyListener, RotatableEntity {
     private static final double[][] DELTA_DIRECTION_ARRAY = {
             {0.0, -1.0}, {0.0, 1.0}, {-1.0, 0.0}, {1.0, 0.0},
     };
-
+    private static final double [] DEGREE_ROTATE_ARRAY = {
+        270, 90.0, 180, 0
+    };
     private long health;
     private long armor;
     private double speed;
     private long reward;
+    private double degreeRotate;
     Path path;
     double didInstruction = 0;
     int currInstruction = 0;
@@ -35,6 +34,8 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         path = new Path();
         path.addInstruction(Pair.immutableOf(100.0, 1));
         path.addInstruction(Pair.immutableOf(200.0, 3));
+        path.addInstruction(Pair.immutableOf(100.0, 2));
+        path.addInstruction(Pair.immutableOf(200.0, 0));
 
     }
     void setPath () {
@@ -45,10 +46,15 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         final double enemyPosY = getPosY();
         final double enemyWidth = getWidth();
         final double enemyHeight = getHeight();
-        didInstruction += path.getInstruction(currInstruction).getB() * speed;
-        setPosX(enemyPosX + speed * DELTA_DIRECTION_ARRAY[path.getInstruction(currInstruction).getB()][0]);
-        setPosY(enemyPosY + speed * DELTA_DIRECTION_ARRAY[path.getInstruction(currInstruction).getB()][1]);
-        if (didInstruction >= path.getInstruction(currInstruction).getA()) {
+        didInstruction += Math.abs(path.getDirect(currInstruction) * speed);
+        System.out.println(path.getDirect(currInstruction));
+        setPosX(enemyPosX + speed * DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][0]);
+        setPosY(enemyPosY + speed * DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][1]);
+        degreeRotate = DEGREE_ROTATE_ARRAY[path.getDirect(currInstruction)];
+        System.out.printf("posx = %f posy = %f dx = %f dy = %f deg = %f\n",
+                getPosX(), getPosY(), DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][0], DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][1], degreeRotate);
+
+        if (didInstruction >= Math.abs(path.getLength(currInstruction))) {
             didInstruction = 0;
             currInstruction += 1;
             if (currInstruction >= path.getNumberInstructions()) {
@@ -58,6 +64,12 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         }
         System.out.printf("%f %f curr = %d did = %f\n", getPosX(), getPosY(), currInstruction, didInstruction);
     }
+
+    @Override
+    public double getDegreeRotate() {
+        return degreeRotate;
+    }
+
     public final void doDestroy () {
 
 

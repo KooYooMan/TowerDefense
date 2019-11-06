@@ -1,9 +1,7 @@
 package TowerDefense.thegame.entity.bullet;
 
 import TowerDefense.thegame.Config;
-import TowerDefense.thegame.GameField;
-import TowerDefense.thegame.entity.Effect.FrozenEffect;
-import TowerDefense.thegame.entity.LivingEntity;
+import TowerDefense.thegame.entity.effect.FrozenEffect;
 
 public class FrozenBullet extends AbstractBullet {
     public FrozenBullet(double posX, double posY, double deltaX, double deltaY, int timeToLive) {

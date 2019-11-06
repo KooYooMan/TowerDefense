@@ -1,6 +1,6 @@
 package TowerDefense.thegame.entity;
 
-import TowerDefense.thegame.entity.Effect.AbstractEffect;
+import TowerDefense.thegame.entity.effect.AbstractEffect;
 
 public interface LivingEntity extends DestroyableEntity {
 	long getHealth();

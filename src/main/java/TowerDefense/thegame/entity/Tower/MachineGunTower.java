@@ -1,8 +1,7 @@
-package TowerDefense.thegame.entity.Tower;
+package TowerDefense.thegame.entity.tower;
 
 import TowerDefense.thegame.Config;
-import TowerDefense.thegame.entity.Gun.AbstractGun;
-import TowerDefense.thegame.entity.bullet.AbstractBullet;
+import TowerDefense.thegame.entity.gun.AbstractGun;
 import TowerDefense.thegame.entity.bullet.NormalBullet;
 
 public class MachineGunTower extends AbstractTower {

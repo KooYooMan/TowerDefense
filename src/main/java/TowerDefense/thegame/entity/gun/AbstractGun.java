@@ -1,4 +1,4 @@
-package TowerDefense.thegame.entity.Gun;
+package TowerDefense.thegame.entity.gun;
 
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.AbstractEntity;

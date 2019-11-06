@@ -1,13 +1,10 @@
-package TowerDefense.thegame.drawer.Gun;
+package TowerDefense.thegame.drawer.gun;
 
 import TowerDefense.thegame.drawer.AbstractDrawer;
 import TowerDefense.thegame.drawer.EntityDrawer;
 import TowerDefense.thegame.entity.GameEntity;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.transform.Rotate;
-
-import java.io.FileInputStream;
 
 public class AbstractGunDrawer extends AbstractDrawer implements EntityDrawer {
     protected AbstractGunDrawer(String path) {

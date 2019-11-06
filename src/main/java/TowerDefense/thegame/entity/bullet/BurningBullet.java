@@ -1,9 +1,7 @@
 package TowerDefense.thegame.entity.bullet;
 
 import TowerDefense.thegame.Config;
-import TowerDefense.thegame.GameField;
-import TowerDefense.thegame.entity.Effect.BurningEffect;
-import TowerDefense.thegame.entity.LivingEntity;
+import TowerDefense.thegame.entity.effect.BurningEffect;
 
 public class BurningBullet extends AbstractBullet {
     public BurningBullet(double posX, double posY, double deltaX, double deltaY, int timeToLive) {

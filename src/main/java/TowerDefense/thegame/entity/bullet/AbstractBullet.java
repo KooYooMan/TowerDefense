@@ -3,7 +3,7 @@ package TowerDefense.thegame.entity.bullet;
 import TowerDefense.thegame.Config;
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.*;
-import TowerDefense.thegame.entity.Effect.AbstractEffect;
+import TowerDefense.thegame.entity.effect.AbstractEffect;
 
 public abstract class AbstractBullet extends AbstractEntity implements UpdatableEntity, EffectEntity {
 	private final double deltaX;
