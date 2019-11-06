@@ -1,6 +1,8 @@
 package TowerDefense.thegame;
 
 public final class Config {
+	private static final String path = "target/classes";
+
 	public static final double SCREEN_WIDTH = 400;
 	public static final double SCREEN_HEIGHT = 400;
 
@@ -32,28 +34,36 @@ public final class Config {
 
 	public static final long BULLET_ADD_SPEED = 2;
 
-	public static final String MACHINE_TOWER_IMAGE = "target/classes/tower/MachineGunTower.png";
-	public static final String NORMAL_TOWER_IMAGE = "target/classes/tower/NormalTower.png";
-	public static final String SNIPER_TOWER_IMAGE = "target/classes/tower/SniperTower.png";
+	public static final String MACHINE_TOWER_IMAGE = path + "/tower/MachineGunTower.png";
+	public static final String NORMAL_TOWER_IMAGE = path + "/tower/NormalTower.png";
+	public static final String SNIPER_TOWER_IMAGE = path + "/tower/SniperTower.png";
 
-	public static final String MACHINE_GUN_IMAGE = "target/classes/gun/MachineGun.png";
-	public static final String NORMAL_GUN_IMAGE = "target/classes/gun/NormalGun.png";
-	public static final String SNIPER_GUN_IMAGE = "target/classes/gun/SniperGun.png";
+	public static final String MACHINE_GUN_IMAGE = path + "/gun/MachineGun.png";
+	public static final String NORMAL_GUN_IMAGE = path + "/gun/NormalGun.png";
+	public static final String SNIPER_GUN_IMAGE = path + "/gun/SniperGun.png";
 
-	public static final String BURNING_BULLET_IMAGE = "target/classes/bullet/BurningBullet.png";
-	public static final String EXPLODING_BULLET_IMAGE = "target/classes/bullet/ExplodingBullet.png";
-	public static final String FAST_BULLET_IMAGE = "target/classes/bullet/FastBullet.png";
-	public static final String HIGH_DAMAGE_BULLET_IMAGE = "target/classes/bullet/HighDamageBullet.png";
-	public static final String NORMAL_BULLET_IMAGE = "target/classes/bullet/NormalBullet.png";
-	public static final String FROZEN_BULLET_IMAGE = "target/classes/bullet/FrozenBullet.png";
+	public static final String BURNING_BULLET_IMAGE = path + "/bullet/BurningBullet.png";
+	public static final String EXPLODING_BULLET_IMAGE = path + "/bullet/ExplodingBullet.png";
+	public static final String FAST_BULLET_IMAGE = path + "/bullet/FastBullet.png";
+	public static final String HIGH_DAMAGE_BULLET_IMAGE = path + "/bullet/HighDamageBullet.png";
+	public static final String NORMAL_BULLET_IMAGE = path + "/bullet/NormalBullet.png";
+	public static final String FROZEN_BULLET_IMAGE = path + "/bullet/FrozenBullet.png";
 
-	public static final double NORMAL_GUN_WIDTH = 5;
-	public static final double MACHINE_GUN_WIDTH = 5;
-	public static final double SNIPER_GUN_WIDTH = 5;
+	public static final double NORMAL_GUN_WIDTH = 60;
+	public static final double MACHINE_GUN_WIDTH = 60;
+	public static final double SNIPER_GUN_WIDTH = 60;
 
-	public static final double NORMAL_GUN_HEIGHT = 5;
-	public static final double MACHINE_GUN_HEIGHT = 5;
-	public static final double SNIPER_GUN_HEIGHT = 5;
+	public static final double NORMAL_GUN_HEIGHT = 60;
+	public static final double MACHINE_GUN_HEIGHT = 60;
+	public static final double SNIPER_GUN_HEIGHT = 60;
+
+	public static final double MACHINE_TOWER_WIDTH = 60;
+	public static final double NORMAL_TOWER_WIDTH = 60;
+	public static final double SNIPER_TOWER_WIDTH = 60;
+
+	public static final double MACHINE_TOWER_HEIGHT = 60;
+	public static final double NORMAL_TOWER_HEIGHT = 60;
+	public static final double SNIPER_TOWER_HEIGHT = 60;
 
 	public static final String GAME_NAME = "Tower Defense";
 }

@@ -1,10 +1,7 @@
 package TowerDefense.thegame;
 
 import TowerDefense.thegame.entity.GameEntity;
-import TowerDefense.thegame.entity.Tower.NormalTower;
-import TowerDefense.thegame.entity.bullet.ExplodingBullet;
-import TowerDefense.thegame.entity.bullet.FastBullet;
-import TowerDefense.thegame.entity.bullet.NormalBullet;
+import TowerDefense.thegame.entity.tower.SniperTower;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +22,7 @@ public final class GameStage {
         this.width = 400;
         this.height = 400;
         this.entities = new ArrayList<>();
-        NormalTower foo = new NormalTower(10, 10, 30, 30);
+        SniperTower foo = new SniperTower(10, 10);
         this.entities.add(foo);
         this.entities.add(foo.getGun());
     }

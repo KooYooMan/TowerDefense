@@ -1,4 +1,4 @@
-package TowerDefense.thegame.entity.Gun;
+package TowerDefense.thegame.entity.gun;
 
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.AbstractEntity;
@@ -20,7 +20,7 @@ public class AbstractGun extends AbstractEntity implements UpdatableEntity, Rota
 
     @Override
     public void onUpdate(GameField field) {
-        this.degreeRotate += 10;
+        this.degreeRotate += 3;
         if (this.degreeRotate >= 360) this.degreeRotate -= 360;
     }
 }
