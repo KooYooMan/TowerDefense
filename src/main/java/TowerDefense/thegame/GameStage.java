@@ -30,7 +30,7 @@ public final class GameStage {
         NormalTower foo = new NormalTower(10, 10, 30, 30);
         this.entities.add(foo);
         this.entities.add(foo.getGun());
-        this.entities.add(new NormalEnemy(10, 10));
+        this.entities.add(new NormalEnemy(100, 100));
     }
 
     public List<GameEntity> getEntities() {

@@ -46,7 +46,7 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         final double enemyPosY = getPosY();
         final double enemyWidth = getWidth();
         final double enemyHeight = getHeight();
-        didInstruction += Math.abs(path.getDirect(currInstruction) * speed);
+        didInstruction += Math.abs(speed);
         System.out.println(path.getDirect(currInstruction));
         setPosX(enemyPosX + speed * DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][0]);
         setPosY(enemyPosY + speed * DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][1]);
