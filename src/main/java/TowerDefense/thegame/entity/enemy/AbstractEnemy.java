@@ -37,8 +37,9 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         path.addInstruction(Pair.immutableOf(100.0, 0));
         path.addInstruction(Pair.immutableOf(100.0, 2));
 
+
     }
-    void setPath () {
+    public void setPath (Path path) {
         this.path = path;
     }
     public final void onUpdate (@Nonnull GameField field) {
@@ -47,12 +48,12 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         final double enemyWidth = getWidth();
         final double enemyHeight = getHeight();
         didInstruction += Math.abs(speed);
-        System.out.println(path.getDirect(currInstruction));
+//        System.out.println(path.getDirect(currInstruction));
         setPosX(enemyPosX + speed * DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][0]);
         setPosY(enemyPosY + speed * DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][1]);
         degreeRotate = DEGREE_ROTATE_ARRAY[path.getDirect(currInstruction)];
-        System.out.printf("posx = %f posy = %f dx = %f dy = %f deg = %f\n",
-                getPosX(), getPosY(), DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][0], DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][1], degreeRotate);
+//        System.out.printf("posx = %f posy = %f dx = %f dy = %f deg = %f\n",
+//                getPosX(), getPosY(), DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][0], DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][1], degreeRotate);
 
         if (didInstruction >= Math.abs(path.getLength(currInstruction))) {
             didInstruction = 0;
@@ -62,7 +63,7 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
             }
 
         }
-        System.out.printf("%f %f curr = %d did = %f\n", getPosX(), getPosY(), currInstruction, didInstruction);
+//        System.out.printf("%f %f curr = %d did = %f\n", getPosX(), getPosY(), currInstruction, didInstruction);
     }
 //
     @Override
@@ -71,7 +72,6 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
     }
 
     public final void doDestroy () {
-
 
     }
     @Override
