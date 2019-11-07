@@ -109,11 +109,7 @@ public final class GameDrawer {
 		final List<GameEntity> entities = new ArrayList<>(gameField.getEntities());
 		graphicsContext.clearRect(0.0, 0.0, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 
-		try {
-			stageDrawer.draw();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		stageDrawer.draw();
 
 		for (final GameEntity entity : entities) {
 			final EntityDrawer drawer = getEntityDrawer(entity);
