@@ -31,5 +31,7 @@
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:13" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:13" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:3.0.2" level="project" />
+    <orderEntry type="library" name="javax-inject" level="project" />
+    <orderEntry type="library" name="cdi-api-1.1" level="project" />
   </component>
 </module>
