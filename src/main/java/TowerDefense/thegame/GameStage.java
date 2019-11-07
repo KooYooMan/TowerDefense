@@ -1,12 +1,9 @@
 package TowerDefense.thegame;
 
 import TowerDefense.thegame.entity.GameEntity;
-import TowerDefense.thegame.entity.tower.NormalTower;
-import TowerDefense.thegame.entity.bullet.ExplodingBullet;
-import TowerDefense.thegame.entity.bullet.FastBullet;
-import TowerDefense.thegame.entity.bullet.NormalBullet;
+import TowerDefense.thegame.entity.tile.spawner.NormalSpawner;
+import TowerDefense.thegame.entity.tile.tower.NormalTower;
 import TowerDefense.thegame.entity.enemy.NormalEnemy;
-import TowerDefense.thegame.entity.tower.NormalTower;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +24,10 @@ public final class GameStage {
         this.width = 400;
         this.height = 400;
         this.entities = new ArrayList<>();
-        NormalTower foo = new NormalTower(100, 70, 30, 30);
-        NormalTower bar = new NormalTower(50, 50, 30, 30);
+        NormalTower foo = new NormalTower(100.0, 70.0);
+        NormalTower bar = new NormalTower(50.0, 50.0);
+
+        this.entities.add(new NormalSpawner(200.0, 200.0, 100, 100, 10));
 
         this.entities.add(foo);
         this.entities.add(bar);
@@ -36,6 +35,9 @@ public final class GameStage {
         this.entities.add(foo.getGun());
         this.entities.add(bar.getGun());
         this.entities.add(new NormalEnemy(100, 100));
+        for (GameEntity entity : this.entities) {
+            System.out.printf("%s\n", entity.toString());
+        }
     }
 
     public List<GameEntity> getEntities() {
