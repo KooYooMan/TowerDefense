@@ -2,6 +2,7 @@ package TowerDefense.thegame;
 
 
 import TowerDefense.thegame.entity.*;
+import TowerDefense.thegame.entity.tile.spawner.NormalSpawner;
 
 import java.util.*;
 
@@ -33,6 +34,11 @@ public final class GameField {
     }
 
     public final void handle() {
+        System.out.printf("Size = %d\n", entities.size());
+        for (GameEntity entity : this.entities) {
+            System.out.printf("%s\n", entity.toString());
+        }
+
         //1.Update UpdatableEntity
         for (final GameEntity entity : entities) {
             if (entity instanceof UpdatableEntity) ((UpdatableEntity) entity).onUpdate(this);
