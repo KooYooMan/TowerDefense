@@ -4,7 +4,6 @@ import TowerDefense.thegame.drawer.GameDrawer;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
 
 public class GameController extends AnimationTimer {

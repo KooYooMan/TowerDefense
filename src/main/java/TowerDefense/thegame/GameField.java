@@ -54,7 +54,7 @@ public final class GameField {
         //5.Destroy out-map entities
         entities.removeIf(entity -> !entity.isBeingOverlapped(0, 0, width, height));
 
-        //6. Spaw Entity
+        //6. Spawn Entity
     }
 
 }
