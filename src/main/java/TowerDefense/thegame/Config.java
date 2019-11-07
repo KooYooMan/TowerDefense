@@ -3,9 +3,25 @@ package TowerDefense.thegame;
 public final class Config {
 	private static final String path = "target/classes";
 
-	public static final double SCREEN_WIDTH = 400;
-	public static final double SCREEN_HEIGHT = 400;
+	public static final long TILE_SIZE = 32;
+	public static final long TILE_HORIZONTAL = 30;
+	public static final long TILE_VERTICAL = 20;
+	public static final int _TILE_MAP_COUNT = (int) (TILE_HORIZONTAL * TILE_VERTICAL);
+	public static final long SCREEN_WIDTH = TILE_SIZE * TILE_HORIZONTAL;
+	public static final long SCREEN_HEIGHT = TILE_SIZE * TILE_VERTICAL;
 
+
+	// Tile region
+	public static final double MOUNTAIN_WIDTH = TILE_SIZE * 1.0;
+	public static final double MOUNTAIN_HEIGHT = TILE_SIZE * 1.0;
+
+	public static final double ROAD_WIDTH = TILE_SIZE * 1.0;
+	public static final double ROAD_HEIGHT = TILE_SIZE * 1.0;
+
+	public static final long TARGET_HEALTH = 100;
+	public static final double TARGET_WIDTH = TILE_SIZE * 0.5;
+	public static final double TARGET_HEIGHT = TILE_SIZE * 0.5;
+	// Tile
 	public static final double NORMAL_BULLET_WIDTH = 30;
 	public static final double NORMAL_BULLET_HEIGHT = 30;
 
