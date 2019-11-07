@@ -91,5 +91,7 @@ public final class Config {
 	public static final long BOSS_ENEMY_REWARD = 10;
 	//endregion
 
+
+
 	public static final String GAME_NAME = "Tower Defense";
 }

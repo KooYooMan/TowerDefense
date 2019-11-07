@@ -23,8 +23,9 @@ public class AbstractEnemyDrawer extends AbstractDrawer implements EntityDrawer 
     @Override
     public void draw(GraphicsContext graphicsContext, GameEntity entity, double screenPosX, double screenPosY, double screenWidth, double screenHeight, double rotateDegree) {
         graphicsContext.save();
-        rotate(graphicsContext, rotateDegree, screenPosX + screenWidth / 2, screenPosY + screenHeight / 2);
-        graphicsContext.drawImage(image, screenPosX, screenPosY);
+        System.out.printf("draw %f %f %f %f\n", screenPosX, screenPosY, screenWidth, screenHeight);
+        rotate(graphicsContext, rotateDegree, screenPosX + screenWidth * 100 / 2, screenPosY + screenHeight * 100 / 2);
+        graphicsContext.drawImage(image, screenPosX, screenPosY, screenWidth * 100, screenHeight * 100);
         graphicsContext.restore();
     }
 }

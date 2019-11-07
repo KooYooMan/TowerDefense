@@ -13,7 +13,7 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
             {0.0, -1.0}, {0.0, 1.0}, {-1.0, 0.0}, {1.0, 0.0},
     };
     private static final double [] DEGREE_ROTATE_ARRAY = {
-        270, 90.0, 180, 0
+        270, 90, 180, 0
     };
     private long health;
     private long armor;
@@ -33,9 +33,9 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         didInstruction = 0;
         path = new Path();
         path.addInstruction(Pair.immutableOf(100.0, 1));
-        path.addInstruction(Pair.immutableOf(200.0, 3));
+        path.addInstruction(Pair.immutableOf(100.0, 3));
+        path.addInstruction(Pair.immutableOf(100.0, 0));
         path.addInstruction(Pair.immutableOf(100.0, 2));
-        path.addInstruction(Pair.immutableOf(200.0, 0));
 
     }
     void setPath () {
@@ -64,7 +64,7 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         }
         System.out.printf("%f %f curr = %d did = %f\n", getPosX(), getPosY(), currInstruction, didInstruction);
     }
-
+//
     @Override
     public double getDegreeRotate() {
         return degreeRotate;
