@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class StageDrawer {
     private GraphicsContext graphicsContext;
     private Image image;
-
     private String[][] layout = new String[(int) Config.TILE_VERTICAL][];
 
     public StageDrawer(GraphicsContext graphicsContext, String filePath) throws IOException {
