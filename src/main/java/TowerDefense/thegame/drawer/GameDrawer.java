@@ -1,13 +1,14 @@
 package TowerDefense.thegame.drawer;
 
 import TowerDefense.thegame.Config;
+import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.drawer.bullet.*;
-import TowerDefense.thegame.drawer.bullet.HighDamageBulletDrawer;
+import TowerDefense.thegame.drawer.stage.StageDrawer;
+import TowerDefense.thegame.entity.GameEntity;
 import TowerDefense.thegame.entity.bullet.*;
 import javafx.scene.canvas.GraphicsContext;
-import TowerDefense.thegame.GameField;
-import TowerDefense.thegame.entity.GameEntity;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,10 +35,17 @@ public final class GameDrawer {
 
 	private final GraphicsContext graphicsContext;
 	private GameField gameField;
+	private StageDrawer stageDrawer;
 
 	public GameDrawer(GraphicsContext graphicsContext, GameField gameField) {
 		this.graphicsContext = graphicsContext;
 		this.gameField = gameField;
+
+		try {
+			this.stageDrawer = new StageDrawer(graphicsContext, "src/main/java/TowerDefense/thegame/drawer/stage/TestStage.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static int entityDrawingOrderComparator(GameEntity entityA, GameEntity entityB) {
@@ -67,6 +75,13 @@ public final class GameDrawer {
 		final GameField gameField = this.gameField;
 		final List<GameEntity> entities = new ArrayList<>(gameField.getEntities());
 		graphicsContext.clearRect(0.0, 0.0, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
+
+		try {
+			stageDrawer.draw();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		for (final GameEntity entity : entities) {
 			final EntityDrawer drawer = getEntityDrawer(entity);
 			if (drawer != null) {
