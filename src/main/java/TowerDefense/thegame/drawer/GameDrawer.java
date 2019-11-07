@@ -62,7 +62,6 @@ public final class GameDrawer {
 			Map.entry(FrozenBullet.class, new FrozenBulletDrawer()),
 			Map.entry(HighDamageBullet.class, new HighDamageBulletDrawer()),
 			Map.entry(FastBullet.class, new FastBulletDrawer()),
-			
 			Map.entry(NormalEnemy.class, new NormalEnemyDrawer())
 	));
 
