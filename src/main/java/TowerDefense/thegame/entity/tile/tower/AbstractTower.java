@@ -1,15 +1,16 @@
-package TowerDefense.thegame.entity.tower;
+package TowerDefense.thegame.entity.tile.tower;
 
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.AbstractEntity;
 import TowerDefense.thegame.entity.gun.AbstractGun;
 import TowerDefense.thegame.entity.UpdatableEntity;
 import TowerDefense.thegame.entity.bullet.AbstractBullet;
+import TowerDefense.thegame.entity.tile.AbstractTile;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AbstractTower extends AbstractEntity implements UpdatableEntity {
+public class AbstractTower extends AbstractTile implements UpdatableEntity {
     private final double range;
     private final long speed;
     private List<Class<? extends AbstractBullet>> bulletList = new ArrayList<Class<? extends AbstractBullet>>();

@@ -1,4 +1,4 @@
-package TowerDefense.thegame.entity.tower;
+package TowerDefense.thegame.entity.tile.tower;
 
 import TowerDefense.thegame.Config;
 import TowerDefense.thegame.entity.gun.NormalGun;
