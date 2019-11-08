@@ -21,20 +21,19 @@ public final class GameStage {
 
     // for testing
     public  GameStage() {
-        this.width = 400;
-        this.height = 400;
+        this.width = Config.SCREEN_WIDTH;
+        this.height = Config.SCREEN_HEIGHT;
         this.entities = new ArrayList<>();
         NormalTower foo = new NormalTower(100.0, 70.0);
         NormalTower bar = new NormalTower(50.0, 50.0);
 
-        this.entities.add(new NormalSpawner(200.0, 200.0, 100, 100, 10));
+        this.entities.add(new NormalSpawner(9 * Config.TILE_SIZE, 2 * Config.TILE_SIZE, 100, 100, 10));
 
         this.entities.add(foo);
         this.entities.add(bar);
 
         this.entities.add(foo.getGun());
         this.entities.add(bar.getGun());
-        this.entities.add(new NormalEnemy(100, 100));
         for (GameEntity entity : this.entities) {
             System.out.printf("%s\n", entity.toString());
         }

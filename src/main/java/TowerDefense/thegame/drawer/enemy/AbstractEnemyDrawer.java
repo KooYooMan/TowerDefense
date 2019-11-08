@@ -11,6 +11,7 @@ import javafx.scene.transform.Rotate;
 import java.io.FileInputStream;
 
 public class AbstractEnemyDrawer extends AbstractDrawer implements EntityDrawer {
+
     protected AbstractEnemyDrawer(String path) {
         super(path);
     }

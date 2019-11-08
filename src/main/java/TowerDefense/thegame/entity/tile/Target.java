@@ -10,7 +10,7 @@ public class Target extends AbstractTile implements LivingEntity {
 
     @Override
     public long getHealth() {
-        return 0;
+        return health;
     }
 
     @Override

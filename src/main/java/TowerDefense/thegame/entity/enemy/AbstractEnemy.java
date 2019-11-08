@@ -31,12 +31,6 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         this.reward = reward;
         currInstruction = 0;
         didInstruction = 0;
-        path = new Path();
-        path.addInstruction(Pair.immutableOf(100.0, 1));
-        path.addInstruction(Pair.immutableOf(100.0, 3));
-        path.addInstruction(Pair.immutableOf(100.0, 0));
-        path.addInstruction(Pair.immutableOf(100.0, 2));
-
 
     }
     public void setPath (Path path) {
