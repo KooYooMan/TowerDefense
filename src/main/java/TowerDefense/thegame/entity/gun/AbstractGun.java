@@ -6,7 +6,7 @@ import TowerDefense.thegame.entity.AbstractEntity;
 import TowerDefense.thegame.entity.RotatableEntity;
 import TowerDefense.thegame.entity.UpdatableEntity;
 
-public class AbstractGun extends AbstractEntity implements UpdatableEntity, RotatableEntity {
+public abstract class AbstractGun extends AbstractEntity implements UpdatableEntity, RotatableEntity {
     private double degreeRotate;
 
     protected AbstractGun(double posX, double posY, double width, double height) {

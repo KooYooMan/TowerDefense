@@ -15,13 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class AbstractTower extends AbstractEntity implements UpdatableEntity {
+public abstract class AbstractTower extends AbstractEntity implements UpdatableEntity {
     private final double range;
     private final long speed;
     private List<Class<? extends AbstractBullet>> bulletList = new ArrayList<Class<? extends AbstractBullet>>();
     private AbstractGun gun;
     private long tick = 0;
     private int bulletTime;
+    private final Class<?>[] cArg = new Class<?>[]{double.class, double.class, double.class, double.class, int.class};
 
     protected AbstractTower(double posX, double posY, double width, double height, double range, long speed, AbstractGun gun,
                             Class<? extends AbstractBullet> bullet, int bulletTime) {
@@ -77,18 +78,14 @@ public class AbstractTower extends AbstractEntity implements UpdatableEntity {
         }
         if (distance == Double.MAX_VALUE) return;
         if (distance > range) return;
+        this.tick ++;
         long len = bulletList.size();
         int id = new Random().nextInt((int) len);
         try {
-            Class<? extends AbstractBullet> cur = bulletList.get(id);
-            Class<?>[] cArg = new Class<?>[]{double.class, double.class, double.class, double.class, int.class};
-            AbstractBullet foo = cur.getDeclaredConstructor(cArg)
-                    .newInstance(centerX, centerY, targetX - centerX, targetY - centerY, bulletTime);
-            System.out.println(foo);
-        } catch (NoSuchMethodException  e) {
-            System.out.println("No such methods");
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            System.out.println("Hello");
+            field.getSpawnEntities().add(bulletList.get(id).getDeclaredConstructor(cArg)
+                    .newInstance(centerX, centerY, targetX - centerX, targetY - centerY, bulletTime));
+        } catch (Exception e) {
+            System.out.println("Error creating bullets");
         }
         this.gun.update(targetX, targetY);
     }

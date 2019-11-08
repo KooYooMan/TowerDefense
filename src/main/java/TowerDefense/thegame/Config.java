@@ -42,13 +42,13 @@ public final class Config {
 
 	public static final double FROZEN_SPEED = 10;
 
-	public static final double NORMAL_TOWER_RANGE = 200;
-	public static final double SNIPER_TOWER_RANGE = 250;
-	public static final double MACHINE_GUN_TOWER_RANGE = 150;
+	public static final double NORMAL_TOWER_RANGE = 500;
+	public static final double SNIPER_TOWER_RANGE = 500;
+	public static final double MACHINE_GUN_TOWER_RANGE = 500;
 
-	public static final long NORMAL_TOWER_SPEED = 15;
-	public static final long SNIPER_TOWER_SPEED = 20;
-	public static final long MACHINE_GUN_TOWER_SPEED = 10;
+	public static final long NORMAL_TOWER_SPEED = 50;
+	public static final long SNIPER_TOWER_SPEED = 50;
+	public static final long MACHINE_GUN_TOWER_SPEED = 50;
 
 	public static final long BULLET_ADD_SPEED = 2;
 
@@ -111,9 +111,9 @@ public final class Config {
 
 	public static final double GUN_ROTATE_SPEED = 5;
 
-	public static final int MACHINE_GUN_TOWER_BULLET_TIME = 20;
-	public static final int SNIPER_TOWER_BULLET_TIME = 20;
-	public static final int NORMAL_TOWER_BULLET_TIME = 20;
+	public static final int MACHINE_GUN_TOWER_BULLET_TIME = 100;
+	public static final int SNIPER_TOWER_BULLET_TIME = 100;
+	public static final int NORMAL_TOWER_BULLET_TIME = 100;
 
 	public static final String GAME_NAME = "Tower Defense";
 

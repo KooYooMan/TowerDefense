@@ -11,6 +11,7 @@ import java.util.*;
  */
 public final class GameField {
     private final Set<GameEntity> entities = new LinkedHashSet<>();
+    private final Set<GameEntity> spawnEntities = new LinkedHashSet<>();
 
     private final double width;
     private final double height;
@@ -23,6 +24,10 @@ public final class GameField {
 
     public Set<GameEntity> getEntities() {
         return entities;
+    }
+
+    public Set<GameEntity> getSpawnEntities() {
+        return spawnEntities;
     }
 
     public double getWidth() {
@@ -45,6 +50,8 @@ public final class GameField {
                 ((UpdatableEntity) entity).onUpdate(this);
             }
         }
+        entities.addAll(spawnEntities);
+        spawnEntities.clear();
         //2.Update EffectEntity & Living Entity
 
         //3.Update Destroyable Entity
