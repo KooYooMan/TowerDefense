@@ -53,7 +53,7 @@ public final class Config {
 	public static final long BULLET_ADD_SPEED = 2;
 
 	public static final String MACHINE_TOWER_IMAGE = path + "/tower/MachineGunTower.png";
-	public static final String NORMAL_TOWER_IMAGE = path + "/tower/NormalTower.png";
+	public static final String NORMAL_TOWER_IMAGE = path + "/tower/181.png";
 	public static final String SNIPER_TOWER_IMAGE = path + "/tower/SniperTower.png";
 
 	public static final String MACHINE_GUN_IMAGE = path + "/gun/MachineGun.png";
@@ -109,11 +109,7 @@ public final class Config {
 	public static final long BOSS_ENEMY_REWARD = 10;
 	//endregion
 
-	public static final double GUN_ROTATE_SPEED = 5;
 
-	public static final int MACHINE_GUN_TOWER_BULLET_TIME = 20;
-	public static final int SNIPER_TOWER_BULLET_TIME = 20;
-	public static final int NORMAL_TOWER_BULLET_TIME = 20;
 
 	public static final String GAME_NAME = "Tower Defense";
 
