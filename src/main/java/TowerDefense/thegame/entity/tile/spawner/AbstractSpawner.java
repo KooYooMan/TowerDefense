@@ -45,7 +45,7 @@ public abstract class AbstractSpawner<E extends AbstractEnemy> extends AbstractT
             numOfSpawn -= 1;
             E newEnemy = doSpawn(getPosX(), getPosY());
             newEnemy.setPath(path);
-            field.getEntities().add(newEnemy);
+            field.getSpawnEntities().add(newEnemy);
             this.tickDown = spawnInterval;
         }
         if (tickDown <= -1000) {

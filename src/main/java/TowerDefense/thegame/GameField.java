@@ -70,6 +70,10 @@ public final class GameField {
         entities.removeIf(entity -> !entity.isBeingOverlapped(0, 0, width, height));
 
         //6. Spawn Entity
+        for (GameEntity entity : spawnEntities) {
+            entities.add(entity);
+        }
+        spawnEntities.clear();
     }
 
 }

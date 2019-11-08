@@ -30,7 +30,7 @@ public final class GameStage {
         NormalTower foo = new NormalTower(300, 300);
         MachineGunTower bar = new MachineGunTower(300, 300);
         SniperTower magic = new SniperTower(300, 300);
-        this.entities.add(new NormalSpawner(200.0, 200.0, 100, 100, 10));
+        this.entities.add(new NormalSpawner(9 * Config.TILE_SIZE, 1.5 * Config.TILE_SIZE, 100, 100, 10));
 
         this.entities.add(foo);
         this.entities.add(bar);
