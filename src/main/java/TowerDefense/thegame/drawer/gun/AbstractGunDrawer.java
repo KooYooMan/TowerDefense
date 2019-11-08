@@ -20,7 +20,7 @@ public class AbstractGunDrawer extends AbstractDrawer implements EntityDrawer {
     public void draw(GraphicsContext graphicsContext, GameEntity entity, double screenPosX, double screenPosY, double screenWidth, double screenHeight, double rotateDegree) {
         graphicsContext.save();
         rotate(graphicsContext, rotateDegree, screenPosX + screenWidth / 2, screenPosY + screenHeight / 2);
-        graphicsContext.drawImage(image, screenPosX, screenPosY);
+        graphicsContext.drawImage(image, screenPosX, screenPosY, screenWidth, screenHeight);
         graphicsContext.restore();
     }
 }

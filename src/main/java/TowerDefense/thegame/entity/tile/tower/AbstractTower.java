@@ -2,28 +2,35 @@ package TowerDefense.thegame.entity.tile.tower;
 
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.AbstractEntity;
+import TowerDefense.thegame.entity.GameEntity;
+import TowerDefense.thegame.entity.bullet.NormalBullet;
+import TowerDefense.thegame.entity.enemy.AbstractEnemy;
 import TowerDefense.thegame.entity.gun.AbstractGun;
 import TowerDefense.thegame.entity.UpdatableEntity;
 import TowerDefense.thegame.entity.bullet.AbstractBullet;
-import TowerDefense.thegame.entity.tile.AbstractTile;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class AbstractTower extends AbstractTile implements UpdatableEntity {
+public class AbstractTower extends AbstractEntity implements UpdatableEntity {
     private final double range;
     private final long speed;
     private List<Class<? extends AbstractBullet>> bulletList = new ArrayList<Class<? extends AbstractBullet>>();
     private AbstractGun gun;
     private long tick = 0;
+    private int bulletTime;
 
     protected AbstractTower(double posX, double posY, double width, double height, double range, long speed, AbstractGun gun,
-                            Class<? extends AbstractBullet> bullet) {
+                            Class<? extends AbstractBullet> bullet, int bulletTime) {
         super(posX, posY, width, height);
         this.range = range;
         this.speed = speed;
         this.gun = gun;
         this.bulletList.add(bullet);
+        this.bulletTime = bulletTime;
     }
 
     public double getRange() {
@@ -44,8 +51,46 @@ public class AbstractTower extends AbstractTile implements UpdatableEntity {
         return true;
     }
 
+    double Distance(double x1, double y1, double x2, double y2) {
+        return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+    }
+
     @Override
     public void onUpdate(GameField field) {
-        this.tick ++; this.tick %= speed;
+        if (this.tick != 0) {
+            this.tick ++;
+            this.tick %= speed;
+        }
+        if (this.tick != 0) return;
+        double centerX = this.getPosX() + this.getWidth() / 2, centerY = this.getPosY() + this.getHeight() / 2;
+        double targetX = 0, targetY = 0, distance = Double.MAX_VALUE;
+        for (GameEntity entity : field.getEntities()) {
+            if (!(entity instanceof AbstractEnemy)) continue;
+            double centerEnemyX = entity.getPosX() + entity.getWidth() / 2;
+            double centerEnemyY = entity.getPosY() + entity.getHeight() / 2;
+            double thisDistance = Distance(centerX, centerY, centerEnemyX, centerEnemyY);
+            if (thisDistance < distance) {
+                distance = thisDistance;
+                targetX = centerEnemyX;
+                targetY = centerEnemyY;
+            }
+        }
+        if (distance == Double.MAX_VALUE) return;
+        if (distance > range) return;
+        long len = bulletList.size();
+        int id = new Random().nextInt((int) len);
+        try {
+            Class<? extends AbstractBullet> cur = bulletList.get(id);
+            Class<?>[] cArg = new Class<?>[]{double.class, double.class, double.class, double.class, int.class};
+            AbstractBullet foo = cur.getDeclaredConstructor(cArg)
+                    .newInstance(centerX, centerY, targetX - centerX, targetY - centerY, bulletTime);
+            System.out.println(foo);
+        } catch (NoSuchMethodException  e) {
+            System.out.println("No such methods");
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            System.out.println("Hello");
+        }
+        this.gun.update(targetX, targetY);
     }
 }
+

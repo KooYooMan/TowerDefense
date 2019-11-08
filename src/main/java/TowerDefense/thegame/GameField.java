@@ -34,14 +34,16 @@ public final class GameField {
     }
 
     public final void handle() {
-        System.out.printf("Size = %d\n", entities.size());
-        for (GameEntity entity : this.entities) {
-            System.out.printf("%s\n", entity.toString());
-        }
+//        System.out.printf("Size = %d\n", entities.size());
+//        for (GameEntity entity : this.entities) {
+//            System.out.printf("%s\n", entity.toString());
+//        }
 
         //1.Update UpdatableEntity
         for (final GameEntity entity : entities) {
-            if (entity instanceof UpdatableEntity) ((UpdatableEntity) entity).onUpdate(this);
+            if (entity instanceof UpdatableEntity) {
+                ((UpdatableEntity) entity).onUpdate(this);
+            }
         }
         //2.Update EffectEntity & Living Entity
 
