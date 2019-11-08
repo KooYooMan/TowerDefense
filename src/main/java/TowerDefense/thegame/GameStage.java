@@ -2,8 +2,10 @@ package TowerDefense.thegame;
 
 import TowerDefense.thegame.entity.GameEntity;
 import TowerDefense.thegame.entity.tile.spawner.NormalSpawner;
+import TowerDefense.thegame.entity.tile.tower.MachineGunTower;
 import TowerDefense.thegame.entity.tile.tower.NormalTower;
 import TowerDefense.thegame.entity.enemy.NormalEnemy;
+import TowerDefense.thegame.entity.tile.tower.SniperTower;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,20 +26,19 @@ public final class GameStage {
         this.width = 400;
         this.height = 400;
         this.entities = new ArrayList<>();
-        NormalTower foo = new NormalTower(100.0, 70.0);
-        NormalTower bar = new NormalTower(50.0, 50.0);
-
+//        NormalTower foo = new NormalTower(100.0, 70.0);
+//        MachineGunTower bar = new MachineGunTower(50.0, 50.0);
+        SniperTower magic = new SniperTower(200, 200);
         this.entities.add(new NormalSpawner(200.0, 200.0, 100, 100, 10));
 
-        this.entities.add(foo);
-        this.entities.add(bar);
+//        this.entities.add(foo);
+//        this.entities.add(bar);
+        this.entities.add(magic);
+        this.entities.add(magic.getGun());
 
-        this.entities.add(foo.getGun());
-        this.entities.add(bar.getGun());
+//        this.entities.add(foo.getGun());
+//        this.entities.add(bar.getGun());
         this.entities.add(new NormalEnemy(100, 100));
-        for (GameEntity entity : this.entities) {
-            System.out.printf("%s\n", entity.toString());
-        }
     }
 
     public List<GameEntity> getEntities() {
