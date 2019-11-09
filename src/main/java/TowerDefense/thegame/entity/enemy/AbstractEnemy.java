@@ -7,7 +7,7 @@ import TowerDefense.thegame.entity.enemy.path.Path;
 
 import javax.annotation.Nonnull;
 
-public abstract class AbstractEnemy extends AbstractEntity implements UpdatableEntity, DestroyListener, RotatableEntity {
+public abstract class AbstractEnemy extends AbstractEntity implements UpdatableEntity, EffectEntity, LivingEntity, DestroyListener, RotatableEntity, BuffedEntity {
     private static final double[][] DELTA_DIRECTION_ARRAY = {
             {0.0, -1.0}, {0.0, 1.0}, {-1.0, 0.0}, {1.0, 0.0},
     };
@@ -72,16 +72,25 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         ///add reward for field;
     }
 
-    public final void takeDamage (long value) {
+    @Override
+    public boolean onEffect(GameField field, LivingEntity livingEntity) {
+        return false;
+    }
+
+    @Override
+    public long getHealth() {
+        return health;
+    }
+    public final void doEffect (long value) {
 
     }
-    public final void takeBuff (AbstractBuff buff) {
-
+    @Override
+    public void getBuffed(AbstractBuff other) {
 
     }
     @Override
     public boolean isDestroyed() {
-        return health <= 0;
+        return getHealth() <= 0;
     }
 
 }
