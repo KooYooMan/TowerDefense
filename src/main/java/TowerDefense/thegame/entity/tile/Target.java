@@ -18,7 +18,7 @@ public class Target extends AbstractTile implements LivingEntity {
         health += value;
     }
 
-    
+
 
     @Override
     public boolean isDestroyed() {

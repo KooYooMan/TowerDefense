@@ -5,8 +5,8 @@ import TowerDefense.thegame.entity.GameEntity;
 import TowerDefense.thegame.entity.LivingEntity;
 import TowerDefense.thegame.entity.bullet.NormalBullet;
 import TowerDefense.thegame.entity.enemy.NormalEnemy;
-//import TowerDefense.thegame.entity.tile.Mountain;
-//import TowerDefense.thegame.entity.tile.Target;
+import TowerDefense.thegame.entity.tile.Mountain;
+import TowerDefense.thegame.entity.tile.Target;
 import TowerDefense.utilities.Pair;
 import TowerDefense.utilities.UnorderedPair;
 
@@ -64,14 +64,14 @@ public final class GameEntities {
      * @param height   rectangle height
      * @return containing entities
      */
-//    public static Collection<GameEntity> getContainingEntities(Collection<GameEntity> entities,
-//                                                               double posX, double posY, double width, double height) {
-//        final List<GameEntity> outputEntities = new ArrayList<>(Config._TILE_MAP_COUNT);
-//        for (final GameEntity entity : entities) {
-//            if (entity.isContaining(posX, posY, width, height)) outputEntities.add(entity);
-//        }
-//        return outputEntities;
-//    }
+    public static Collection<GameEntity> getContainingEntities(Collection<GameEntity> entities,
+                                                               double posX, double posY, double width, double height) {
+        final List<GameEntity> outputEntities = new ArrayList<GameEntity>((int) Config._TILE_MAP_COUNT);
+        for (final GameEntity entity : entities) {
+            if (entity.isContaining(posX, posY, width, height)) outputEntities.add(entity);
+        }
+        return outputEntities;
+    }
 
     /**
      * An useful method to find entities that are being contained in a specific rectangle region.
@@ -84,14 +84,14 @@ public final class GameEntities {
      * @param height   rectangle height
      * @return contained entities
      */
-//    public static Collection<GameEntity> getContainedEntities(Collection<GameEntity> entities,
-//                                                              double posX, double posY, double width, double height) {
-//        final List<GameEntity> outputEntities = new ArrayList<>(Config._TILE_MAP_COUNT);
-//        for (final GameEntity entity : entities) {
-//            if (entity.isBeingContained(posX, posY, width, height)) outputEntities.add(entity);
-//        }
-//        return outputEntities;
-//    }
+    public static Collection<GameEntity> getContainedEntities(Collection<GameEntity> entities,
+                                                              double posX, double posY, double width, double height) {
+        final List<GameEntity> outputEntities = new ArrayList<GameEntity>((int) Config._TILE_MAP_COUNT);
+        for (final GameEntity entity : entities) {
+            if (entity.isBeingContained(posX, posY, width, height)) outputEntities.add(entity);
+        }
+        return outputEntities;
+    }
 
     /**
      * An useful method to find entities that are being overlapped in a specific rectangle region.
@@ -125,16 +125,16 @@ public final class GameEntities {
      * @param height      rectangle height
      * @return overlapped entities
      */
-//    public static <E extends GameEntity> Collection<E> getFilteredContainingEntities(Collection<GameEntity> entities,
-//                                                                                     Class<E> entityClass, double posX, double posY, double width, double height) {
-//        final List<E> outputEntities = new ArrayList<>(Config._TILE_MAP_COUNT);
-//        for (final GameEntity entity : entities) {
-//            if (entityClass.isInstance(entity) && entity.isContaining(posX, posY, width, height)) {
-//                outputEntities.add(entityClass.cast(entity));
-//            }
-//        }
-//        return outputEntities;
-//    }
+    public static <E extends GameEntity> Collection<E> getFilteredContainingEntities(Collection<GameEntity> entities,
+                                                                                     Class<E> entityClass, double posX, double posY, double width, double height) {
+        final List<E> outputEntities = new ArrayList<E>((int) Config._TILE_MAP_COUNT);
+        for (final GameEntity entity : entities) {
+            if (entityClass.isInstance(entity) && entity.isContaining(posX, posY, width, height)) {
+                outputEntities.add(entityClass.cast(entity));
+            }
+        }
+        return outputEntities;
+    }
 
     /**
      * An useful method to find entities that are being overlapped in a specific rectangle region.
@@ -148,16 +148,16 @@ public final class GameEntities {
      * @param height      rectangle height
      * @return overlapped entities
      */
-//    public static <E extends GameEntity> Collection<E> getFilteredContainedEntities(Collection<GameEntity> entities,
-//                                                                                    Class<E> entityClass, double posX, double posY, double width, double height) {
-//        final List<E> outputEntities = new ArrayList<>(Config._TILE_MAP_COUNT);
-//        for (final GameEntity entity : entities) {
-//            if (entityClass.isInstance(entity) && entity.isBeingContained(posX, posY, width, height)) {
-//                outputEntities.add(entityClass.cast(entity));
-//            }
-//        }
-//        return outputEntities;
-//    }
+    public static <E extends GameEntity> Collection<E> getFilteredContainedEntities(Collection<GameEntity> entities,
+                                                                                    Class<E> entityClass, double posX, double posY, double width, double height) {
+        final List<E> outputEntities = new ArrayList<E>((int) Config._TILE_MAP_COUNT);
+        for (final GameEntity entity : entities) {
+            if (entityClass.isInstance(entity) && entity.isBeingContained(posX, posY, width, height)) {
+                outputEntities.add(entityClass.cast(entity));
+            }
+        }
+        return outputEntities;
+    }
 
     /**
      * An useful method to find entities that are being overlapped in a specific rectangle region.
@@ -171,16 +171,16 @@ public final class GameEntities {
      * @param height      rectangle height
      * @return overlapped entities
      */
-//    public static <E extends GameEntity> Collection<E> getFilteredOverlappedEntities(Collection<GameEntity> entities,
-//                                                                                     Class<E> entityClass, double posX, double posY, double width, double height) {
-//        final List<E> outputEntities = new ArrayList<>(Config._TILE_MAP_COUNT);
-//        for (final GameEntity entity : entities) {
-//            if (entityClass.isInstance(entity) && entity.isBeingOverlapped(posX, posY, width, height)) {
-//                outputEntities.add(entityClass.cast(entity));
-//            }
-//        }
-//        return outputEntities;
-//    }
+    public static <E extends GameEntity> Collection<E> getFilteredOverlappedEntities(Collection<GameEntity> entities,
+                                                                                     Class<E> entityClass, double posX, double posY, double width, double height) {
+        final List<E> outputEntities = new ArrayList<E>((int) Config._TILE_MAP_COUNT);
+        for (final GameEntity entity : entities) {
+            if (entityClass.isInstance(entity) && entity.isBeingOverlapped(posX, posY, width, height)) {
+                outputEntities.add(entityClass.cast(entity));
+            }
+        }
+        return outputEntities;
+    }
 
     /**
      * Check whether two entity class can collide. If you have an entity, use entity.getClass() to get its class.
@@ -204,16 +204,16 @@ public final class GameEntities {
      * @param height   rectangle height
      * @return collided entities
      */
-//    public static Collection<GameEntity> getCollidedEntities(Collection<GameEntity> entities,
-//                                                             Class<? extends GameEntity> entityClass, double posX, double posY, double width, double height) {
-//        final List<GameEntity> outputEntities = new ArrayList<>(Config._TILE_MAP_COUNT);
-//        for (final GameEntity entity : entities) {
-//            if (entity.isBeingOverlapped(posX, posY, width, height) && isCollidable(entityClass, entity.getClass())) {
-//                outputEntities.add(entity);
-//            }
-//        }
-//        return outputEntities;
-//    }
+    public static Collection<GameEntity> getCollidedEntities(Collection<GameEntity> entities,
+                                                             Class<? extends GameEntity> entityClass, double posX, double posY, double width, double height) {
+        final List<GameEntity> outputEntities = new ArrayList<GameEntity>((int) Config._TILE_MAP_COUNT);
+        for (final GameEntity entity : entities) {
+            if (entity.isBeingOverlapped(posX, posY, width, height) && isCollidable(entityClass, entity.getClass())) {
+                outputEntities.add(entity);
+            }
+        }
+        return outputEntities;
+    }
 
     /**
      * Check whether effect entity can affect living entity. If you have an entity,
@@ -238,23 +238,23 @@ public final class GameEntities {
      * @param height   rectangle height
      * @return affected entities
      */
-//    public static Collection<LivingEntity> getAffectedEntities(Collection<GameEntity> entities,
-//                                                               Class<? extends EffectEntity> entityClass, double posX, double posY, double width, double height) {
-//        final List<LivingEntity> outputEntities = new ArrayList<>(Config._TILE_MAP_COUNT);
-//        for (final GameEntity entity : entities) {
-//            if (entity instanceof LivingEntity && entity.isBeingOverlapped(posX, posY, width, height)) {
-//                final LivingEntity livingEntity = (LivingEntity) entity;
-//                if (isAffectable(entityClass, livingEntity.getClass())) outputEntities.add(livingEntity);
-//            }
-//        }
-//        return outputEntities;
-//    }
-//
-//    public static <E extends GameEntity, V extends E> Collection<V> entitiesFilter(Collection<E> entities, Class<V> entityClass) {
-//        final List<V> outputEntities = new ArrayList<>(Config._TILE_MAP_COUNT);
-//        for (final E entity : entities)
-//            if (entityClass.isInstance(entity)) outputEntities.add(entityClass.cast(entity));
-//        return outputEntities;
-//    }
+    public static Collection<LivingEntity> getAffectedEntities(Collection<GameEntity> entities,
+                                                               Class<? extends EffectEntity> entityClass, double posX, double posY, double width, double height) {
+        final List<LivingEntity> outputEntities = new ArrayList<LivingEntity>((int) Config._TILE_MAP_COUNT);
+        for (final GameEntity entity : entities) {
+            if (entity instanceof LivingEntity && entity.isBeingOverlapped(posX, posY, width, height)) {
+                final LivingEntity livingEntity = (LivingEntity) entity;
+                if (isAffectable(entityClass, livingEntity.getClass())) outputEntities.add(livingEntity);
+            }
+        }
+        return outputEntities;
+    }
+
+    public static <E extends GameEntity, V extends E> Collection<V> entitiesFilter(Collection<E> entities, Class<V> entityClass) {
+        final List<V> outputEntities = new ArrayList<V>((int) Config._TILE_MAP_COUNT);
+        for (final E entity : entities)
+            if (entityClass.isInstance(entity)) outputEntities.add(entityClass.cast(entity));
+        return outputEntities;
+    }
 
 }
