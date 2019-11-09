@@ -1,10 +1,10 @@
-package TowerDefense.thegame.entity.effect;
+package TowerDefense.thegame.entity.buff;
 
-public class FrozenEffect extends AbstractEffect {
+public class FrozenBuff extends AbstractBuff {
     private double speedFrozen;
     private long timeFronzen;
 
-    public FrozenEffect(double speedFrozen, long timeFronzen) {
+    public FrozenBuff(double speedFrozen, long timeFronzen) {
         this.speedFrozen = speedFrozen;
         this.timeFronzen = timeFronzen;
     }

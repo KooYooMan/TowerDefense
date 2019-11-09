@@ -2,13 +2,12 @@ package TowerDefense.thegame.entity.enemy;
 
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.*;
-import TowerDefense.thegame.entity.effect.AbstractEffect;
+import TowerDefense.thegame.entity.buff.AbstractBuff;
 import TowerDefense.thegame.entity.enemy.path.Path;
-import TowerDefense.utilities.Pair;
 
 import javax.annotation.Nonnull;
 
-public abstract class AbstractEnemy extends AbstractEntity implements UpdatableEntity, EffectEntity, LivingEntity, DestroyListener, RotatableEntity {
+public abstract class AbstractEnemy extends AbstractEntity implements UpdatableEntity, EffectEntity, LivingEntity, DestroyListener, RotatableEntity, BuffedEntity {
     private static final double[][] DELTA_DIRECTION_ARRAY = {
             {0.0, -1.0}, {0.0, 1.0}, {-1.0, 0.0}, {1.0, 0.0},
     };
@@ -86,7 +85,7 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
 
     }
     @Override
-    public void getEffected(AbstractEffect other) {
+    public void getBuffed(AbstractBuff other) {
 
     }
     @Override
