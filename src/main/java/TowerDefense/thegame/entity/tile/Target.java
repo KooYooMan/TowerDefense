@@ -14,7 +14,7 @@ public class Target extends AbstractTile implements LivingEntity {
     }
 
     @Override
-    public void doEffect(long value) {
+    public void doEffect (long value) {
         health += value;
     }
 
