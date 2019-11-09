@@ -1,8 +1,6 @@
 package TowerDefense.thegame.entity.tile;
 
 import TowerDefense.thegame.Config;
-import TowerDefense.thegame.entity.LivingEntity;
-import TowerDefense.thegame.entity.buff.AbstractBuff;
 
 public class Target extends AbstractTile implements LivingEntity {
     long health;

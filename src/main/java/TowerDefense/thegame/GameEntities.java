@@ -1,12 +1,8 @@
 package TowerDefense.thegame;
 
-import TowerDefense.thegame.entity.EffectEntity;
 import TowerDefense.thegame.entity.GameEntity;
-import TowerDefense.thegame.entity.LivingEntity;
 import TowerDefense.thegame.entity.bullet.NormalBullet;
 import TowerDefense.thegame.entity.enemy.NormalEnemy;
-import TowerDefense.thegame.entity.tile.Mountain;
-import TowerDefense.thegame.entity.tile.Target;
 import TowerDefense.utilities.Pair;
 import TowerDefense.utilities.UnorderedPair;
 
