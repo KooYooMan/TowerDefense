@@ -109,7 +109,7 @@ public final class Config {
 	public static final long BOSS_ENEMY_REWARD = 10;
 	//endregion
 
-	public static final double GUN_ROTATE_SPEED = 5;
+	public static final double GUN_ROTATE_SPEED = 1;
 
 	public static final int MACHINE_GUN_TOWER_BULLET_TIME = 100;
 	public static final int SNIPER_TOWER_BULLET_TIME = 100;

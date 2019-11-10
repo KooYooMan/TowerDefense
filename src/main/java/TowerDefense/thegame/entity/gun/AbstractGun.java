@@ -6,7 +6,7 @@ import TowerDefense.thegame.entity.AbstractEntity;
 import TowerDefense.thegame.entity.RotatableEntity;
 import TowerDefense.thegame.entity.UpdatableEntity;
 
-public abstract class AbstractGun extends AbstractEntity implements UpdatableEntity, RotatableEntity {
+public abstract class AbstractGun extends AbstractEntity implements RotatableEntity {
     private double degreeRotate;
 
     protected AbstractGun(double posX, double posY, double width, double height) {
@@ -19,15 +19,8 @@ public abstract class AbstractGun extends AbstractEntity implements UpdatableEnt
         return this.degreeRotate;
     }
 
-    @Override
-    public void onUpdate(GameField field) {
-        this.degreeRotate += Config.GUN_ROTATE_SPEED;
-        if (this.degreeRotate >= 360) this.degreeRotate -= 360;
-    }
-
     public void update(double x, double y) {
-        double centerX = this.getPosX() + this.getWidth() / 2, centerY = this.getPosY() + this.getHeight() / 2;
-        double foo = Math.atan2(x - centerX, y - centerY);
+        double foo = Math.atan2(x, y);
         foo += 2 * Math.PI;
         if (foo >= 2 * Math.PI) foo -= 2 * Math.PI;
         this.degreeRotate = (foo / (2 * Math.PI)) * 360;

@@ -87,7 +87,7 @@ public abstract class AbstractTower extends AbstractEntity implements UpdatableE
         } catch (Exception e) {
             System.out.println("Error creating bullets");
         }
-        this.gun.update(targetX, targetY);
+        this.gun.update(targetX - centerX,  centerY - targetY);
     }
 }
 

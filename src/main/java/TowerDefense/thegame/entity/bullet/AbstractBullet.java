@@ -4,8 +4,9 @@ import TowerDefense.thegame.Config;
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.*;
 import TowerDefense.thegame.entity.effect.AbstractEffect;
+import TowerDefense.thegame.entity.enemy.AbstractEnemy;
 
-public abstract class AbstractBullet extends AbstractEntity implements UpdatableEntity, EffectEntity {
+public abstract class AbstractBullet extends AbstractEntity implements UpdatableEntity, DestroyableEntity, DestroyListener {
 	private final double deltaX;
 	private final double deltaY;
 	private final AbstractEffect abstractEffect;
@@ -33,9 +34,14 @@ public abstract class AbstractBullet extends AbstractEntity implements Updatable
 		return this.timetoLive == 0;
 	}
 
-
 	@Override
-	public boolean onEffect(GameField field, LivingEntity livingEntity) {
-		return false;
+	public void onDestroy(GameField field) {
+		for (final GameEntity entity : field.getEntities()) {
+			if (entity instanceof AbstractEnemy) {
+				if (this.isBeingOverlapped(entity.getPosX(), entity.getPosY(), entity.getWidth(), entity.getHeight())) {
+
+				}
+			}
+		}
 	}
 }
