@@ -2,7 +2,7 @@ package TowerDefense.thegame.entity.tile;
 
 import TowerDefense.thegame.Config;
 import TowerDefense.thegame.entity.LivingEntity;
-import TowerDefense.thegame.entity.effect.AbstractEffect;
+import TowerDefense.thegame.entity.buff.AbstractBuff;
 
 public class Target extends AbstractTile implements LivingEntity {
     long health;
@@ -10,18 +10,14 @@ public class Target extends AbstractTile implements LivingEntity {
 
     @Override
     public long getHealth() {
-        return 0;
+        return health;
     }
 
     @Override
-    public void doEffect(long value) {
+    public void doEffect (long value) {
         health += value;
     }
 
-    @Override
-    public void getEffected(AbstractEffect other) {
-
-    }
 
 
     @Override

@@ -24,13 +24,13 @@ public final class GameStage {
 
     // for testing
     public  GameStage() {
-        this.width = 400;
-        this.height = 400;
+        this.width = Config.SCREEN_WIDTH;
+        this.height = Config.SCREEN_HEIGHT;
         this.entities = new ArrayList<>();
-        NormalTower foo = new NormalTower(100.0, 70.0);
-        MachineGunTower bar = new MachineGunTower(50.0, 50.0);
-        SniperTower magic = new SniperTower(200, 200);
-        this.entities.add(new NormalSpawner(200.0, 200.0, 100, 100, 10));
+        NormalTower foo = new NormalTower(300, 300);
+        MachineGunTower bar = new MachineGunTower(300, 300);
+        SniperTower magic = new SniperTower(300, 300);
+        this.entities.add(new NormalSpawner(9 * Config.TILE_SIZE, 1.5 * Config.TILE_SIZE, 100, 100, 10));
 
         this.entities.add(foo);
         this.entities.add(bar);
@@ -39,7 +39,13 @@ public final class GameStage {
         this.entities.add(bar.getGun());
         this.entities.add(magic.getGun());
 
-        this.entities.add(new NormalEnemy(100, 100));
+//        this.entities.add(foo.getGun());
+//        this.entities.add(bar.getGun());
+        for (GameEntity entity : this.entities) {
+            System.out.printf("%s\n", entity.toString());
+        }
+//        this.entities.add(foo.getGun());
+//        this.entities.add(bar.getGun());
     }
 
     public List<GameEntity> getEntities() {

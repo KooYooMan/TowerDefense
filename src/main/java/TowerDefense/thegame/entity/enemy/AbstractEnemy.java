@@ -2,13 +2,15 @@ package TowerDefense.thegame.entity.enemy;
 
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.*;
-import TowerDefense.thegame.entity.effect.AbstractEffect;
+import TowerDefense.thegame.entity.buff.AbstractBuff;
+import TowerDefense.thegame.entity.buff.BurningBuff;
+import TowerDefense.thegame.entity.buff.ShootBuff;
 import TowerDefense.thegame.entity.enemy.path.Path;
-import TowerDefense.utilities.Pair;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
-public abstract class AbstractEnemy extends AbstractEntity implements UpdatableEntity, EffectEntity, LivingEntity, DestroyListener, RotatableEntity {
+public abstract class AbstractEnemy extends AbstractEntity implements UpdatableEntity, EffectEntity, LivingEntity, DestroyListener, RotatableEntity, BuffedEntity {
     private static final double[][] DELTA_DIRECTION_ARRAY = {
             {0.0, -1.0}, {0.0, 1.0}, {-1.0, 0.0}, {1.0, 0.0},
     };
@@ -23,6 +25,7 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
     Path path;
     double didInstruction = 0;
     int currInstruction = 0;
+    AbstractBuff[] timeRemaining = new AbstractBuff[4];
     protected AbstractEnemy (double posX, double posY, double size, long health, long armor, double speed, long reward) {
         super(posX, posY, size, size);
         this.health = health;
@@ -31,12 +34,6 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         this.reward = reward;
         currInstruction = 0;
         didInstruction = 0;
-        path = new Path();
-        path.addInstruction(Pair.immutableOf(100.0, 1));
-        path.addInstruction(Pair.immutableOf(100.0, 3));
-        path.addInstruction(Pair.immutableOf(100.0, 0));
-        path.addInstruction(Pair.immutableOf(100.0, 2));
-
 
     }
     public void setPath (Path path) {
@@ -71,9 +68,6 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         return degreeRotate;
     }
 
-    public final void doDestroy () {
-
-    }
     @Override
     public void onDestroy(GameField field) {
         ///add reward for field;
@@ -81,6 +75,8 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
 
     @Override
     public boolean onEffect(GameField field, LivingEntity livingEntity) {
+        livingEntity.doEffect(1);
+        health = 0;
         return false;
     }
 
@@ -89,11 +85,13 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         return health;
     }
     public final void doEffect (long value) {
-
+        health += value;
     }
     @Override
-    public void getEffected(AbstractEffect other) {
-
+    public void getBuffed(AbstractBuff buff) {
+        if (buff instanceof ShootBuff) {
+            health -= ((ShootBuff) buff).getDamage();
+        }
     }
     @Override
     public boolean isDestroyed() {

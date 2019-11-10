@@ -1,10 +1,10 @@
-package TowerDefense.thegame.entity.effect;
+package TowerDefense.thegame.entity.buff;
 
-public class BurningEffect extends AbstractEffect {
+public class BurningBuff extends AbstractBuff {
     private long damage;
     private long timeBurning;
 
-    public BurningEffect(long damage, long timeBurning) {
+    public BurningBuff(long damage, long timeBurning) {
         this.damage = damage;
         this.timeBurning = timeBurning;
     }
