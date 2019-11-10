@@ -6,7 +6,7 @@ import TowerDefense.thegame.entity.*;
 import TowerDefense.thegame.entity.enemy.AbstractEnemy;
 import TowerDefense.thegame.entity.buff.AbstractBuff;
 
-public abstract class AbstractBullet extends AbstractEntity implements UpdatableEntity, DestroyableEntity, DestroyListener {
+public abstract class AbstractBullet extends AbstractEntity implements UpdatableEntity, DestroyableEntity, EffectEntity {
 	private final double deltaX;
 	private final double deltaY;
 	private final AbstractBuff abstractBuff;
