@@ -53,7 +53,16 @@ public final class GameField {
         entities.addAll(spawnEntities);
         spawnEntities.clear();
         //2.Update EffectEntity & Living Entity
-
+        for (final GameEntity entity : entities) {
+            if (entity instanceof EffectEntity) {
+                final EffectEntity effectEntity = (EffectEntity) entity;
+                final Collection<LivingEntity> livingEntities = GameEntities.getAffectedEntities(entities,
+                        effectEntity.getClass(), entity.getPosX(), entity.getPosY(), entity.getWidth(), entity.getHeight());
+                for (final LivingEntity livingEntity : livingEntities) {
+                    if (!effectEntity.onEffect(this, livingEntity)) break;
+                }
+            }
+        }
         //3.Update Destroyable Entity
         final List<GameEntity> destroyedEntities = new ArrayList<>();
         for (final GameEntity entity : entities) {
@@ -70,6 +79,10 @@ public final class GameField {
         entities.removeIf(entity -> !entity.isBeingOverlapped(0, 0, width, height));
 
         //6. Spawn Entity
+        for (GameEntity entity : spawnEntities) {
+            entities.add(entity);
+        }
+        spawnEntities.clear();
     }
 
 }

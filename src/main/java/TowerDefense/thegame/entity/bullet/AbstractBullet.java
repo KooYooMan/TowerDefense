@@ -6,19 +6,19 @@ import TowerDefense.thegame.entity.*;
 import TowerDefense.thegame.entity.effect.AbstractEffect;
 import TowerDefense.thegame.entity.enemy.AbstractEnemy;
 
-public abstract class AbstractBullet extends AbstractEntity implements UpdatableEntity, DestroyableEntity {
+public abstract class AbstractBullet extends AbstractEntity implements UpdatableEntity, DestroyableEntity, EffectEntity {
 	private final double deltaX;
 	private final double deltaY;
-	private final AbstractEffect abstractEffect;
+	private final AbstractBuff abstractBuff;
 	protected int timetoLive;
 
 	protected AbstractBullet(double posX, double posY, double deltaX, double deltaY,
-							 double speed, AbstractEffect abstractEffect, int timetoLive) {
+							 double speed, AbstractBuff abstractBuff, int timetoLive) {
 		super(posX, posY, Config.NORMAL_BULLET_WIDTH, Config.NORMAL_BULLET_HEIGHT);
 		final double normalize = speed / Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 		this.deltaX = deltaX * normalize;
 		this.deltaY = deltaY * normalize;
-		this.abstractEffect = abstractEffect;
+		this.abstractBuff = abstractBuff;
 		this.timetoLive = timetoLive;
 	}
 
@@ -31,6 +31,17 @@ public abstract class AbstractBullet extends AbstractEntity implements Updatable
 
 	@Override
 	public boolean isDestroyed() {
-		return this.timetoLive == 0;
+		return this.timetoLive <= 0;
+	}
+
+	@Override
+	public void onDestroy(GameField field) {
+		for (final GameEntity entity : field.getEntities()) {
+			if (entity instanceof AbstractEnemy) {
+				if (this.isBeingOverlapped(entity.getPosX(), entity.getPosY(), entity.getWidth(), entity.getHeight())) {
+
+				}
+			}
+		}
 	}
 }

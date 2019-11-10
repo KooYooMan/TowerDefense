@@ -1,5 +1,6 @@
 package TowerDefense.thegame.entity.tile.spawner;
 
+import TowerDefense.thegame.Config;
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.GameStage;
 import TowerDefense.thegame.entity.AbstractEntity;
@@ -30,10 +31,12 @@ public abstract class AbstractSpawner<E extends AbstractEnemy> extends AbstractT
     }
     public void findPath () {
         path = new Path();
-        path.addInstruction(Pair.immutableOf(100.0, 1));
-        path.addInstruction(Pair.immutableOf(100.0, 3));
-        path.addInstruction(Pair.immutableOf(100.0, 0));
-        path.addInstruction(Pair.immutableOf(100.0, 2));
+        path.addInstruction(Pair.immutableOf(8.0 * Config.TILE_SIZE, 2));
+        path.addInstruction(Pair.immutableOf(4.0 * Config.TILE_SIZE, 1));
+        path.addInstruction(Pair.immutableOf(6.0 * Config.TILE_SIZE, 3));
+        path.addInstruction(Pair.immutableOf(2.0 * Config.TILE_SIZE, 1));
+        path.addInstruction(Pair.immutableOf(10.0 * Config.TILE_SIZE, 2));
+
     }
     public final void onUpdate(@Nonnull GameField field) {
         System.out.printf("spawn pos = %f %f, size = %f %f, spawningSize = %f, tickdown = %d\n", getPosX(), getPosY(), getWidth(), getHeight(), spawningSize, tickDown);
@@ -42,10 +45,13 @@ public abstract class AbstractSpawner<E extends AbstractEnemy> extends AbstractT
             numOfSpawn -= 1;
             E newEnemy = doSpawn(getPosX(), getPosY());
             newEnemy.setPath(path);
-            field.getEntities().add(newEnemy);
+            field.getSpawnEntities().add(newEnemy);
             this.tickDown = spawnInterval;
         }
-
+        if (tickDown <= -1000) {
+            numOfSpawn = 10;
+            tickDown = spawnInterval;
+        }
     }
 
 
