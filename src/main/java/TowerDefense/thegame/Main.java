@@ -19,17 +19,22 @@ public final class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		final Canvas gameCanvas = new Canvas(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		final Canvas shopCanvas = new Canvas(Config.SHOP_WIDTH, Config.SCREEN_HEIGHT);
+
+		final Pane shopPane = new StackPane(shopCanvas);
+
 		final GraphicsContext gameGraphicsContext = gameCanvas.getGraphicsContext2D();
 		final GraphicsContext shopGraphicsContext = shopCanvas.getGraphicsContext2D();
 		final GameController gameController = new GameController(gameGraphicsContext);
-		final ShopController shopController = new ShopController(shopGraphicsContext);
+		final ShopController shopController = new ShopController(shopGraphicsContext, shopPane);
 
 		primaryStage.setResizable(false);
 		primaryStage.setTitle(Config.GAME_NAME);
-		primaryStage.setScene(new Scene(new HBox(new StackPane(gameCanvas), new Pane(shopCanvas))));
+		primaryStage.setScene(new Scene(new HBox(new StackPane(gameCanvas), shopPane)));
 		primaryStage.show();
 
 		gameController.start();
 		shopController.start();
+
+		//System.out.println(Font.getFamilies());
 	}
 }
