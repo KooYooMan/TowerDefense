@@ -23,4 +23,10 @@
       <module name="TowerDefense" target="11" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="--add-modules javafx.controls" />
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="TowerDefense" options="" />
+    </option>
+  </component>
 </project>
