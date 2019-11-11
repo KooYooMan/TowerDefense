@@ -6,8 +6,9 @@ import TowerDefense.thegame.entity.enemy.NormalEnemy;
 import javax.annotation.Nonnull;
 
 public class NormalSpawner extends AbstractSpawner<NormalEnemy> {
-    public NormalSpawner(double posX, double posY, long spawnInterval, long initialDelay, long numOfSpawn) {
-        super(posX, posY, Config.NORMAL_ENEMY_SIZE, Config.NORMAL_ENEMY_SIZE, Config.NORMAL_ENEMY_SIZE, NormalEnemy.class, spawnInterval, initialDelay, numOfSpawn);
+    public NormalSpawner(double posX, double posY) {
+        super(posX, posY, Config.NORMAL_ENEMY_SIZE, Config.NORMAL_ENEMY_SIZE, Config.NORMAL_ENEMY_SIZE, NormalEnemy.class,
+                          Config.NORMAL_SPAWNINTERVAL, Config.NORMAL_INITDELAY, Config.NORMAL_NUM_OF_SPAWN);
     }
     @Nonnull
     @Override
