@@ -20,6 +20,16 @@
             <artifactId>javafx-fxml</artifactId>
             <version>13.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>13.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>13.0.1</version>
+        </dependency>
 
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
