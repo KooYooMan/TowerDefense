@@ -50,8 +50,7 @@ public final class GameField {
                 ((UpdatableEntity) entity).onUpdate(this);
             }
         }
-        entities.addAll(spawnEntities);
-        spawnEntities.clear();
+
         //2.Update EffectEntity & Living Entity
         for (final GameEntity entity : entities) {
             if (entity instanceof EffectEntity) {
