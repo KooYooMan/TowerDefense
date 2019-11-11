@@ -33,7 +33,6 @@ public abstract class AbstractBullet extends AbstractEntity implements Updatable
 	public boolean isDestroyed() {
 		return this.timetoLive <= 0;
 	}
-
 	@Override
 	public boolean onEffect(GameField field, LivingEntity livingEntity) {
 		return true;
