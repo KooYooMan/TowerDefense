@@ -1,7 +1,7 @@
 package TowerDefense.thegame;
 
 import TowerDefense.thegame.entity.GameEntity;
-import TowerDefense.thegame.entity.bullet.NormalBullet;
+import TowerDefense.thegame.entity.bullet.*;
 import TowerDefense.thegame.entity.tile.spawner.NormalSpawner;
 import TowerDefense.thegame.entity.tile.tower.MachineGunTower;
 import TowerDefense.thegame.entity.tile.tower.NormalTower;
@@ -27,23 +27,26 @@ public final class GameStage {
         this.width = Config.SCREEN_WIDTH;
         this.height = Config.SCREEN_HEIGHT;
         this.entities = new ArrayList<>();
-        NormalTower foo = new NormalTower(300, 300);
-        MachineGunTower bar = new MachineGunTower(300, 300);
+       NormalTower foo = new NormalTower(100, 300);
+        MachineGunTower bar = new MachineGunTower(200, 300);
         SniperTower magic = new SniperTower(300, 300);
         this.entities.add(new NormalSpawner(9 * Config.TILE_SIZE, 1.5 * Config.TILE_SIZE, 100, 100, 10));
 
         this.entities.add(foo);
-        this.entities.add(bar);
-        this.entities.add(magic);
         this.entities.add(foo.getGun());
+        this.entities.add(bar);
         this.entities.add(bar.getGun());
+        this.entities.add(magic);
         this.entities.add(magic.getGun());
+        //magic.addBullet(HighDamageBullet.class); magic.addBullet(BurningBullet.class);
+        magic.addBullet(ExplodingBullet.class); //magic.addBullet(FastBullet.class);
+        //magic.addBullet(FrozenBullet.class);
 
 //        this.entities.add(foo.getGun());
 //        this.entities.add(bar.getGun());
-        for (GameEntity entity : this.entities) {
-            System.out.printf("%s\n", entity.toString());
-        }
+//        for (GameEntity entity : this.entities) {
+//            System.out.printf("%s\n", entity.toString());
+//        }
 //        this.entities.add(foo.getGun());
 //        this.entities.add(bar.getGun());
     }

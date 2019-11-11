@@ -30,8 +30,8 @@ public final class Config {
 	public static final double NORMAL_BULLET_WIDTH = 10;
 	public static final double NORMAL_BULLET_HEIGHT = 10;
 
-	public static final double EXPLODING_BULLET_WIDTH = 45;
-	public static final double EXPLODING_BULLET_HEIGHT = 45;
+	public static final double EXPLODING_BULLET_WIDTH = 15;
+	public static final double EXPLODING_BULLET_HEIGHT = 15;
 
 	public static final double NORMAL_BULLET_SPEED = 3;
 	public static final double FAST_BULLET_SPEED = 4;
