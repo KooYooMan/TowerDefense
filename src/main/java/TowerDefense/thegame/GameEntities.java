@@ -39,9 +39,13 @@ public final class GameEntities {
             Pair.immutableOf(NormalBullet.class, NormalEnemy.class),
             Pair.immutableOf(NormalBullet.class, SmallerEnemy.class),
             Pair.immutableOf(NormalBullet.class, TankerEnemy.class),
-            Pair.immutableOf(NormalBullet.class, BossEnemy.class)
+            Pair.immutableOf(NormalBullet.class, BossEnemy.class),
 
             Pair.immutableOf(BurningBullet.class, NormalEnemy.class),
+            Pair.immutableOf(BurningBullet.class, SmallerEnemy.class),
+            Pair.immutableOf(BurningBullet.class, TankerEnemy.class),
+            Pair.immutableOf(BurningBullet.class, BossEnemy.class),
+
             Pair.immutableOf(ExplodingBullet.class, NormalEnemy.class),
             Pair.immutableOf(FastBullet.class, NormalEnemy.class),
             Pair.immutableOf(FrozenBullet.class, NormalEnemy.class),
