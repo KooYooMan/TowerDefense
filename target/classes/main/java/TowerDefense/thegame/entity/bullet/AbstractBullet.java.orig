@@ -3,10 +3,14 @@ package TowerDefense.thegame.entity.bullet;
 import TowerDefense.thegame.Config;
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.*;
-import TowerDefense.thegame.entity.buff.AbstractBuff;
 import TowerDefense.thegame.entity.enemy.AbstractEnemy;
+import TowerDefense.thegame.entity.buff.AbstractBuff;
 
+<<<<<<< HEAD
+public abstract class AbstractBullet extends AbstractEntity implements UpdatableEntity, DestroyableEntity {
+=======
 public abstract class AbstractBullet extends AbstractEntity implements UpdatableEntity, DestroyableEntity, EffectEntity {
+>>>>>>> CollideTowerShopCombine
 	private final double deltaX;
 	private final double deltaY;
 	private final AbstractBuff abstractBuff;
@@ -33,9 +37,16 @@ public abstract class AbstractBullet extends AbstractEntity implements Updatable
 	public boolean isDestroyed() {
 		return this.timetoLive <= 0;
 	}
+<<<<<<< HEAD
+=======
 
 	@Override
 	public boolean onEffect(GameField field, LivingEntity livingEntity) {
-		return true;
+		if (livingEntity instanceof BuffedEntity) {
+			((BuffedEntity) livingEntity).getBuffed(abstractBuff);
+		}
+		this.timetoLive = 0;
+		return false;
 	}
+>>>>>>> CollideTowerShopCombine
 }
