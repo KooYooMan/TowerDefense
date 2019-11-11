@@ -31,7 +31,7 @@ public abstract class AbstractTower extends AbstractEntity implements UpdatableE
         this.speed = speed;
         this.gun = gun;
         this.bulletList.add(bullet);
-        this.bulletTime = (int) (range / speed);
+        this.bulletTime = bulletTime;
     }
 
     public double getRange() {

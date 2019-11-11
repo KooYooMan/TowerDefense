@@ -27,8 +27,8 @@ public final class Config {
 	public static final double TARGET_WIDTH = TILE_SIZE * 0.5;
 	public static final double TARGET_HEIGHT = TILE_SIZE * 0.5;
 	// Tile
-	public static final double NORMAL_BULLET_WIDTH = 10;
-	public static final double NORMAL_BULLET_HEIGHT = 10;
+	public static final double NORMAL_BULLET_WIDTH = 30;
+	public static final double NORMAL_BULLET_HEIGHT = 30;
 
 	public static final double EXPLODING_BULLET_WIDTH = 45;
 	public static final double EXPLODING_BULLET_HEIGHT = 45;
