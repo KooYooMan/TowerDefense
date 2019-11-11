@@ -22,7 +22,7 @@ public abstract class AbstractTower extends AbstractEntity implements UpdatableE
     private AbstractGun gun;
     private long tick = 0;
     private int bulletTime;
-    private final Class<?>[] cArg = new Class<?>[]{double.class, double.class, double.class, double.class, int.class};
+    private final Class<?>[] cArg = new Class<?>[]{double.class, double.class, double.class, double.class, double.class};
 
     protected AbstractTower(double posX, double posY, double width, double height, double range, long speed, AbstractGun gun,
                             Class<? extends AbstractBullet> bullet, int bulletTime) {
@@ -60,7 +60,7 @@ public abstract class AbstractTower extends AbstractEntity implements UpdatableE
     public void onUpdate(GameField field) {
         if (this.tick != 0) {
             this.tick ++;
-            this.tick %= speed;
+            if (this.tick >= speed) this.tick -= speed;
         }
         if (this.tick != 0) return;
         double centerX = this.getPosX() + this.getWidth() / 2, centerY = this.getPosY() + this.getHeight() / 2;
@@ -83,7 +83,7 @@ public abstract class AbstractTower extends AbstractEntity implements UpdatableE
         int id = new Random().nextInt((int) len);
         try {
             field.getSpawnEntities().add(bulletList.get(id).getDeclaredConstructor(cArg)
-                    .newInstance(centerX, centerY, targetX - centerX, targetY - centerY, bulletTime));
+                    .newInstance(centerX, centerY, targetX - centerX, targetY - centerY, range));
         } catch (Exception e) {
             System.out.println("Error creating bullets");
         }

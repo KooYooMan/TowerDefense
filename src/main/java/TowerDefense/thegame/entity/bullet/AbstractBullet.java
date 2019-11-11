@@ -13,13 +13,13 @@ public abstract class AbstractBullet extends AbstractEntity implements Updatable
 	protected int timetoLive;
 
 	protected AbstractBullet(double posX, double posY, double deltaX, double deltaY,
-							 double speed, AbstractBuff abstractBuff, int timetoLive) {
+							 double speed, AbstractBuff abstractBuff, double towerRange) {
 		super(posX, posY, Config.NORMAL_BULLET_WIDTH, Config.NORMAL_BULLET_HEIGHT);
 		final double normalize = speed / Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 		this.deltaX = deltaX * normalize;
 		this.deltaY = deltaY * normalize;
 		this.abstractBuff = abstractBuff;
-		this.timetoLive = timetoLive;
+		this.timetoLive = (int)(towerRange / speed);
 	}
 
 	@Override
