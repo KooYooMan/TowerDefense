@@ -27,8 +27,8 @@ public final class GameStage {
         this.width = Config.SCREEN_WIDTH;
         this.height = Config.SCREEN_HEIGHT;
         this.entities = new ArrayList<>();
-        NormalTower foo = new NormalTower(300, 300);
-        MachineGunTower bar = new MachineGunTower(300, 300);
+        NormalTower foo = new NormalTower(100, 300);
+        MachineGunTower bar = new MachineGunTower(200, 300);
         SniperTower magic = new SniperTower(300, 300);
         this.entities.add(new NormalSpawner(9 * Config.TILE_SIZE, 1.5 * Config.TILE_SIZE, 100, 100, 10));
 
