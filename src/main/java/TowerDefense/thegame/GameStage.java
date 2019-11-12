@@ -38,9 +38,9 @@ public final class GameStage {
         this.entities.add(bar.getGun());
         this.entities.add(magic);
         this.entities.add(magic.getGun());
-        //magic.addBullet(HighDamageBullet.class); magic.addBullet(BurningBullet.class);
+        magic.addBullet(HighDamageBullet.class); magic.addBullet(BurningBullet.class);
         magic.addBullet(ExplodingBullet.class); //magic.addBullet(FastBullet.class);
-        //magic.addBullet(FrozenBullet.class);
+        magic.addBullet(FrozenBullet.class);
 
 //        this.entities.add(foo.getGun());
 //        this.entities.add(bar.getGun());
