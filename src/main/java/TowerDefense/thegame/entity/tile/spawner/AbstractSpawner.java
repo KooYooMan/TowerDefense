@@ -2,9 +2,6 @@ package TowerDefense.thegame.entity.tile.spawner;
 
 import TowerDefense.thegame.Config;
 import TowerDefense.thegame.GameField;
-import TowerDefense.thegame.GameStage;
-import TowerDefense.thegame.entity.AbstractEntity;
-import TowerDefense.thegame.entity.SpawnListener;
 import TowerDefense.thegame.entity.UpdatableEntity;
 import TowerDefense.thegame.entity.enemy.AbstractEnemy;
 import TowerDefense.thegame.entity.enemy.path.Path;
@@ -39,7 +36,7 @@ public abstract class AbstractSpawner<E extends AbstractEnemy> extends AbstractT
 
     }
     public final void onUpdate(@Nonnull GameField field) {
-        System.out.printf("spawn pos = %f %f, size = %f %f, spawningSize = %f, tickdown = %d\n", getPosX(), getPosY(), getWidth(), getHeight(), spawningSize, tickDown);
+        //System.out.printf("spawn pos = %f %f, size = %f %f, spawningSize = %f, tickdown = %d\n", getPosX(), getPosY(), getWidth(), getHeight(), spawningSize, tickDown);
         this.tickDown -= 1;
         if (tickDown <= 0 && numOfSpawn > 0) {
             numOfSpawn -= 1;

@@ -3,14 +3,11 @@ package TowerDefense.thegame.entity.tile.tower;
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.AbstractEntity;
 import TowerDefense.thegame.entity.GameEntity;
-import TowerDefense.thegame.entity.bullet.NormalBullet;
-import TowerDefense.thegame.entity.enemy.AbstractEnemy;
-import TowerDefense.thegame.entity.gun.AbstractGun;
 import TowerDefense.thegame.entity.UpdatableEntity;
 import TowerDefense.thegame.entity.bullet.AbstractBullet;
+import TowerDefense.thegame.entity.enemy.AbstractEnemy;
+import TowerDefense.thegame.entity.gun.AbstractGun;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -18,7 +15,7 @@ import java.util.Random;
 public abstract class AbstractTower extends AbstractEntity implements UpdatableEntity {
     private final double range;
     private final long speed;
-    private List<Class<? extends AbstractBullet>> bulletList = new ArrayList<Class<? extends AbstractBullet>>();
+    private List<Class<? extends AbstractBullet>> bulletList = new ArrayList<>();
     private AbstractGun gun;
     private long tick = 0;
     private int bulletTime;
@@ -81,11 +78,12 @@ public abstract class AbstractTower extends AbstractEntity implements UpdatableE
         this.tick ++;
         long len = bulletList.size();
         int id = new Random().nextInt((int) len);
+        //System.out.println(id);
         try {
             field.getSpawnEntities().add(bulletList.get(id).getDeclaredConstructor(cArg)
                     .newInstance(centerX, centerY, targetX - centerX, targetY - centerY, range));
         } catch (Exception e) {
-            System.out.println("Error creating bullets");
+            e.printStackTrace();
         }
         this.gun.update(targetX - centerX,  centerY - targetY);
     }

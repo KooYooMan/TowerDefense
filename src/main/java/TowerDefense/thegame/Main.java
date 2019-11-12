@@ -20,21 +20,22 @@ public final class Main extends Application {
 		final Canvas gameCanvas = new Canvas(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		final Canvas shopCanvas = new Canvas(Config.SHOP_WIDTH, Config.SCREEN_HEIGHT);
 
+		final Pane gamePane = new StackPane(gameCanvas);
 		final Pane shopPane = new StackPane(shopCanvas);
 
 		final GraphicsContext gameGraphicsContext = gameCanvas.getGraphicsContext2D();
 		final GraphicsContext shopGraphicsContext = shopCanvas.getGraphicsContext2D();
-		final GameController gameController = new GameController(gameGraphicsContext);
+		final GameController gameController = new GameController(gameGraphicsContext, gamePane);
 		final ShopController shopController = new ShopController(shopGraphicsContext, shopPane);
+		final MainController mainController = new MainController(gameController, shopController);
 
 		primaryStage.setResizable(false);
 		primaryStage.setTitle(Config.GAME_NAME);
-		primaryStage.setScene(new Scene(new HBox(new StackPane(gameCanvas), shopPane)));
+		primaryStage.setScene(new Scene(new HBox(gamePane, shopPane)));
 		primaryStage.show();
 
-		gameController.start();
-		shopController.start();
-
-		//System.out.println(Font.getFamilies());
+//		gameController.start();
+//		shopController.start();
+		mainController.start();
 	}
 }
