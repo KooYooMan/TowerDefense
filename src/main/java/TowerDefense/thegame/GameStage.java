@@ -1,10 +1,15 @@
 package TowerDefense.thegame;
 
 import TowerDefense.thegame.entity.GameEntity;
-import TowerDefense.thegame.entity.Tower.NormalTower;
-import TowerDefense.thegame.entity.bullet.ExplodingBullet;
-import TowerDefense.thegame.entity.bullet.FastBullet;
-import TowerDefense.thegame.entity.bullet.NormalBullet;
+import TowerDefense.thegame.entity.tile.spawner.BossSpawner;
+import TowerDefense.thegame.entity.bullet.*;
+import TowerDefense.thegame.entity.tile.spawner.NormalSpawner;
+import TowerDefense.thegame.entity.tile.spawner.SmallerSpawner;
+import TowerDefense.thegame.entity.tile.spawner.TankerSpawner;
+import TowerDefense.thegame.entity.tile.tower.AbstractTower;
+import TowerDefense.thegame.entity.tile.tower.MachineGunTower;
+import TowerDefense.thegame.entity.tile.tower.NormalTower;
+import TowerDefense.thegame.entity.tile.tower.SniperTower;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +27,13 @@ public final class GameStage {
 
     // for testing
     public  GameStage() {
-        this.width = 400;
-        this.height = 400;
+        this.width = Config.SCREEN_WIDTH;
+        this.height = Config.SCREEN_HEIGHT;
         this.entities = new ArrayList<>();
-        NormalTower foo = new NormalTower(10, 10, 30, 30);
-        this.entities.add(foo);
-        this.entities.add(foo.getGun());
+        this.entities.add(new NormalSpawner(9 * Config.TILE_SIZE, 0.5 * Config.TILE_SIZE));
+        this.entities.add(new SmallerSpawner(9 * Config.TILE_SIZE, 0.5 * Config.TILE_SIZE));
+        this.entities.add(new TankerSpawner(9 * Config.TILE_SIZE, 0.5 * Config.TILE_SIZE));
+        this.entities.add(new BossSpawner(7 * Config.TILE_SIZE, 0.5 * Config.TILE_SIZE));
     }
 
     public List<GameEntity> getEntities() {
@@ -40,5 +46,26 @@ public final class GameStage {
 
     public long getHeight() {
         return height;
+    }
+
+    public void addEntity(GameEntity entity) {
+        if (entity instanceof AbstractTower) {
+            entities.add(entity);
+            entities.add(((AbstractTower) entity).getGun());
+
+//            for (GameEntity entity1 : this.entities) {
+//                System.out.printf("%s\n", entity1.toString());
+//            }
+        }
+    }
+
+    public GameEntity getGameEntity(int i, int j) {
+        for (GameEntity entity : entities) {
+            if ((int) entity.getPosY() / Config.TILE_SIZE == i && (int) entity.getPosX() / Config.TILE_SIZE == j) {
+                return entity;
+            }
+        }
+
+        return null;
     }
 }
