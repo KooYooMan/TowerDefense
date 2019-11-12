@@ -20,6 +20,6 @@ public class ButtonContainerDrawer {
         pane.getChildren().add(vBox);
     }
 
-    public List<AbstractButtonDrawer> getTowerButtonDrawerList() { return towerButtonContainerDrawer.getTowerButtonDrawerList(); }
-    public List<AbstractButtonDrawer> getBulletButtonDrawerList() { return bulletButtonContainerDrawer.getBulletButtonDrawerList(); }
+    public List<TowerButtonDrawer> getTowerButtonDrawerList() { return towerButtonContainerDrawer.getTowerButtonDrawerList(); }
+    public List<BulletButtonDrawer> getBulletButtonDrawerList() { return bulletButtonContainerDrawer.getBulletButtonDrawerList(); }
 }

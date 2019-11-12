@@ -9,21 +9,21 @@ import java.util.List;
 
 public class BulletButtonContainerDrawer {
     private final VBox bulletButtonVBox = new VBox();
-    private List<AbstractButtonDrawer> bulletButtonDrawerList = new ArrayList<>();
+    private List<BulletButtonDrawer> bulletButtonDrawerList;
 
-    public BulletButtonContainerDrawer(VBox vBox, List<AbstractIconDrawer> iconDrawerList) {
-        iconDrawerList.forEach(iconDrawer -> {
-            try {
-                bulletButtonDrawerList.add(new BulletButtonDrawer(vBox, iconDrawer));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+    public BulletButtonContainerDrawer(VBox vBox, List<AbstractIconDrawer> iconDrawerList) throws IOException {
+        this.bulletButtonDrawerList = new ArrayList<>(List.of(
+                new BurningBulletButtonDrawer(vBox, iconDrawerList.get(0)),
+                new ExplodingBulletButtonDrawer(vBox, iconDrawerList.get(1)),
+                new FastBulletButtonDrawer(vBox, iconDrawerList.get(2)),
+                new FrozenBulletButtonDrawer(vBox, iconDrawerList.get(3)),
+                new HighDamageBulletButtonDrawer(vBox, iconDrawerList.get(4))
+        ));
 
         bulletButtonDrawerList.forEach(bulletButtonDrawer -> bulletButtonVBox.getChildren().add(bulletButtonDrawer.getButtonVBox()));
 
         vBox.getChildren().add(bulletButtonVBox);
     }
 
-    public List<AbstractButtonDrawer> getBulletButtonDrawerList() { return bulletButtonDrawerList; }
+    public List<BulletButtonDrawer> getBulletButtonDrawerList() { return bulletButtonDrawerList; }
 }

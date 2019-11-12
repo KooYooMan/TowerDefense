@@ -78,7 +78,7 @@ public abstract class AbstractTower extends AbstractEntity implements UpdatableE
         this.tick ++;
         long len = bulletList.size();
         int id = new Random().nextInt((int) len);
-        System.out.println(id);
+        //System.out.println(id);
         try {
             field.getSpawnEntities().add(bulletList.get(id).getDeclaredConstructor(cArg)
                     .newInstance(centerX, centerY, targetX - centerX, targetY - centerY, bulletTime));

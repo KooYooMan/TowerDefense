@@ -9,7 +9,7 @@ import java.util.List;
 
 public class TowerButtonContainerDrawer {
     private final VBox towerButtonVBox = new VBox();
-    private List<AbstractButtonDrawer> towerButtonDrawerList;
+    private List<TowerButtonDrawer> towerButtonDrawerList;
 
     public TowerButtonContainerDrawer(VBox vBox, List<AbstractIconDrawer> iconDrawerList) throws IOException {
         this.towerButtonDrawerList = new ArrayList<>(List.of(
@@ -23,5 +23,5 @@ public class TowerButtonContainerDrawer {
         vBox.getChildren().add(towerButtonVBox);
     }
 
-    public List<AbstractButtonDrawer> getTowerButtonDrawerList() { return towerButtonDrawerList; }
+    public List<TowerButtonDrawer> getTowerButtonDrawerList() { return towerButtonDrawerList; }
 }

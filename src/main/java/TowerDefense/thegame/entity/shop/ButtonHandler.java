@@ -3,8 +3,7 @@ package TowerDefense.thegame.entity.shop;
 import TowerDefense.thegame.Config;
 import TowerDefense.thegame.GameStage;
 import TowerDefense.thegame.drawer.GameDrawer;
-import TowerDefense.thegame.drawer.shop.button.BulletButtonDrawer;
-import TowerDefense.thegame.drawer.shop.button.TowerButtonDrawer;
+import TowerDefense.thegame.drawer.shop.button.*;
 import TowerDefense.thegame.entity.stage.StageHandler;
 import TowerDefense.thegame.entity.tile.tower.AbstractTower;
 import javafx.scene.layout.Pane;
@@ -52,7 +51,6 @@ public class ButtonHandler {
                 if (gameDrawer.getStageLoader().getCurrentLayout(row, column).equals("420")) {
                     AbstractTower tower = (AbstractTower) gameStage.getGameEntity(row, column);
                     if (tower != null) {
-                        System.out.println("Hello there");
                         tower.addBullet(StageHandler.getBulletClass(button.getClass()));
                     }
                 }

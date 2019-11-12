@@ -1,7 +1,5 @@
 package TowerDefense.thegame;
 
-import TowerDefense.thegame.drawer.shop.button.BulletButtonDrawer;
-import TowerDefense.thegame.drawer.shop.button.TowerButtonDrawer;
 import TowerDefense.thegame.entity.shop.ButtonHandler;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
@@ -18,11 +16,11 @@ public class MainController extends AnimationTimer {
         this.buttonHandler = new ButtonHandler(gameController.getGameStage(), gameController.getGamePane(), gameController.getGameDrawer());
 
         this.shopController.getShopHandler().getTowerButtonDrawerList().forEach(towerButtonDrawer ->
-                buttonHandler.handleEventTower((TowerButtonDrawer) towerButtonDrawer)
+                this.buttonHandler.handleEventTower(towerButtonDrawer)
         );
 
         this.shopController.getShopHandler().getBulletButtonDrawerList().forEach(bulletButtonDrawer ->
-                buttonHandler.handleEventBullet((BulletButtonDrawer) bulletButtonDrawer)
+                this.buttonHandler.handleEventBullet(bulletButtonDrawer)
         );
     }
 

@@ -1,7 +1,8 @@
 package TowerDefense.thegame.entity.shop;
 
-import TowerDefense.thegame.drawer.shop.button.AbstractButtonDrawer;
+import TowerDefense.thegame.drawer.shop.button.BulletButtonDrawer;
 import TowerDefense.thegame.drawer.shop.button.ButtonContainerDrawer;
+import TowerDefense.thegame.drawer.shop.button.TowerButtonDrawer;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -14,6 +15,6 @@ public class ShopHandler {
         this.buttonContainerDrawer = new ButtonContainerDrawer(pane);
     }
 
-    public List<AbstractButtonDrawer> getTowerButtonDrawerList() { return buttonContainerDrawer.getTowerButtonDrawerList(); }
-    public List<AbstractButtonDrawer> getBulletButtonDrawerList() { return buttonContainerDrawer.getBulletButtonDrawerList(); }
+    public List<TowerButtonDrawer> getTowerButtonDrawerList() { return buttonContainerDrawer.getTowerButtonDrawerList(); }
+    public List<BulletButtonDrawer> getBulletButtonDrawerList() { return buttonContainerDrawer.getBulletButtonDrawerList(); }
 }
