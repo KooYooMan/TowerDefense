@@ -3,8 +3,12 @@ package TowerDefense.thegame;
 import TowerDefense.thegame.entity.EffectEntity;
 import TowerDefense.thegame.entity.GameEntity;
 import TowerDefense.thegame.entity.LivingEntity;
+import TowerDefense.thegame.entity.bullet.NormalBullet;
+import TowerDefense.thegame.entity.enemy.BossEnemy;
 import TowerDefense.thegame.entity.bullet.*;
 import TowerDefense.thegame.entity.enemy.NormalEnemy;
+import TowerDefense.thegame.entity.enemy.SmallerEnemy;
+import TowerDefense.thegame.entity.enemy.TankerEnemy;
 import TowerDefense.thegame.entity.tile.Mountain;
 import TowerDefense.thegame.entity.tile.Target;
 import TowerDefense.utilities.Pair;
@@ -33,7 +37,15 @@ public final class GameEntities {
     private static final Set<Pair<Class<? extends EffectEntity>, Class<? extends LivingEntity>>> EFFECT_LIVING_SET
             = new HashSet<>(Set.of(
             Pair.immutableOf(NormalBullet.class, NormalEnemy.class),
+            Pair.immutableOf(NormalBullet.class, SmallerEnemy.class),
+            Pair.immutableOf(NormalBullet.class, TankerEnemy.class),
+            Pair.immutableOf(NormalBullet.class, BossEnemy.class),
+
             Pair.immutableOf(BurningBullet.class, NormalEnemy.class),
+            Pair.immutableOf(BurningBullet.class, SmallerEnemy.class),
+            Pair.immutableOf(BurningBullet.class, TankerEnemy.class),
+            Pair.immutableOf(BurningBullet.class, BossEnemy.class),
+
             Pair.immutableOf(ExplodingBullet.class, NormalEnemy.class),
             Pair.immutableOf(FastBullet.class, NormalEnemy.class),
             Pair.immutableOf(FrozenBullet.class, NormalEnemy.class),

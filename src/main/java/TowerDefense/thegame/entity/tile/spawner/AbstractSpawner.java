@@ -48,10 +48,6 @@ public abstract class AbstractSpawner<E extends AbstractEnemy> extends AbstractT
             field.getSpawnEntities().add(newEnemy);
             this.tickDown = spawnInterval;
         }
-        if (tickDown <= -1000) {
-            numOfSpawn = 10;
-            tickDown = spawnInterval;
-        }
     }
 
 

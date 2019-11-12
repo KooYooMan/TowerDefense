@@ -3,7 +3,10 @@ package TowerDefense.thegame.drawer;
 import TowerDefense.thegame.Config;
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.drawer.bullet.*;
+import TowerDefense.thegame.drawer.enemy.BossEnemyDrawer;
 import TowerDefense.thegame.drawer.enemy.NormalEnemyDrawer;
+import TowerDefense.thegame.drawer.enemy.SmallerEnemyDrawer;
+import TowerDefense.thegame.drawer.enemy.TankerEnemyDrawer;
 import TowerDefense.thegame.drawer.gun.MachineGunDrawer;
 import TowerDefense.thegame.drawer.gun.NormalGunDrawer;
 import TowerDefense.thegame.drawer.gun.SniperGunDrawer;
@@ -14,7 +17,10 @@ import TowerDefense.thegame.drawer.tower.SniperTowerDrawer;
 import TowerDefense.thegame.entity.GameEntity;
 import TowerDefense.thegame.entity.RotatableEntity;
 import TowerDefense.thegame.entity.bullet.*;
+import TowerDefense.thegame.entity.enemy.BossEnemy;
 import TowerDefense.thegame.entity.enemy.NormalEnemy;
+import TowerDefense.thegame.entity.enemy.SmallerEnemy;
+import TowerDefense.thegame.entity.enemy.TankerEnemy;
 import TowerDefense.thegame.entity.gun.MachineGun;
 import TowerDefense.thegame.entity.gun.NormalGun;
 import TowerDefense.thegame.entity.gun.SniperGun;
@@ -44,7 +50,12 @@ public final class GameDrawer {
 		FastBullet.class,
 		FrozenBullet.class,
 		BurningBullet.class,
-		HighDamageBullet.class
+		HighDamageBullet.class,
+
+		BossEnemy.class,
+		TankerEnemy.class,
+		NormalEnemy.class,
+		SmallerEnemy.class
 
 	);
 
@@ -64,7 +75,10 @@ public final class GameDrawer {
 			Map.entry(HighDamageBullet.class, new HighDamageBulletDrawer()),
 			Map.entry(FastBullet.class, new FastBulletDrawer()),
 
-			Map.entry(NormalEnemy.class, new NormalEnemyDrawer())
+			Map.entry(NormalEnemy.class, new NormalEnemyDrawer()),
+			Map.entry(SmallerEnemy.class, new SmallerEnemyDrawer()),
+			Map.entry(TankerEnemy.class, new TankerEnemyDrawer()),
+			Map.entry(BossEnemy.class, new BossEnemyDrawer())
 	));
 
 	private final GraphicsContext graphicsContext;
