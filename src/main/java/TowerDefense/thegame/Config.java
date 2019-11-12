@@ -9,7 +9,6 @@ public final class Config {
 
 	public static final long _TILE_MAP_COUNT = TILE_HORIZONTAL * TILE_VERTICAL;
 
-
 	public static final long SCREEN_WIDTH = TILE_SIZE * TILE_HORIZONTAL;
 	public static final long SCREEN_HEIGHT = TILE_SIZE * TILE_VERTICAL;
 

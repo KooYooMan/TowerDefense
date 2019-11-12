@@ -1,31 +1,33 @@
 package TowerDefense.thegame.drawer.shop.button;
 
 import TowerDefense.thegame.drawer.shop.icon.AbstractIconDrawer;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-public class AbstractButtonDrawer {
-    private final VBox buttonVBox = new VBox();
-    private final List<ButtonWithLabelDrawer> buttonWithLabelList = new ArrayList<>();
+public abstract class AbstractButtonDrawer {
+    private VBox buttonVBox = new VBox();
+    private ButtonWithLabelDrawer buttonWithLabelDrawer;
 
-    public AbstractButtonDrawer(VBox vBox, List<AbstractIconDrawer> iconDrawerList) {
-        iconDrawerList.forEach(iconDrawer -> {
-            try {
-                buttonWithLabelList.add(new ButtonWithLabelDrawer(
-                        new Button(iconDrawer.getLabel(), iconDrawer.getImageView()), new Label(iconDrawer.getPrice()))
-                );
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+    public AbstractButtonDrawer(VBox vBox, AbstractIconDrawer iconDrawer) throws IOException {
+        this.buttonWithLabelDrawer = new ButtonWithLabelDrawer(
+                new Button(iconDrawer.getLabel(), iconDrawer.getImageView()), new Label(iconDrawer.getPrice())
+        );
 
-        buttonWithLabelList.forEach(buttonWithLabel -> buttonVBox.getChildren().add(buttonWithLabel.getButtonLabel()));
+        this.buttonVBox.getChildren().add(buttonWithLabelDrawer.getButtonLabel());
 
-        vBox.getChildren().add(buttonVBox);
+        vBox.getChildren().add(this.buttonVBox);
     }
+
+    public VBox getButtonVBox() { return buttonVBox; }
+
+    public void setOnMousePressed(EventHandler<MouseEvent> event) {
+        this.buttonWithLabelDrawer.setOnMousePressed(event);
+    }
+
+    //public ButtonWithLabelDrawer getButtonWithLabelDrawer() { return buttonWithLabelDrawer; }
 }

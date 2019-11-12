@@ -4,19 +4,22 @@ import TowerDefense.thegame.drawer.GameDrawer;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.Pane;
 import javafx.stage.WindowEvent;
-
-import java.io.FileNotFoundException;
 
 public class GameController extends AnimationTimer {
     private final GraphicsContext graphicsContext;
+    private GameStage gameStage;
     private GameField gameField;
-    private GameDrawer drawer;
+    private GameDrawer gameDrawer;
+    private Pane gamePane;
 
-    public GameController(GraphicsContext graphicsContext) {
+    public GameController(GraphicsContext graphicsContext, Pane gamePane) {
         this.graphicsContext = graphicsContext;
-        this.gameField = new GameField(new GameStage());
-        this.drawer = new GameDrawer(graphicsContext, gameField);
+        this.gameStage = new GameStage();
+        this.gameField = new GameField(gameStage);
+        this.gameDrawer = new GameDrawer(graphicsContext, gameField);
+        this.gamePane = gamePane;
     }
 
     final void closeRequestHandler(WindowEvent windowEvent) {
@@ -28,10 +31,14 @@ public class GameController extends AnimationTimer {
     @Override
     public void handle(long l) {
         gameField.handle();
-        drawer.render();
+        gameDrawer.render();
     }
 
     public void start() {
         super.start();
     }
+
+    public GameStage getGameStage() { return gameStage; }
+    public Pane getGamePane() { return gamePane; }
+    public GameDrawer getGameDrawer() { return gameDrawer; }
 }
