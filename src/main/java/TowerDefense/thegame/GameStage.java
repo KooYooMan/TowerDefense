@@ -32,22 +32,12 @@ public final class GameStage {
         this.width = Config.SCREEN_WIDTH;
         this.height = Config.SCREEN_HEIGHT;
         this.entities = new ArrayList<>();
-        NormalTower foo = new NormalTower(300, 200);
-        MachineGunTower bar = new MachineGunTower(130, 200);
-        SniperTower magic = new SniperTower(200, 200);
-        this.entities.add(new NormalSpawner(9 * Config.TILE_SIZE, 0.5 * Config.TILE_SIZE));
-        this.entities.add(new SmallerSpawner(9 * Config.TILE_SIZE, 0.5 * Config.TILE_SIZE));
-        this.entities.add(new TankerSpawner(9 * Config.TILE_SIZE, 0.5 * Config.TILE_SIZE));
-        this.entities.add(new BossSpawner(7 * Config.TILE_SIZE, 0.5 * Config.TILE_SIZE));
+        this.entities.add(new NormalSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
+        this.entities.add(new SmallerSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
+        this.entities.add(new TankerSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
+        this.entities.add(new BossSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
 
-        this.entities.add(foo);
-        this.entities.add(foo.getGun());
-        this.entities.add(bar);
-        this.entities.add(bar.getGun());
-        this.entities.add(magic);
-        this.entities.add(magic.getGun());
         //magic.addBullet(HighDamageBullet.class); magic.addBullet(BurningBullet.class);
-        magic.addBullet(ExplodingBullet.class); //magic.addBullet(FastBullet.class);
         //magic.addBullet(FrozenBullet.class);
 
 //        this.entities.add(foo.getGun());
