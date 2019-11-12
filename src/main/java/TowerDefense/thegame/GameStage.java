@@ -2,6 +2,7 @@ package TowerDefense.thegame;
 
 import TowerDefense.thegame.entity.GameEntity;
 import TowerDefense.thegame.entity.bullet.NormalBullet;
+import TowerDefense.thegame.entity.tile.Target;
 import TowerDefense.thegame.entity.tile.spawner.BossSpawner;
 import TowerDefense.thegame.entity.bullet.*;
 import TowerDefense.thegame.entity.tile.spawner.NormalSpawner;
@@ -36,7 +37,7 @@ public final class GameStage {
         this.entities.add(new SmallerSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
         this.entities.add(new TankerSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
         this.entities.add(new BossSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
-
+        this.entities.add(new Target(0 * Config.TILE_SIZE, 8 * Config.TILE_SIZE));
         //magic.addBullet(HighDamageBullet.class); magic.addBullet(BurningBullet.class);
         //magic.addBullet(FrozenBullet.class);
 

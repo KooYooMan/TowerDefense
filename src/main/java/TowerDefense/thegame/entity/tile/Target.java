@@ -2,11 +2,13 @@ package TowerDefense.thegame.entity.tile;
 
 import TowerDefense.thegame.Config;
 import TowerDefense.thegame.entity.LivingEntity;
-import TowerDefense.thegame.entity.buff.AbstractBuff;
 
 public class Target extends AbstractTile implements LivingEntity {
     long health;
-    public Target (double posX, double posY) { super(posX, posY, Config.TARGET_WIDTH, Config.TARGET_HEIGHT); }
+    public Target (double posX, double posY) {
+        super(posX, posY, Config.TARGET_WIDTH, Config.TARGET_HEIGHT);
+        health = Config.TARGET_HEALTH;
+    }
 
     @Override
     public long getHealth() {
@@ -22,6 +24,7 @@ public class Target extends AbstractTile implements LivingEntity {
 
     @Override
     public boolean isDestroyed() {
-        return false;
+        System.out.printf("Health = %d\n", health);
+        return health <= 0;
     }
 }
