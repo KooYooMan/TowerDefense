@@ -21,7 +21,7 @@ public class ButtonWithLabelDrawer {
     private final HBox buttonLabel;
     private final ImageView coinImage;
 
-    private EventHandler<MouseEvent> onClickEventHandler = mouseEvent -> System.out.println("Hello there");
+    //private EventHandler<MouseEvent> onClickEventHandler = mouseEvent -> System.out.println("Hello there");
 
     public ButtonWithLabelDrawer(Button button, Label label) throws IOException {
         this.coinImage = new ImageView(new Image(new FileInputStream("target/classes/icon/coin.png")));
@@ -35,7 +35,7 @@ public class ButtonWithLabelDrawer {
         label.setWrapText(true);
         label.setAlignment(Pos.CENTER);
         
-        button.setOnMousePressed(onClickEventHandler);
+        //button.setOnMousePressed(onClickEventHandler);
         button.setWrapText(true);
         button.setAlignment(Pos.BASELINE_LEFT);
         button.setPrefWidth(200);
@@ -51,4 +51,8 @@ public class ButtonWithLabelDrawer {
     public Label getLabel() { return buttonLabelPair.getB(); }
 
     public HBox getButtonLabel() { return buttonLabel; }
+
+    public void setOnMousePressed(EventHandler<MouseEvent> eventHandler) {
+        this.getButton().setOnMousePressed(eventHandler);
+    }
 }

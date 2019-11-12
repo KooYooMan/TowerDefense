@@ -5,7 +5,6 @@ import TowerDefense.thegame.entity.shop.ShopHandler;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.WindowEvent;
 
@@ -19,7 +18,7 @@ public class ShopController extends AnimationTimer {
     public ShopController(GraphicsContext graphicsContext, Pane pane) throws IOException {
         //this.graphicsContext = graphicsContext;
         this.shopDrawer = new ShopDrawer(graphicsContext, "target/classes/shop/Background.png");
-        this.shopHandler = new ShopHandler(pane, shopDrawer);
+        this.shopHandler = new ShopHandler(pane);
     }
 
     final void closeRequestHandler(WindowEvent windowEvent) {
@@ -29,17 +28,11 @@ public class ShopController extends AnimationTimer {
     }
 
     @Override
-    public void handle(long now) {
+    public void handle(long l) {
         shopDrawer.render();
     }
 
     public void start() { super.start(); }
 
-    final void mouseDownHandler(MouseEvent mouseEvent) {
-
-    }
-
-    final void mouseUpHandler(MouseEvent mouseEvent) {
-
-    }
+    public ShopHandler getShopHandler() { return shopHandler; }
 }

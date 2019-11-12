@@ -18,13 +18,13 @@ import TowerDefense.thegame.entity.enemy.NormalEnemy;
 import TowerDefense.thegame.entity.gun.MachineGun;
 import TowerDefense.thegame.entity.gun.NormalGun;
 import TowerDefense.thegame.entity.gun.SniperGun;
+import TowerDefense.thegame.entity.stage.StageLoader;
 import TowerDefense.thegame.entity.tile.tower.MachineGunTower;
 import TowerDefense.thegame.entity.tile.tower.NormalTower;
 import TowerDefense.thegame.entity.tile.tower.SniperTower;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,13 +69,15 @@ public final class GameDrawer {
 	private final GraphicsContext graphicsContext;
 	private GameField gameField;
 	private StageDrawer stageDrawer;
+	private StageLoader stageLoader;
 
 	public GameDrawer(GraphicsContext graphicsContext, GameField gameField) {
 		this.graphicsContext = graphicsContext;
 		this.gameField = gameField;
 
 		try {
-			this.stageDrawer = new StageDrawer(graphicsContext, "src/main/java/TowerDefense/thegame/drawer/stage/TestStage.txt");
+			this.stageLoader = new StageLoader("src/main/java/TowerDefense/thegame/drawer/stage/TestStage.txt");
+			this.stageDrawer = new StageDrawer(graphicsContext, stageLoader);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -106,7 +108,7 @@ public final class GameDrawer {
 
 	public final void render() {
 		final GameField gameField = this.gameField;
-		final List<GameEntity> entities = new ArrayList<>(gameField.getEntities());
+		final List<GameEntity> entities = gameField.getEntities();
 		graphicsContext.clearRect(0.0, 0.0, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 
 		stageDrawer.draw();
@@ -124,4 +126,7 @@ public final class GameDrawer {
 			}
 		}
 	}
+
+	public StageDrawer getStageDrawer() { return stageDrawer; }
+	public StageLoader getStageLoader() { return stageLoader; }
 }

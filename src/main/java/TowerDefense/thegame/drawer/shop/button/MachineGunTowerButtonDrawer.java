@@ -5,8 +5,8 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class BulletButtonDrawer extends AbstractButtonDrawer {
-    public BulletButtonDrawer(VBox vBox, AbstractIconDrawer iconDrawer) throws IOException {
+public class MachineGunTowerButtonDrawer extends TowerButtonDrawer {
+    public MachineGunTowerButtonDrawer(VBox vBox, AbstractIconDrawer iconDrawer) throws IOException {
         super(vBox, iconDrawer);
     }
 }
