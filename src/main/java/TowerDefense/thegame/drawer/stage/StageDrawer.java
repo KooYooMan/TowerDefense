@@ -17,6 +17,7 @@ public class StageDrawer {
 
     public StageDrawer(GraphicsContext graphicsContext, StageLoader stageLoader) throws IOException {
         this.graphicsContext = graphicsContext;
+        this.graphicsContext.setStroke(Color.rgb(46, 204, 113));
         this.layout = stageLoader.getLayout();
         this.background = new Image(new FileInputStream("src/main/java/TowerDefense/thegame/drawer/stage/TestStageBG.png"));
         this.tiles = new Image[(int) Config.TILE_VERTICAL][(int) Config.TILE_HORIZONTAL];
@@ -39,26 +40,58 @@ public class StageDrawer {
 
         for (int i = 0; i < Config.TILE_VERTICAL; ++i) {
             for (int j = 0; j < Config.TILE_HORIZONTAL; ++j) {
-                //graphicsContext.strokeRect(j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE);
                 if (tiles[i][j] != null) {
                     graphicsContext.drawImage(tiles[i][j],
-                            j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE);
+                            j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE
+                    );
+                } else {
+                    graphicsContext.strokeRect(
+                            j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE
+                    );
                 }
             }
         }
     }
 
-    public void strokeRect(boolean b) {
+    public void placeTowerStrokeRect(boolean b) {
         if (b) {
             graphicsContext.setStroke(Color.YELLOW);
         } else {
-            graphicsContext.setStroke(Color.GREEN);
+            graphicsContext.setStroke(Color.rgb(46, 204, 113));
         }
 
         for (int i = 0; i < Config.TILE_VERTICAL; ++i) {
             for (int j = 0; j < Config.TILE_HORIZONTAL; ++j) {
                 if (layout[i][j].equals("000")) {
-                    graphicsContext.strokeRect(j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE);
+                    graphicsContext.strokeRect(
+                            j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE
+                    );
+                } else {
+                    graphicsContext.clearRect(
+                            j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE
+                    );
+                }
+            }
+        }
+    }
+
+    public void upgradeTowerStrokeRect(boolean b) {
+        if (b) {
+            graphicsContext.setStroke(Color.YELLOW);
+        } else {
+            graphicsContext.setStroke(Color.rgb(46, 204, 113));
+        }
+
+        for (int i = 0; i < Config.TILE_VERTICAL; ++i) {
+            for (int j = 0; j < Config.TILE_HORIZONTAL; ++j) {
+                if (layout[i][j].equals("420")) {
+                    graphicsContext.strokeRect(
+                            j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE
+                    );
+                } else {
+                    graphicsContext.clearRect(
+                            j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE
+                    );
                 }
             }
         }
