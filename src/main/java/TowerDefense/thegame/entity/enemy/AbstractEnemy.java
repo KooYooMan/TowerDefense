@@ -8,7 +8,6 @@ import TowerDefense.thegame.entity.buff.ShootBuff;
 import TowerDefense.thegame.entity.enemy.path.Path;
 
 import javax.annotation.Nonnull;
-import java.util.List;
 
 public abstract class AbstractEnemy extends AbstractEntity implements UpdatableEntity, EffectEntity, LivingEntity, DestroyListener, RotatableEntity, BuffedEntity {
     private static final double[][] DELTA_DIRECTION_ARRAY = {
@@ -17,6 +16,7 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
     private static final double [] DEGREE_ROTATE_ARRAY = {
         270, 90, 180, 0
     };
+    private long maxHealth;
     private long health;
     private long armor;
     private double speed;
@@ -25,7 +25,8 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
     Path path;
     double didInstruction = 0;
     int currInstruction = 0;
-    AbstractBuff[] timeRemaining = new AbstractBuff[4];
+    long[] timeRemaining = new long[4];
+    long[] buffValue = new long[4];
     public long getArmor() {
         return armor;
 
@@ -36,14 +37,19 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         this.armor = armor;
         this.speed = speed;
         this.reward = reward;
+        this.maxHealth = health;
         currInstruction = 0;
         didInstruction = 0;
-
+    }
+    @Override
+    public double getRatioHealth() {
+        return (double)this.health / (double)this.maxHealth;
     }
     public void setPath (Path path) {
         this.path = path;
     }
     public final void onUpdate (@Nonnull GameField field) {
+        /// update position
         final double enemyPosX = getPosX();
         final double enemyPosY = getPosY();
         final double enemyWidth = getWidth();
@@ -53,18 +59,24 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         setPosX(enemyPosX + speed * DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][0]);
         setPosY(enemyPosY + speed * DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][1]);
         degreeRotate = DEGREE_ROTATE_ARRAY[path.getDirect(currInstruction)];
+
 //        System.out.printf("posx = %f posy = %f dx = %f dy = %f deg = %f\n",
 //                getPosX(), getPosY(), DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][0], DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][1], degreeRotate);
 
-        if (didInstruction >= Math.abs(path.getLength(currInstruction))) {
+        if (didInstruction >= Math.abs(path.getLength(currInstruction))) { /// doest matter in reality, cause it will be destroyed or move to Target, just for testing
             didInstruction = 0;
             currInstruction += 1;
             if (currInstruction >= path.getNumberInstructions()) {
-                health = -1;
+                doDestroy();
             }
 
         }
 //        System.out.printf("%f %f curr = %d did = %f\n", getPosX(), getPosY(), currInstruction, didInstruction);
+        /// update health;
+        if (timeRemaining[0] >= 1) {
+            timeRemaining[0]--;
+            health -= buffValue[0];
+        }
     }
 //
 
@@ -97,6 +109,9 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
     public void getBuffed(AbstractBuff buff) {
         if (buff instanceof ShootBuff) {
             health -= ((ShootBuff) buff).getDamage() - getArmor();
+        } else if (buff instanceof BurningBuff) {
+            timeRemaining[0] += ((BurningBuff) buff).getTimeBurning();
+            buffValue[0] = ((BurningBuff) buff).getDamage();
         }
     }
 
