@@ -45,13 +45,13 @@ public final class Config {
 
 	public static final double FROZEN_SPEED = 10;
 
-	public static final double NORMAL_TOWER_RANGE = 500;
+	public static final double NORMAL_TOWER_RANGE = 450;
 	public static final double SNIPER_TOWER_RANGE = 500;
-	public static final double MACHINE_GUN_TOWER_RANGE = 500;
+	public static final double MACHINE_GUN_TOWER_RANGE = 400;
 
 	public static final long NORMAL_TOWER_SPEED = 50;
-	public static final long SNIPER_TOWER_SPEED = 50;
-	public static final long MACHINE_GUN_TOWER_SPEED = 50;
+	public static final long SNIPER_TOWER_SPEED = 55;
+	public static final long MACHINE_GUN_TOWER_SPEED = 45;
 
 	public static final long BULLET_ADD_SPEED = 2;
 
@@ -70,21 +70,21 @@ public final class Config {
 	public static final String NORMAL_BULLET_IMAGE = path + "/bullet/NormalBullet.png";
 	public static final String FROZEN_BULLET_IMAGE = path + "/bullet/FrozenBullet.png";
 
-	public static final double NORMAL_GUN_WIDTH = 60;
-	public static final double MACHINE_GUN_WIDTH = 60;
-	public static final double SNIPER_GUN_WIDTH = 60;
+	public static final double NORMAL_GUN_WIDTH = TILE_SIZE * 1.0;
+	public static final double MACHINE_GUN_WIDTH = TILE_SIZE * 1.0;
+	public static final double SNIPER_GUN_WIDTH = TILE_SIZE * 1.0;
 
-	public static final double NORMAL_GUN_HEIGHT = 60;
-	public static final double MACHINE_GUN_HEIGHT = 60;
-	public static final double SNIPER_GUN_HEIGHT = 60;
+	public static final double NORMAL_GUN_HEIGHT = TILE_SIZE * 1.0;
+	public static final double MACHINE_GUN_HEIGHT = TILE_SIZE * 1.0;
+	public static final double SNIPER_GUN_HEIGHT = TILE_SIZE * 1.0;
 
-	public static final double MACHINE_TOWER_WIDTH = 60;
-	public static final double NORMAL_TOWER_WIDTH = 60;
-	public static final double SNIPER_TOWER_WIDTH = 60;
+	public static final double MACHINE_TOWER_WIDTH = TILE_SIZE * 1.0;
+	public static final double NORMAL_TOWER_WIDTH = TILE_SIZE * 1.0;
+	public static final double SNIPER_TOWER_WIDTH = TILE_SIZE * 1.0;
 
-	public static final double MACHINE_TOWER_HEIGHT = 60;
-	public static final double NORMAL_TOWER_HEIGHT = 60;
-	public static final double SNIPER_TOWER_HEIGHT = 60;
+	public static final double MACHINE_TOWER_HEIGHT = TILE_SIZE * 1.0;
+	public static final double NORMAL_TOWER_HEIGHT = TILE_SIZE * 1.0;
+	public static final double SNIPER_TOWER_HEIGHT = TILE_SIZE * 1.0;
 
 	//region Enemy
 	public static final double NORMAL_ENEMY_SIZE = 0.9 * TILE_SIZE;
