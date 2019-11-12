@@ -23,7 +23,7 @@ public class ButtonHandler {
 
     public void handleEventTower(TowerButtonDrawer button) {
         button.setOnMousePressed(buttonPressedMouseEvent -> {
-            gameDrawer.getStageDrawer().strokeRect(true);
+            gameDrawer.getStageDrawer().placeTowerStrokeRect(true);
             gamePane.setOnMousePressed(gamePressedMouseEvent -> {
                 int row = (int) (gamePressedMouseEvent.getY() / Config.TILE_SIZE);
                 int column = (int) (gamePressedMouseEvent.getX() / Config.TILE_SIZE);
@@ -37,13 +37,14 @@ public class ButtonHandler {
                     gameDrawer.getStageLoader().setCurrentLayout(row, column, "420");
                 }
 
-                gameDrawer.getStageDrawer().strokeRect(false);
+                gameDrawer.getStageDrawer().placeTowerStrokeRect(false);
             });
         });
     }
 
     public void handleEventBullet(BulletButtonDrawer button) {
         button.setOnMousePressed(buttonPressedMouseEvent -> {
+            gameDrawer.getStageDrawer().upgradeTowerStrokeRect(true);
             gamePane.setOnMousePressed(gamePressedMouseEvent -> {
                 int row = (int) (gamePressedMouseEvent.getY() / Config.TILE_SIZE);
                 int column = (int) (gamePressedMouseEvent.getX() / Config.TILE_SIZE);
@@ -54,6 +55,8 @@ public class ButtonHandler {
                         tower.addBullet(StageHandler.getBulletClass(button.getClass()));
                     }
                 }
+
+                gameDrawer.getStageDrawer().upgradeTowerStrokeRect(false);
             });
         });
     }
