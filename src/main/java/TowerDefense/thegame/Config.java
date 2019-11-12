@@ -89,7 +89,7 @@ public final class Config {
 	public static final double NORMAL_ENEMY_SIZE = 0.9 * TILE_SIZE;
 	public static final long NORMAL_ENEMY_HEALTH = 100;
 	public static final long NORMAL_ENEMY_ARMOR = 3;
-	public static final double NORMAL_ENEMY_SPEED = 0.3 * TILE_SIZE;
+	public static final double NORMAL_ENEMY_SPEED = 0.3;
 	public static final long NORMAL_ENEMY_REWARD = 1;
 
 	public static final double SMALLER_ENEMY_SIZE = 0.7 * TILE_SIZE;
