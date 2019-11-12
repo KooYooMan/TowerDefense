@@ -3,6 +3,7 @@ package TowerDefense.thegame.drawer.enemy;
 import TowerDefense.thegame.drawer.AbstractDrawer;
 import TowerDefense.thegame.drawer.EntityDrawer;
 import TowerDefense.thegame.entity.GameEntity;
+import TowerDefense.thegame.entity.LivingEntity;
 import TowerDefense.thegame.entity.enemy.AbstractEnemy;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -24,6 +25,10 @@ public class AbstractEnemyDrawer extends AbstractDrawer implements EntityDrawer 
 
     @Override
     public void draw(GraphicsContext graphicsContext, GameEntity entity, double screenPosX, double screenPosY, double screenWidth, double screenHeight, double rotateDegree) {
+        graphicsContext.setFill(Color.RED);
+        graphicsContext.fillRect(screenPosX + screenWidth / 4, screenPosY, screenWidth / 2, 10);
+        graphicsContext.setFill(Color.GREEN);
+        graphicsContext.fillRect(screenPosX + screenWidth / 4, screenPosY, screenWidth / 2 * ((LivingEntity) entity).getRatioHealth(), 10);
         graphicsContext.save();
         rotate(graphicsContext, rotateDegree, screenPosX + screenWidth / 2, screenPosY + screenHeight / 2);
         graphicsContext.drawImage(image, screenPosX, screenPosY, screenWidth, screenHeight);
