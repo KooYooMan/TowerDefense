@@ -26,6 +26,10 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
     double didInstruction = 0;
     int currInstruction = 0;
     AbstractBuff[] timeRemaining = new AbstractBuff[4];
+    public long getArmor() {
+        return armor;
+
+    }
     protected AbstractEnemy (double posX, double posY, double size, long health, long armor, double speed, long reward) {
         super(posX, posY, size, size);
         this.health = health;
@@ -90,7 +94,7 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
     @Override
     public void getBuffed(AbstractBuff buff) {
         if (buff instanceof ShootBuff) {
-            health -= ((ShootBuff) buff).getDamage();
+            health -= ((ShootBuff) buff).getDamage() - getArmor();
         }
     }
     @Override

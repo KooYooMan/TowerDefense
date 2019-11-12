@@ -2,6 +2,7 @@ package TowerDefense.thegame.entity.tile.spawner;
 
 import TowerDefense.thegame.Config;
 import TowerDefense.thegame.GameField;
+import TowerDefense.thegame.entity.DestroyableEntity;
 import TowerDefense.thegame.entity.UpdatableEntity;
 import TowerDefense.thegame.entity.enemy.AbstractEnemy;
 import TowerDefense.thegame.entity.enemy.path.Path;
@@ -10,7 +11,7 @@ import TowerDefense.utilities.Pair;
 
 import javax.annotation.Nonnull;
 
-public abstract class AbstractSpawner<E extends AbstractEnemy> extends AbstractTile implements UpdatableEntity {
+public abstract class AbstractSpawner<E extends AbstractEnemy> extends AbstractTile implements UpdatableEntity, DestroyableEntity {
     private final double spawningSize;
     @Nonnull private final Class<E> spawningClass;
     private final long spawnInterval;
@@ -47,6 +48,10 @@ public abstract class AbstractSpawner<E extends AbstractEnemy> extends AbstractT
         }
     }
 
+    @Override
+    public boolean isDestroyed() {
+        return numOfSpawn <= 0;
+    }
 
     @Nonnull
     protected abstract E doSpawn(double posX, double posY);

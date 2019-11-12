@@ -13,6 +13,8 @@ import TowerDefense.thegame.entity.tile.tower.AbstractTower;
 import TowerDefense.thegame.entity.tile.tower.MachineGunTower;
 import TowerDefense.thegame.entity.tile.tower.NormalTower;
 import TowerDefense.thegame.entity.tile.tower.SniperTower;
+import TowerDefense.thegame.entity.tile.wave.GameWave;
+import TowerDefense.thegame.entity.tile.wave.Wave;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +35,22 @@ public final class GameStage {
         this.width = Config.SCREEN_WIDTH;
         this.height = Config.SCREEN_HEIGHT;
         this.entities = new ArrayList<>();
-        this.entities.add(new NormalSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
-        this.entities.add(new SmallerSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
-        this.entities.add(new TankerSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
-        this.entities.add(new BossSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
+        Wave wave = new Wave(1000);
+        wave.addSpawner(new NormalSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
+        wave.addSpawner(new SmallerSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
+        wave.addSpawner(new TankerSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
+        wave.addSpawner(new BossSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
+
+        Wave wave1 = new Wave(1000);
+        wave1.addSpawner(new TankerSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
+        wave1.addSpawner(new BossSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
+
+
+        GameWave gameWave = new GameWave();
+        gameWave.addWave(wave);
+        gameWave.addWave(wave1);
         this.entities.add(new Target(0 * Config.TILE_SIZE, 8 * Config.TILE_SIZE));
+        this.entities.add(gameWave);
         //magic.addBullet(HighDamageBullet.class); magic.addBullet(BurningBullet.class);
         //magic.addBullet(FrozenBullet.class);
 

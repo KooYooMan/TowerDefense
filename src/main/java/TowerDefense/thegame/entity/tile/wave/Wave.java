@@ -12,24 +12,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Wave extends AbstractEntity implements UpdatableEntity, DestroyableEntity {
-    int timeToLive;
-    List<AbstractSpawner> spawnerList;
+    private int timeToLive;
+    private List<AbstractSpawner> spawnerList;
 
-    protected Wave(double posX, double posY, double width, double height, int timeToLive) {
-        super(posX, posY, width, height);
+
+    public Wave(int timeToLive) {
+        super(1, 1, 1, 1);
         this.timeToLive = timeToLive;
         spawnerList = new ArrayList<>();
     }
-    void setTimeToLive(int timeToLive) {
+    public void setTimeToLive(int timeToLive) {
         this.timeToLive = timeToLive;
     }
-    void addSpawner (AbstractSpawner spawner) {
+    public void addSpawner (AbstractSpawner spawner) {
         spawnerList.add(spawner);
     }
-
+    public void spawnSpawner (@Nonnull GameField field) {
+        for (AbstractSpawner spawner : spawnerList) {
+            field.getSpawnEntities().add(spawner);
+        }
+    }
     @Override
     public void onUpdate(@Nonnull  GameField field) {
         timeToLive--;
+        System.out.printf("TimeToLive of Wave = %d\n", timeToLive);
         for (AbstractSpawner spawner : spawnerList) {
             spawner.onUpdate(field);
         }
