@@ -33,6 +33,11 @@ public abstract class AbstractBullet extends AbstractEntity implements Updatable
 	}
 
 	@Override
+	public void doDestroy() {
+		timetoLive = -1;
+	}
+
+	@Override
 	public boolean isDestroyed() {
 		return this.timetoLive <= -1;
 	}

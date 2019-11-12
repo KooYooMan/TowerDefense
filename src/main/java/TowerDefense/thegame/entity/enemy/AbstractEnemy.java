@@ -67,6 +67,8 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
 //        System.out.printf("%f %f curr = %d did = %f\n", getPosX(), getPosY(), currInstruction, didInstruction);
     }
 //
+
+
     @Override
     public double getDegreeRotate() {
         return degreeRotate;
@@ -97,6 +99,12 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
             health -= ((ShootBuff) buff).getDamage() - getArmor();
         }
     }
+
+    @Override
+    public void doDestroy() {
+        health = 0;
+    }
+
     @Override
     public boolean isDestroyed() {
         return getHealth() <= 0;

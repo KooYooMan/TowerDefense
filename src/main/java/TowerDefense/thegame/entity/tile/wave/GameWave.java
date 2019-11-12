@@ -38,6 +38,11 @@ public class GameWave extends AbstractEntity implements UpdatableEntity, Destroy
     }
 
     @Override
+    public void doDestroy() {
+        currentWave = waveList.size();
+    }
+
+    @Override
     public boolean isDestroyed() {
         return currentWave >= waveList.size();
     }

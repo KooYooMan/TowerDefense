@@ -117,15 +117,15 @@ public final class Config {
 	public static final int SNIPER_TOWER_BULLET_TIME = 100;
 	public static final int NORMAL_TOWER_BULLET_TIME = 100;
 
-	public static final long NORMAL_SPAWNINTERVAL = 100;
+	public static final long NORMAL_SPAWNINTERVAL = 300;
 	public static final long NORMAL_NUM_OF_SPAWN = 10;
 	public static final long NORMAL_INITDELAY = 10;
 
-	public static final long SMALLER_SPAWNINTERVAL = 50;
+	public static final long SMALLER_SPAWNINTERVAL = 100;
 	public static final long SMALLER_NUM_OF_SPAWN = 10;
 	public static final long SMALLER_INITDELAY = 10;
 
-	public static final long TANKER_SPAWNINTERVAL = 100;
+	public static final long TANKER_SPAWNINTERVAL = 300;
 	public static final long TANKER_NUM_OF_SPAWN = 10;
 	public static final long TANKER_INITDELAY = 10;
 

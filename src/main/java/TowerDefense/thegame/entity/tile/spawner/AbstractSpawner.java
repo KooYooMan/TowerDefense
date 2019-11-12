@@ -49,6 +49,11 @@ public abstract class AbstractSpawner<E extends AbstractEnemy> extends AbstractT
     }
 
     @Override
+    public void doDestroy() {
+        numOfSpawn = 0;
+    }
+
+    @Override
     public boolean isDestroyed() {
         return numOfSpawn <= 0;
     }
