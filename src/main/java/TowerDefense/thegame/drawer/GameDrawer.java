@@ -11,6 +11,7 @@ import TowerDefense.thegame.drawer.gun.MachineGunDrawer;
 import TowerDefense.thegame.drawer.gun.NormalGunDrawer;
 import TowerDefense.thegame.drawer.gun.SniperGunDrawer;
 import TowerDefense.thegame.drawer.stage.StageDrawer;
+import TowerDefense.thegame.drawer.target.TargetDrawer;
 import TowerDefense.thegame.drawer.tower.MachineTowerDrawer;
 import TowerDefense.thegame.drawer.tower.NormalTowerDrawer;
 import TowerDefense.thegame.drawer.tower.SniperTowerDrawer;
@@ -25,6 +26,7 @@ import TowerDefense.thegame.entity.gun.MachineGun;
 import TowerDefense.thegame.entity.gun.NormalGun;
 import TowerDefense.thegame.entity.gun.SniperGun;
 import TowerDefense.thegame.entity.stage.StageLoader;
+import TowerDefense.thegame.entity.tile.Target;
 import TowerDefense.thegame.entity.tile.tower.MachineGunTower;
 import TowerDefense.thegame.entity.tile.tower.NormalTower;
 import TowerDefense.thegame.entity.tile.tower.SniperTower;
@@ -55,8 +57,9 @@ public final class GameDrawer {
 		BossEnemy.class,
 		TankerEnemy.class,
 		NormalEnemy.class,
-		SmallerEnemy.class
+		SmallerEnemy.class,
 
+		Target.class
 	);
 
 	private static final Map<Class<? extends GameEntity>, EntityDrawer> ENTITY_DRAWER_MAP = new HashMap<>(Map.ofEntries(
@@ -78,7 +81,9 @@ public final class GameDrawer {
 			Map.entry(NormalEnemy.class, new NormalEnemyDrawer()),
 			Map.entry(SmallerEnemy.class, new SmallerEnemyDrawer()),
 			Map.entry(TankerEnemy.class, new TankerEnemyDrawer()),
-			Map.entry(BossEnemy.class, new BossEnemyDrawer())
+			Map.entry(BossEnemy.class, new BossEnemyDrawer()),
+
+			Map.entry(Target.class, new TargetDrawer())
 	));
 
 	private final GraphicsContext graphicsContext;

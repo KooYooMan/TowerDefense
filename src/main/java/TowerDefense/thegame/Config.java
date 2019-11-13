@@ -23,8 +23,8 @@ public final class Config {
 	public static final double ROAD_HEIGHT = TILE_SIZE * 1.0;
 
 	public static final long TARGET_HEALTH = 100;
-	public static final double TARGET_WIDTH = TILE_SIZE * 0.5;
-	public static final double TARGET_HEIGHT = TILE_SIZE * 0.5;
+	public static final double TARGET_WIDTH = TILE_SIZE * 2;
+	public static final double TARGET_HEIGHT = TILE_SIZE * 2;
 	// Tile
 	public static final double NORMAL_BULLET_WIDTH = 10;
 	public static final double NORMAL_BULLET_HEIGHT = 10;
@@ -118,7 +118,7 @@ public final class Config {
 	public static final int NORMAL_TOWER_BULLET_TIME = 100;
 
 	public static final long NORMAL_SPAWNINTERVAL = 100;
-	public static final long NORMAL_NUM_OF_SPAWN = 20;
+	public static final long NORMAL_NUM_OF_SPAWN = 100;
 	public static final long NORMAL_INITDELAY = 10;
 
 	public static final long SMALLER_SPAWNINTERVAL = 50;
@@ -133,8 +133,7 @@ public final class Config {
 	public static final long BOSS_NUM_OF_SPAWN = 1;
 	public static final long BOSS_INITDELAY = 10;
 
-
-	public static final String GAME_NAME = "Tower Defense";
+    public static final String GAME_NAME = "Tower Defense";
 
 	private Config() {}
 }

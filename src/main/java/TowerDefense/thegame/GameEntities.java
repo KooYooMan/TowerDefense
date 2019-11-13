@@ -57,14 +57,24 @@ public final class GameEntities {
             Pair.immutableOf(FastBullet.class, BossEnemy.class),
 
             Pair.immutableOf(FrozenBullet.class, NormalEnemy.class),
-            Pair.immutableOf(FrozenBullet.class, SmallerEnemy.class),
-            Pair.immutableOf(FrozenBullet.class, TankerEnemy.class),
-            Pair.immutableOf(FrozenBullet.class, BossEnemy.class),
-
             Pair.immutableOf(HighDamageBullet.class, NormalEnemy.class),
-            Pair.immutableOf(HighDamageBullet.class, SmallerEnemy.class),
-            Pair.immutableOf(HighDamageBullet.class, TankerEnemy.class),
-            Pair.immutableOf(HighDamageBullet.class, BossEnemy.class)
+
+            Pair.immutableOf(NormalEnemy.class, Target.class),
+            Pair.immutableOf(SmallerEnemy.class, Target.class),
+            Pair.immutableOf(TankerEnemy.class, Target.class),
+            Pair.immutableOf(BossEnemy.class, Target.class)
+
+//			Pair.immutableOf(MachineGunBullet.class, NormalEnemy.class),
+//            Pair.immutableOf(SniperBullet.class, NormalEnemy.class),
+//			Pair.immutableOf(NormalBullet.class, SmallerEnemy.class),
+//			Pair.immutableOf(MachineGunBullet.class, SmallerEnemy.class),
+//			Pair.immutableOf(SniperBullet.class, SmallerEnemy.class),
+//			Pair.immutableOf(NormalBullet.class, TankerEnemy.class),
+//			Pair.immutableOf(MachineGunBullet.class, TankerEnemy.class),
+//			Pair.immutableOf(SniperBullet.class, TankerEnemy.class),
+//			Pair.immutableOf(NormalBullet.class, BossEnemy.class),
+//			Pair.immutableOf(MachineGunBullet.class, BossEnemy.class),
+//			Pair.immutableOf(SniperBullet.class, BossEnemy.class),
 //          Pair.immutableOf(NormalEnemy.class, Target.class)//,
 //			Pair.immutableOf(SmallerEnemy.class, Target.class),
 //			Pair.immutableOf(TankerEnemy.class, Target.class),
