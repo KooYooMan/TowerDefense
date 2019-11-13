@@ -4,6 +4,6 @@ import java.io.IOException;
 
 public class FastBulletIconDrawer extends AbstractIconDrawer {
     public FastBulletIconDrawer(String filePath) throws IOException {
-        super(filePath, "Fast", "69");
+        super(filePath, "Fast", "420");
     }
 }
