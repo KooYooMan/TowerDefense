@@ -73,13 +73,17 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         }
 //        System.out.printf("%f %f curr = %d did = %f\n", getPosX(), getPosY(), currInstruction, didInstruction);
         /// update health;
+        if (timeRemaining[0] != 0) {
+            System.out.printf("current buff %d %d health = %d\n", timeRemaining[0], buffValue[0], health);
+        }
         if (timeRemaining[0] >= 1) {
             timeRemaining[0]--;
             health -= buffValue[0];
+            System.out.printf("current buff %d %d health = %d\n", timeRemaining[0], buffValue[0], health);
+
         }
     }
 //
-
 
     @Override
     public double getDegreeRotate() {

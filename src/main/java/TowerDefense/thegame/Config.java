@@ -23,8 +23,8 @@ public final class Config {
 	public static final double ROAD_HEIGHT = TILE_SIZE * 1.0;
 
 	public static final long TARGET_HEALTH = 100;
-	public static final double TARGET_WIDTH = TILE_SIZE * 2;
-	public static final double TARGET_HEIGHT = TILE_SIZE * 2;
+	public static final double TARGET_WIDTH = TILE_SIZE;
+	public static final double TARGET_HEIGHT = TILE_SIZE;
 	// Tile
 	public static final double NORMAL_BULLET_WIDTH = 10;
 	public static final double NORMAL_BULLET_HEIGHT = 10;
@@ -35,8 +35,8 @@ public final class Config {
 	public static final double NORMAL_BULLET_SPEED = 3;
 	public static final double FAST_BULLET_SPEED = 4;
 
-	public static final long NORMAL_BULLET_DAMAGE = 10;
-	public static final long HIGH_DAMAGE_BULLET = 20;
+	public static final long NORMAL_BULLET_DAMAGE = 20;
+	public static final long HIGH_DAMAGE_BULLET = 50;
 	public static final long BURNING_BULLET_DAMAGE = 7;
 
 	public static final long TIME_FROZEN_BULLET = 4;
@@ -44,9 +44,9 @@ public final class Config {
 
 	public static final double FROZEN_SPEED = 10;
 
-	public static final double NORMAL_TOWER_RANGE = 450;
-	public static final double SNIPER_TOWER_RANGE = 500;
-	public static final double MACHINE_GUN_TOWER_RANGE = 400;
+	public static final double NORMAL_TOWER_RANGE = TILE_SIZE * 2;
+	public static final double SNIPER_TOWER_RANGE = TILE_SIZE * 5;
+	public static final double MACHINE_GUN_TOWER_RANGE = TILE_SIZE;
 
 	public static final long NORMAL_TOWER_SPEED = 50;
 	public static final long SNIPER_TOWER_SPEED = 55;

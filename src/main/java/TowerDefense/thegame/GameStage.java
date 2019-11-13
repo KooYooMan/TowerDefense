@@ -47,8 +47,8 @@ public final class GameStage {
 
 
         GameWave gameWave = new GameWave();
-        gameWave.addWave(wave);
         gameWave.addWave(wave1);
+        gameWave.addWave(wave);
         this.entities.add(new Target(0 * Config.TILE_SIZE, 8 * Config.TILE_SIZE));
         this.entities.add(gameWave);
         //magic.addBullet(HighDamageBullet.class); magic.addBullet(BurningBullet.class);
