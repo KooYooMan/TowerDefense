@@ -43,7 +43,7 @@ public final class GameStage {
 
         Wave wave1 = new Wave(10000);
         //wave1.addSpawner(new TankerSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
-        wave1.addSpawner(new BossSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
+        wave1.addSpawner(new BossSpawner(9 * Config.TILE_SIZE, 1.0  * Config.TILE_SIZE));
 
 
         GameWave gameWave = new GameWave();

@@ -32,7 +32,7 @@ public abstract class AbstractSpawner<E extends AbstractEnemy> extends AbstractT
         path.addInstruction(Pair.immutableOf(8.0 * Config.TILE_SIZE, 2));
         path.addInstruction(Pair.immutableOf(4.0 * Config.TILE_SIZE, 1));
         path.addInstruction(Pair.immutableOf(6.0 * Config.TILE_SIZE, 3));
-        path.addInstruction(Pair.immutableOf(2.4 * Config.TILE_SIZE, 1));
+        path.addInstruction(Pair.immutableOf(3.0 * Config.TILE_SIZE, 1));
         path.addInstruction(Pair.immutableOf(10.0 * Config.TILE_SIZE, 2));
 
     }
