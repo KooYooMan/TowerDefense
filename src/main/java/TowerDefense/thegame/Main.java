@@ -17,21 +17,29 @@ public final class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		final Canvas startScreenCanvas = new Canvas(Config.SCREEN_WIDTH + Config.SHOP_WIDTH, Config.SCREEN_HEIGHT);
 		final Canvas gameCanvas = new Canvas(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		final Canvas shopCanvas = new Canvas(Config.SHOP_WIDTH, Config.SCREEN_HEIGHT);
 
+		final Pane startScreenPane = new StackPane(startScreenCanvas);
 		final Pane gamePane = new StackPane(gameCanvas);
 		final Pane shopPane = new StackPane(shopCanvas);
+		final Pane allPane = new StackPane(new HBox(gamePane, shopPane), startScreenPane);
 
+		final GraphicsContext startScreenGraphicsContext = startScreenCanvas.getGraphicsContext2D();
 		final GraphicsContext gameGraphicsContext = gameCanvas.getGraphicsContext2D();
 		final GraphicsContext shopGraphicsContext = shopCanvas.getGraphicsContext2D();
+
+		final StartScreenController startScreenController = new StartScreenController(startScreenGraphicsContext, startScreenPane);
 		final GameController gameController = new GameController(gameGraphicsContext, gamePane);
 		final ShopController shopController = new ShopController(shopGraphicsContext, shopPane);
-		final MainController mainController = new MainController(gameController, shopController);
 
+		final MainController mainController = new MainController(allPane, startScreenController, gameController, shopController);
+		
 		primaryStage.setResizable(false);
 		primaryStage.setTitle(Config.GAME_NAME);
-		primaryStage.setScene(new Scene(new HBox(gamePane, shopPane)));
+
+		primaryStage.setScene(new Scene(allPane));
 		primaryStage.show();
 
 //		gameController.start();

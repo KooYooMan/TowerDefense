@@ -11,14 +11,14 @@ import javafx.stage.WindowEvent;
 import java.io.IOException;
 
 public class ShopController extends AnimationTimer {
-    //private final GraphicsContext graphicsContext;
     private final ShopDrawer shopDrawer;
     private final ShopHandler shopHandler;
+    private final Pane shopPane;
 
-    public ShopController(GraphicsContext graphicsContext, Pane pane) throws IOException {
-        //this.graphicsContext = graphicsContext;
+    public ShopController(GraphicsContext graphicsContext, Pane shopPane) throws IOException {
         this.shopDrawer = new ShopDrawer(graphicsContext, "target/classes/shop/Background.png");
-        this.shopHandler = new ShopHandler(pane);
+        this.shopHandler = new ShopHandler(shopPane);
+        this.shopPane = shopPane;
     }
 
     final void closeRequestHandler(WindowEvent windowEvent) {
