@@ -125,7 +125,7 @@ public final class Config {
 	public static final long SMALLER_NUM_OF_SPAWN = 10;
 	public static final long SMALLER_INITDELAY = 10;
 
-	public static final long TANKER_SPAWNINTERVAL = 300;
+	public static final long TANKER_SPAWNINTERVAL = 500;
 	public static final long TANKER_NUM_OF_SPAWN = 10;
 	public static final long TANKER_INITDELAY = 10;
 
