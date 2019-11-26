@@ -11,20 +11,25 @@ import java.util.*;
 public final class GameField {
     private List<GameEntity> entities;
     private List<GameEntity> spawnEntities = new ArrayList<>();
-
     private final double width;
     private final double height;
+    private GameWave gameWave = new GameWave();
 
     public GameField(GameStage gameStage) {
         this.width = gameStage.getWidth();
         this.height = gameStage.getHeight();
         this.entities = gameStage.getEntities();
+        this.gameWave = gameStage.getGameWave();
     }
 
     public List<GameEntity> getEntities() { return entities; }
 
     public List<GameEntity> getSpawnEntities() {
         return spawnEntities;
+    }
+
+    public GameWave getGameWave() {
+        return gameWave;
     }
 
     public double getWidth() {

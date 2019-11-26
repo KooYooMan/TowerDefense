@@ -12,6 +12,7 @@ public class GameController extends AnimationTimer {
     private GameStage gameStage;
     private GameField gameField;
     private GameDrawer gameDrawer;
+    private GameWave gameWave;
     private Pane gamePane;
 
     public GameController(GraphicsContext graphicsContext, Pane gamePane) {
@@ -19,6 +20,7 @@ public class GameController extends AnimationTimer {
         this.gameStage = new GameStage();
         this.gameField = new GameField(gameStage);
         this.gameDrawer = new GameDrawer(graphicsContext, gameField);
+        this.gameWave = this.gameField.getGameWave();
         this.gamePane = gamePane;
     }
 

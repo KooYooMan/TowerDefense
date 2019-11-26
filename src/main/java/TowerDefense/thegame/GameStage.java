@@ -1,19 +1,12 @@
 package TowerDefense.thegame;
 
 import TowerDefense.thegame.entity.GameEntity;
-import TowerDefense.thegame.entity.bullet.NormalBullet;
 import TowerDefense.thegame.entity.tile.Target;
 import TowerDefense.thegame.entity.tile.spawner.BossSpawner;
-import TowerDefense.thegame.entity.bullet.*;
 import TowerDefense.thegame.entity.tile.spawner.NormalSpawner;
 import TowerDefense.thegame.entity.tile.spawner.SmallerSpawner;
 import TowerDefense.thegame.entity.tile.spawner.TankerSpawner;
-import TowerDefense.thegame.entity.tile.spawner.NormalSpawner;
 import TowerDefense.thegame.entity.tile.tower.AbstractTower;
-import TowerDefense.thegame.entity.tile.tower.MachineGunTower;
-import TowerDefense.thegame.entity.tile.tower.NormalTower;
-import TowerDefense.thegame.entity.tile.tower.SniperTower;
-import TowerDefense.thegame.entity.tile.wave.GameWave;
 import TowerDefense.thegame.entity.tile.wave.Wave;
 
 import java.util.ArrayList;
@@ -23,6 +16,7 @@ public final class GameStage {
     private final long width;
     private final long height;
     private final List<GameEntity> entities;
+    private final GameWave gameWave = new GameWave();
 
     public GameStage(long width, long height, List<GameEntity> entities) {
         this.width = width;
@@ -48,7 +42,6 @@ public final class GameStage {
 
 
 
-        GameWave gameWave = new GameWave();
         gameWave.addWave(wave);
         gameWave.addWave(wave1);
 
@@ -65,7 +58,7 @@ public final class GameStage {
 //        this.entities.add(foo.getGun());
 //        this.entities.add(bar.getGun());
     }
-
+    public GameWave getGameWave() { return gameWave; }
     public List<GameEntity> getEntities() {
         return entities;
     }

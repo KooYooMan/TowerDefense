@@ -1,50 +1,55 @@
-package TowerDefense.thegame.entity.tile.wave;
+package TowerDefense.thegame;
 
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.AbstractEntity;
 import TowerDefense.thegame.entity.DestroyableEntity;
 import TowerDefense.thegame.entity.UpdatableEntity;
+import TowerDefense.thegame.entity.tile.wave.Wave;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameWave extends AbstractEntity implements UpdatableEntity, DestroyableEntity {
-    private int currentWave;
+    private int currentWaveID;
     private List<Wave> waveList;
     public GameWave() {
         super(1, 1, 1, 1);
-        currentWave = -1;
+        currentWaveID = -1;
         waveList = new ArrayList<>();
     }
     public void addWave(Wave wave) {
         waveList.add(wave);
     }
-
+    public void nextWave (Wave wave) {
+        waveList.get(currentWaveID).doDestroy();
+    }
     @Override
     public void onUpdate(GameField field) {
-        if (currentWave == waveList.size()) {
+        if (currentWaveID == waveList.size()) {
             System.out.println("Spawned everything");
             return;
         }
-        if (currentWave == -1 || waveList.get(currentWave).isDestroyed()) {
-            currentWave++;
-            if (currentWave == waveList.size()) {
+
+        if (currentWaveID == -1 || waveList.get(currentWaveID).isDestroyed()) {
+            currentWaveID++;
+            if (currentWaveID == waveList.size()) {
                 return;
             }
-            field.getSpawnEntities().add(waveList.get(currentWave));
-            waveList.get(currentWave).spawnSpawner(field);
+            Wave currentWave = waveList.get(currentWaveID);
+            field.getSpawnEntities().add(currentWave);
+            currentWave.spawnSpawner(field);
         }
-
-        waveList.get(currentWave).onUpdate(field);
+        Wave currentWave = waveList.get(currentWaveID);
+        currentWave.onUpdate(field);
     }
 
     @Override
     public void doDestroy() {
-        currentWave = waveList.size();
+        currentWaveID = waveList.size();
     }
 
     @Override
     public boolean isDestroyed() {
-        return currentWave >= waveList.size();
+        return currentWaveID >= waveList.size();
     }
 }
