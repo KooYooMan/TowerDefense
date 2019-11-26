@@ -1,15 +1,16 @@
 package TowerDefense.thegame.entity.enemy;
 
+import TowerDefense.thegame.Config;
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.*;
 import TowerDefense.thegame.entity.buff.AbstractBuff;
 import TowerDefense.thegame.entity.buff.BurningBuff;
-import TowerDefense.thegame.entity.buff.ShootBuff;
+import TowerDefense.thegame.entity.buff.FrozenBuff;
 import TowerDefense.thegame.entity.enemy.path.Path;
 
 import javax.annotation.Nonnull;
 
-public abstract class AbstractEnemy extends AbstractEntity implements UpdatableEntity, EffectEntity, LivingEntity, DestroyListener, RotatableEntity, BuffedEntity {
+public abstract class AbstractEnemy extends AbstractEntity implements UpdatableEntity, EffectEntity, DestroyListener, RotatableEntity, BuffedEntity {
     private static final double[][] DELTA_DIRECTION_ARRAY = {
             {0.0, -1.0}, {0.0, 1.0}, {-1.0, 0.0}, {1.0, 0.0},
     };
@@ -25,8 +26,9 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
     Path path;
     double didInstruction = 0;
     int currInstruction = 0;
-    long[] timeRemaining = new long[4];
-    long[] buffValue = new long[4];
+
+    AbstractBuff[] buffed = new AbstractBuff[2];
+
     public long getArmor() {
         return armor;
 
@@ -40,6 +42,12 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         this.maxHealth = health;
         currInstruction = 0;
         didInstruction = 0;
+        buffed[0] = new BurningBuff();
+        buffed[1] = new FrozenBuff();
+        for (int i = 0; i < Config.NUMBER_OF_BUFFED; i++) {
+            buffed[i].setTime(0);
+        }
+
     }
     @Override
     public double getRatioHealth() {
@@ -54,11 +62,15 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         final double enemyPosY = getPosY();
         final double enemyWidth = getWidth();
         final double enemyHeight = getHeight();
-        didInstruction += Math.abs(speed);
+
+        final double realSpeed = speed * ((FrozenBuff) buffed[1]).getRealSpeedDown();
+        int direct = path.getDirect(currInstruction);
+        didInstruction += Math.abs(realSpeed);
 //        System.out.println(path.getDirect(currInstruction));
-        setPosX(enemyPosX + speed * DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][0]);
-        setPosY(enemyPosY + speed * DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][1]);
-        degreeRotate = DEGREE_ROTATE_ARRAY[path.getDirect(currInstruction)];
+
+        setPosX(enemyPosX + realSpeed * DELTA_DIRECTION_ARRAY[direct][0]);
+        setPosY(enemyPosY + realSpeed * DELTA_DIRECTION_ARRAY[direct][1]);
+        degreeRotate = DEGREE_ROTATE_ARRAY[direct];
 
 //        System.out.printf("posx = %f posy = %f dx = %f dy = %f deg = %f\n",
 //                getPosX(), getPosY(), DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][0], DELTA_DIRECTION_ARRAY[path.getDirect(currInstruction)][1], degreeRotate);
@@ -71,20 +83,21 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
             }
 
         }
+        takeBurningDamage(-((BurningBuff)buffed[0]).getRealDamage());
+        for (int i = 0; i < Config.NUMBER_OF_BUFFED; i++) {
+            buffed[i].tick();
+        }
+
+//
 //        System.out.printf("%f %f curr = %d did = %f\n", getPosX(), getPosY(), currInstruction, didInstruction);
         /// update health;
-        if (timeRemaining[0] != 0) {
-            System.out.printf("current buff %d %d health = %d\n", timeRemaining[0], buffValue[0], health);
-        }
-        if (timeRemaining[0] >= 1) {
-            timeRemaining[0]--;
-            health -= buffValue[0];
-            System.out.printf("current buff %d %d health = %d\n", timeRemaining[0], buffValue[0], health);
 
-        }
     }
 //
+    public void takeBurningDamage(long value) {
+        health += value;
 
+    }
     @Override
     public double getDegreeRotate() {
         return degreeRotate;
@@ -97,7 +110,7 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
 
     @Override
     public boolean onEffect(GameField field, LivingEntity livingEntity) {
-        livingEntity.doEffect(-1);
+        livingEntity.takeDamage(-1);
         health = 0;
         return false;
     }
@@ -106,16 +119,16 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
     public long getHealth() {
         return health;
     }
-    public final void doEffect (long value) {
-        health += value;
+    @Override
+    public final void takeDamage(long value) {
+        health += Math.min(0, value + getArmor());
     }
     @Override
     public void getBuffed(AbstractBuff buff) {
-        if (buff instanceof ShootBuff) {
-            health -= ((ShootBuff) buff).getDamage() - getArmor();
-        } else if (buff instanceof BurningBuff) {
-            timeRemaining[0] += ((BurningBuff) buff).getTimeBurning();
-            buffValue[0] = ((BurningBuff) buff).getDamage();
+        if (buff instanceof BurningBuff) {
+            buffed[0].stackToOtherBuff(buff);
+        } else if (buff instanceof  FrozenBuff){
+            buffed[1].stackToOtherBuff(buff);
         }
     }
 

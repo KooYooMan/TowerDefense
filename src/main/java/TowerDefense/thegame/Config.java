@@ -28,21 +28,29 @@ public final class Config {
 	// Tile
 	public static final double NORMAL_BULLET_WIDTH = 10;
 	public static final double NORMAL_BULLET_HEIGHT = 10;
+	public static final double NORMAL_BULLET_SPEED = 3;
+	public static final long NORMAL_BULLET_DAMAGE = 20;
+
 
 	public static final double EXPLODING_BULLET_WIDTH = 15;
 	public static final double EXPLODING_BULLET_HEIGHT = 15;
+	public static final long EXPLODING_BULLET_DAMAGE = 10;
+	public static final long EXPLODING_BULLET_SPEED = 10;
 
-	public static final double NORMAL_BULLET_SPEED = 3;
-	public static final double FAST_BULLET_SPEED = 4;
 
-	public static final long NORMAL_BULLET_DAMAGE = 20;
-	public static final long HIGH_DAMAGE_BULLET = 50;
-	public static final long BURNING_BULLET_DAMAGE = 7;
+	public static final long FAST_BULLET_DAMAGE = 10;
+	public static final double FAST_BULLET_SPEED = 100;
 
-	public static final long TIME_FROZEN_BULLET = 4;
-	public static final long TIME_BURNING_BULLET = 4;
+	public static final long HIGH_DAMAGE_BULLET_DAMAGE = 50;
+	public static final long HIGH_DAMAGE_BULLET_SPEED = 10;
 
-	public static final double FROZEN_SPEED = 10;
+	public static final long FROZEN_BULLET_DAMAGE = 10;
+	public static final long FROZEN_BULLET_SPEED = 40;
+
+	public static final long BURNING_BULLET_DAMAGE = 10;
+	public static final long BURNING_BULLET_SPEED = 40;
+
+
 
 	public static final double NORMAL_TOWER_RANGE = TILE_SIZE * 2;
 	public static final double SNIPER_TOWER_RANGE = TILE_SIZE * 5;
@@ -51,6 +59,11 @@ public final class Config {
 	public static final long NORMAL_TOWER_SPEED = 50;
 	public static final long SNIPER_TOWER_SPEED = 55;
 	public static final long MACHINE_GUN_TOWER_SPEED = 45;
+
+	public static final int NORMAL_TOWER_BULLET_TIME = 100;
+	public static final int SNIPER_TOWER_BULLET_TIME = 100;
+	public static final int MACHINE_GUN_TOWER_BULLET_TIME = 100;
+
 
 	public static final long BULLET_ADD_SPEED = 2;
 
@@ -85,10 +98,23 @@ public final class Config {
 	public static final double NORMAL_TOWER_HEIGHT = TILE_SIZE * 1.0;
 	public static final double SNIPER_TOWER_HEIGHT = TILE_SIZE * 1.0;
 
+	public static final double MACHINE_TOWER_SCALE = 1.0;
+	public static final double NORMAL_TOWER_SCALE = 0.7;
+	public static final double SNIPER_TOWER_SCALE = 2.0;
+
+	public static final double MACHINE_TOWER_SCALEFORLEVEL = 1.3;
+	public static final double NORMAL_TOWER_SCALEFORLEVEL = 1.2;
+	public static final double SNIPER_TOWER_SCALEFORLEVEL = 2.0;
+
+
+	public static final double GUN_ROTATE_SPEED = 1;
+
+
+
 	//region Enemy
 	public static final double NORMAL_ENEMY_SIZE = 0.9 * TILE_SIZE;
 	public static final long NORMAL_ENEMY_HEALTH = 100;
-	public static final long NORMAL_ENEMY_ARMOR = 3;
+	public static final long NORMAL_ENEMY_ARMOR = 100;
 	public static final double NORMAL_ENEMY_SPEED = 0.3;
 	public static final long NORMAL_ENEMY_REWARD = 1;
 
@@ -111,11 +137,7 @@ public final class Config {
 	public static final long BOSS_ENEMY_REWARD = 10;
 	//endregion
 
-	public static final double GUN_ROTATE_SPEED = 1;
-
-	public static final int MACHINE_GUN_TOWER_BULLET_TIME = 100;
-	public static final int SNIPER_TOWER_BULLET_TIME = 100;
-	public static final int NORMAL_TOWER_BULLET_TIME = 100;
+	//spawn interval
 
 	public static final long NORMAL_SPAWNINTERVAL = 300;
 	public static final long NORMAL_NUM_OF_SPAWN = 10;
@@ -133,7 +155,21 @@ public final class Config {
 	public static final long BOSS_NUM_OF_SPAWN = 1;
 	public static final long BOSS_INITDELAY = 10;
 
+	//end region
+
+	// buff region
+	public static final long NUMBER_OF_BUFFED = 2;
+	public static final long BURNING_BUFF_TIME = 1000;
+	public static final long BURNING_BUFF_DAMAGE = 10;
+	public static final long BURNING_BUFF_DAMAGE_INTERVAL = 100;
+
+	public static final long FROZEN_BUFF_TIME = 100;
+	public static final double FROZEN_BUFF_SPEED_DOWN = 0.5;
+
+
+
     public static final String GAME_NAME = "Tower Defense";
 
-	private Config() {}
+
+    private Config() {}
 }

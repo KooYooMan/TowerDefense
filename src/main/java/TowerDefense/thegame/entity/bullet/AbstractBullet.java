@@ -9,16 +9,19 @@ import TowerDefense.thegame.entity.buff.AbstractBuff;
 public abstract class AbstractBullet extends AbstractEntity implements UpdatableEntity, DestroyableEntity, EffectEntity, RotatableEntity {
 	private final double deltaX;
 	private final double deltaY;
+	private long damage;
 	private final AbstractBuff abstractBuff;
 	protected int timetoLive;
 	private double degreeRotate;
 
 	protected AbstractBullet(double posX, double posY, double deltaX, double deltaY,
-							 double speed, AbstractBuff abstractBuff, double towerRange) {
+							 long damage, double speed, AbstractBuff abstractBuff, double towerRange, double scale) {
 		super(posX - Config.NORMAL_BULLET_WIDTH / 2, posY - Config.NORMAL_BULLET_HEIGHT / 2, Config.NORMAL_BULLET_WIDTH, Config.NORMAL_BULLET_HEIGHT);
 		final double normalize = speed / Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 		this.deltaX = deltaX * normalize;
 		this.deltaY = deltaY * normalize;
+		this.damage = (long) (damage * scale);
+		abstractBuff.doScale(scale);
 		this.abstractBuff = abstractBuff;
 		this.timetoLive = (int)(towerRange / speed) + 4;
 	}
@@ -44,7 +47,8 @@ public abstract class AbstractBullet extends AbstractEntity implements Updatable
 
 	@Override
 	public boolean onEffect(GameField field, LivingEntity livingEntity) {
-		if (livingEntity instanceof BuffedEntity && this.timetoLive >= 0) {
+		livingEntity.takeDamage(-damage);
+		if (!isDestroyed()) {
 			((BuffedEntity) livingEntity).getBuffed(abstractBuff);
 			this.timetoLive = 0;
 		}
@@ -54,5 +58,9 @@ public abstract class AbstractBullet extends AbstractEntity implements Updatable
 	@Override
 	public double getDegreeRotate() {
 		return this.degreeRotate;
+	}
+	public long getDamage() {
+		return this.damage;
+
 	}
 }

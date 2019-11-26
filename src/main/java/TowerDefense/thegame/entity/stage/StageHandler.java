@@ -21,11 +21,9 @@ public class StageHandler {
     private static final Map<Class<? extends BulletButtonDrawer>, Class<? extends AbstractBullet>> BULLET_UPDATE_MAP =
             new HashMap<>(Map.ofEntries(
                     Map.entry(BurningBulletButtonDrawer.class, BurningBullet.class),
-                    Map.entry(FrozenBulletButtonDrawer.class, FrozenBullet.class),
-                    Map.entry(FastBulletButtonDrawer.class, FastBullet.class),
-                    Map.entry(ExplodingBulletButtonDrawer.class, ExplodingBullet.class),
-                    Map.entry(HighDamageBulletButtonDrawer.class, HighDamageBullet.class)
-            ));
+                    Map.entry(FrozenBulletButtonDrawer.class, FrozenBullet.class)
+
+                    ));
 
     public static Class<? extends AbstractTower> getEntityClass(Class<? extends TowerButtonDrawer> buttonClass) {
         return TOWER_GEN_MAP.get(buttonClass);

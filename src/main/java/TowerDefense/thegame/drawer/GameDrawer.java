@@ -48,11 +48,8 @@ public final class GameDrawer {
 		SniperGun.class,
 
 		NormalBullet.class,
-		ExplodingBullet.class,
-		FastBullet.class,
 		FrozenBullet.class,
 		BurningBullet.class,
-		HighDamageBullet.class,
 
 		BossEnemy.class,
 		TankerEnemy.class,
@@ -71,12 +68,9 @@ public final class GameDrawer {
 			Map.entry(NormalGun.class, new NormalGunDrawer()),
 			Map.entry(SniperGun.class, new SniperGunDrawer()),
 
-			Map.entry(ExplodingBullet.class, new ExplodingBulletDrawer()),
 			Map.entry(NormalBullet.class, new NormalBulletDrawer()),
 			Map.entry(BurningBullet.class, new BurningBulletDrawer()),
 			Map.entry(FrozenBullet.class, new FrozenBulletDrawer()),
-			Map.entry(HighDamageBullet.class, new HighDamageBulletDrawer()),
-			Map.entry(FastBullet.class, new FastBulletDrawer()),
 
 			Map.entry(NormalEnemy.class, new NormalEnemyDrawer()),
 			Map.entry(SmallerEnemy.class, new SmallerEnemyDrawer()),

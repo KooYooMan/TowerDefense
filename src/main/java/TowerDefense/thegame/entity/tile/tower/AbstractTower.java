@@ -4,7 +4,9 @@ import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.AbstractEntity;
 import TowerDefense.thegame.entity.GameEntity;
 import TowerDefense.thegame.entity.UpdatableEntity;
+import TowerDefense.thegame.entity.UpgradableEntity;
 import TowerDefense.thegame.entity.bullet.AbstractBullet;
+import TowerDefense.thegame.entity.bullet.FrozenBullet;
 import TowerDefense.thegame.entity.enemy.AbstractEnemy;
 import TowerDefense.thegame.entity.gun.AbstractGun;
 
@@ -12,23 +14,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public abstract class AbstractTower extends AbstractEntity implements UpdatableEntity {
+public abstract class AbstractTower extends AbstractEntity implements UpgradableEntity, UpdatableEntity {
     private final double range;
     private final long speed;
-    private List<Class<? extends AbstractBullet>> bulletList = new ArrayList<>();
+    private List<Class<? extends AbstractBullet>> bulletClassList = new ArrayList<>();
+    private List<AbstractBullet> bulletList = new ArrayList<>();
     private AbstractGun gun;
     private long tick = 0;
     private int bulletTime;
-    private final Class<?>[] cArg = new Class<?>[]{double.class, double.class, double.class, double.class, double.class};
+    private int level;
+    private double scale;
+    private double scaleForLevel;
+    private final Class<?>[] cArg = new Class<?>[]{double.class, double.class, double.class, double.class, double.class, double.class};
 
     protected AbstractTower(double posX, double posY, double width, double height, double range, long speed, AbstractGun gun,
-                            Class<? extends AbstractBullet> bullet, int bulletTime) {
+                            Class<? extends AbstractBullet> bullet, int bulletTime, double scale, double scaleForLevel) {
         super(posX, posY, width, height);
         this.range = range;
         this.speed = speed;
         this.gun = gun;
-        this.bulletList.add(bullet);
         this.bulletTime = bulletTime;
+        this.scale = scale;
+        this.scaleForLevel = scaleForLevel;
+        this.level = 1;
+    }
+
+    @Override
+    public void upgrade() {
+        scale *= scaleForLevel;
+        level++;
     }
 
     public double getRange() {
@@ -44,8 +58,11 @@ public abstract class AbstractTower extends AbstractEntity implements UpdatableE
     }
 
     public boolean addBullet(Class<? extends AbstractBullet> other) {
-        if (this.bulletList.contains(other)) return false;
-        this.bulletList.add(other);
+        if (this.bulletClassList.contains(other)) return false;
+        this.bulletClassList.add(other);
+        if (other == FrozenBullet.class) {
+
+        }
         return true;
     }
 
@@ -76,16 +93,18 @@ public abstract class AbstractTower extends AbstractEntity implements UpdatableE
         if (distance == Double.MAX_VALUE) return;
         if (distance > range) return;
         this.tick ++;
-        long len = bulletList.size();
+        long len = bulletClassList.size();
         int id = new Random().nextInt((int) len);
         //System.out.println(id);
         try {
-            field.getSpawnEntities().add(bulletList.get(id).getDeclaredConstructor(cArg)
-                    .newInstance(centerX, centerY, targetX - centerX, targetY - centerY, range));
+            field.getSpawnEntities().add(bulletClassList.get(id).getDeclaredConstructor(cArg)
+                    .newInstance(centerX, centerY, targetX - centerX, targetY - centerY, range, scale));
         } catch (Exception e) {
             e.printStackTrace();
         }
         this.gun.update(targetX - centerX,  centerY - targetY);
     }
+
+
 }
 

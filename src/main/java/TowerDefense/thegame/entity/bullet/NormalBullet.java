@@ -1,11 +1,11 @@
 package TowerDefense.thegame.entity.bullet;
 
 import TowerDefense.thegame.Config;
-import TowerDefense.thegame.entity.buff.ShootBuff;
+import TowerDefense.thegame.entity.buff.NoBuff;
 
 public class NormalBullet extends AbstractBullet {
-    public NormalBullet(double posX, double posY, double deltaX, double deltaY, double towerRange) {
-        super(posX, posY, deltaX, deltaY, Config.NORMAL_BULLET_SPEED,
-                new ShootBuff(Config.NORMAL_BULLET_DAMAGE), towerRange);
+    public NormalBullet(double posX, double posY, double deltaX, double deltaY, double towerRange, double scale) {
+        super(posX, posY, deltaX, deltaY, Config.NORMAL_BULLET_DAMAGE, Config.NORMAL_BULLET_SPEED,
+                new NoBuff(), towerRange, scale);
     }
 }
