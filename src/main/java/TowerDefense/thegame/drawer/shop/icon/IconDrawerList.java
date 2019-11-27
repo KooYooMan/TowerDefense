@@ -23,10 +23,7 @@ public class IconDrawerList {
         try {
             bulletIconDrawerList = new ArrayList<>(List.of(
                     new BurningBulletIconDrawer("target/classes/icon/Burning.png"),
-                    new ExplodingBulletIconDrawer("target/classes/icon/Exploding.png"),
-                    new FastBulletIconDrawer("target/classes/icon/Fast.png"),
-                    new FrozenBulletIconDrawer("target/classes/icon/Frozen.png"),
-                    new HighDamageBulletIconDrawer("target/classes/icon/HighDamage.png")
+                    new FrozenBulletIconDrawer("target/classes/icon/Frozen.png")
             ));
         } catch (IOException e) {
             e.printStackTrace();
