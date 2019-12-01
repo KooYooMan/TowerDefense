@@ -7,28 +7,33 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class StageLoader {
-    private String[][] layout = new String[(int) Config.TILE_VERTICAL][];
+    private int[][] layout = new int[(int) Config.TILE_VERTICAL][(int) Config.TILE_HORIZONTAL];
 
     public StageLoader(String filePath) throws IOException {
         Scanner scan = new Scanner(new FileInputStream(filePath));
+
         for (int i = 0; i < Config.TILE_VERTICAL; ++i) {
-            String line = scan.nextLine();
-            layout[i] = line.split("\\s+");
+            String[] entries = scan.nextLine().split("\\s+");
+            for (int j = 0; j < entries.length; ++j) {
+                layout[i][j] = Integer.parseInt(entries[j]);
+            }
         }
+
+        scan.close();
     }
 
-    public String[][] getLayout() { return layout; }
+    public int[][] getLayout() { return layout; }
 
-    public String getCurrentLayout(int i, int j) {
+    public int getCurrentLayout(int i, int j) {
         if (i < Config.TILE_VERTICAL && j < Config.TILE_HORIZONTAL) {
             return layout[i][j];
         }
-        return null;
+        return -1;
     }
 
-    public void setCurrentLayout(int i, int j, String modifiedLayout) {
+    public void setCurrentLayout(int i, int j, int modifiedLayout) {
         if (i < Config.TILE_VERTICAL && j < Config.TILE_HORIZONTAL) {
-            if (!layout[i][j].equals(modifiedLayout)) {
+            if (layout[i][j] != modifiedLayout) {
                 layout[i][j] = modifiedLayout;
             }
         }

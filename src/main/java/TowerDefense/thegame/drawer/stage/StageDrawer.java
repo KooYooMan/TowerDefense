@@ -12,88 +12,53 @@ import java.io.IOException;
 public class StageDrawer {
     private GraphicsContext graphicsContext;
     private Image background;
-    private String[][] layout;
-    private Image[][] tiles;
+    private int[][] layout;
+    private boolean isPlacingTower;
+    private boolean isUpgradingTower;
 
     public StageDrawer(GraphicsContext graphicsContext, StageLoader stageLoader) throws IOException {
         this.graphicsContext = graphicsContext;
         this.graphicsContext.setStroke(Color.rgb(46, 204, 113));
         this.layout = stageLoader.getLayout();
-        this.background = new Image(new FileInputStream("src/main/java/TowerDefense/thegame/drawer/stage/TestStageBG.png"));
-        this.tiles = new Image[(int) Config.TILE_VERTICAL][(int) Config.TILE_HORIZONTAL];
-
-        for (int i = 0; i < Config.TILE_VERTICAL; ++i) {
-            for (int j = 0; j < Config.TILE_HORIZONTAL; ++j) {
-                if (layout[i][j].equals("000")) {
-                    tiles[i][j] = null;
-                } else {
-                    tiles[i][j] = new Image(
-                            new FileInputStream("src/main/java/TowerDefense/thegame/drawer/stage/" + layout[i][j] + ".png")
-                    );
-                }
-            }
-        }
+        this.background = new Image(new FileInputStream("resources/map/image/Map1.png"));
     }
+
+    public void setPlacingTower(boolean placingTower) { isPlacingTower = placingTower; }
+    public void setUpgradingTower(boolean upgradingTower) { isUpgradingTower = upgradingTower; }
 
     public void draw() {
         graphicsContext.drawImage(background, 0, 0, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 
-        for (int i = 0; i < Config.TILE_VERTICAL; ++i) {
-            for (int j = 0; j < Config.TILE_HORIZONTAL; ++j) {
-                if (tiles[i][j] != null) {
-                    graphicsContext.drawImage(tiles[i][j],
-                            j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE
-                    );
-                } else {
-                    graphicsContext.strokeRect(
-                            j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE
-                    );
+        if (isPlacingTower) {
+            graphicsContext.setStroke(Color.YELLOW);
+
+            for (int i = 0; i < Config.TILE_VERTICAL; ++i) {
+                for (int j = 0; j < Config.TILE_HORIZONTAL; ++j) {
+                    if (layout[i][j] == 0) {
+                        graphicsContext.strokeRect(
+                                j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE
+                        );
+                    }
                 }
             }
-        }
-    }
-
-    public void placeTowerStrokeRect(boolean b) {
-        if (b) {
-            graphicsContext.setStroke(Color.YELLOW);
         } else {
             graphicsContext.setStroke(Color.rgb(46, 204, 113));
         }
 
-        for (int i = 0; i < Config.TILE_VERTICAL; ++i) {
-            for (int j = 0; j < Config.TILE_HORIZONTAL; ++j) {
-                if (layout[i][j].equals("000")) {
-                    graphicsContext.strokeRect(
-                            j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE
-                    );
-                } else {
-                    graphicsContext.clearRect(
-                            j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE
-                    );
+        if (isUpgradingTower) {
+            graphicsContext.setStroke(Color.YELLOW);
+
+            for (int i = 0; i < Config.TILE_VERTICAL; ++i) {
+                for (int j = 0; j < Config.TILE_HORIZONTAL; ++j) {
+                    if (layout[i][j] == 420) {
+                        graphicsContext.strokeRect(
+                                j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE
+                        );
+                    }
                 }
             }
-        }
-    }
-
-    public void upgradeTowerStrokeRect(boolean b) {
-        if (b) {
-            graphicsContext.setStroke(Color.YELLOW);
         } else {
             graphicsContext.setStroke(Color.rgb(46, 204, 113));
-        }
-
-        for (int i = 0; i < Config.TILE_VERTICAL; ++i) {
-            for (int j = 0; j < Config.TILE_HORIZONTAL; ++j) {
-                if (layout[i][j].equals("420")) {
-                    graphicsContext.strokeRect(
-                            j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE
-                    );
-                } else {
-                    graphicsContext.clearRect(
-                            j * Config.TILE_SIZE, i * Config.TILE_SIZE, Config.TILE_SIZE, Config.TILE_SIZE
-                    );
-                }
-            }
         }
     }
 }
