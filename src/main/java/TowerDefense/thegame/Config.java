@@ -69,7 +69,7 @@ public final class Config {
 
 
 	public static final String BURNING_BULLET_IMAGE = path + "/bullet/BurningBullet.png";
-	public static final String EXPLODING_BULLET_IMAGE = path + "/bullet/ExplodingBullet.png";
+	public static final String FROZEN_BULLET_IMAGE = path + "/bullet/FrozenBullet.png";
 	public static final String NORMAL_BULLET_IMAGE = path + "/bullet/NormalBullet.png";
 
 	public static final double NORMAL_GUN_WIDTH = TILE_SIZE * 1.0;
