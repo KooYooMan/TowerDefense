@@ -142,5 +142,5 @@ public final class GameDrawer {
 	}
 
 	public StageDrawer getStageDrawer() { return stageDrawer; }
-	public StageLoader getStageLoader() { return stageLoader; }
+		public StageLoader getStageLoader() { return stageLoader; }
 }

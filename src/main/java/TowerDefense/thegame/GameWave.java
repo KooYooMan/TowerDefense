@@ -17,6 +17,9 @@ public class GameWave extends AbstractEntity implements UpdatableEntity, Destroy
         currentWaveID = -1;
         waveList = new ArrayList<>();
     }
+    public int getCurrentWaveID() {
+        return currentWaveID;
+    }
     public void addWave(Wave wave) {
         waveList.add(wave);
     }

@@ -30,26 +30,16 @@ public final class Config {
 	public static final double NORMAL_BULLET_HEIGHT = 10;
 	public static final double NORMAL_BULLET_SPEED = 3;
 	public static final long NORMAL_BULLET_DAMAGE = 20;
+	public static final long NORMAL_BULLET_COST = 10;
 
-
-	public static final double EXPLODING_BULLET_WIDTH = 15;
-	public static final double EXPLODING_BULLET_HEIGHT = 15;
-	public static final long EXPLODING_BULLET_DAMAGE = 10;
-	public static final long EXPLODING_BULLET_SPEED = 10;
-
-
-	public static final long FAST_BULLET_DAMAGE = 10;
-	public static final double FAST_BULLET_SPEED = 100;
-
-	public static final long HIGH_DAMAGE_BULLET_DAMAGE = 50;
-	public static final long HIGH_DAMAGE_BULLET_SPEED = 10;
 
 	public static final long FROZEN_BULLET_DAMAGE = 10;
 	public static final long FROZEN_BULLET_SPEED = 40;
+	public static final long FROZEN_BULLET_COST = 10;
 
 	public static final long BURNING_BULLET_DAMAGE = 10;
 	public static final long BURNING_BULLET_SPEED = 40;
-
+	public static final long BURNING_BULLET_COST = 10;
 
 
 	public static final double NORMAL_TOWER_RANGE = TILE_SIZE * 2;
@@ -60,9 +50,6 @@ public final class Config {
 	public static final long SNIPER_TOWER_SPEED = 55;
 	public static final long MACHINE_GUN_TOWER_SPEED = 45;
 
-	public static final int NORMAL_TOWER_BULLET_TIME = 100;
-	public static final int SNIPER_TOWER_BULLET_TIME = 100;
-	public static final int MACHINE_GUN_TOWER_BULLET_TIME = 100;
 
 
 	public static final long BULLET_ADD_SPEED = 2;
@@ -75,12 +62,15 @@ public final class Config {
 	public static final String NORMAL_GUN_IMAGE = path + "/gun/NormalGun.png";
 	public static final String SNIPER_GUN_IMAGE = path + "/gun/SniperGun.png";
 
+
+	public static final int NORMAL_TOWER_BULLET_TIME = 100;
+	public static final int SNIPER_TOWER_BULLET_TIME = 100;
+	public static final int MACHINE_GUN_TOWER_BULLET_TIME = 100;
+
+
 	public static final String BURNING_BULLET_IMAGE = path + "/bullet/BurningBullet.png";
 	public static final String EXPLODING_BULLET_IMAGE = path + "/bullet/ExplodingBullet.png";
-	public static final String FAST_BULLET_IMAGE = path + "/bullet/FastBullet.png";
-	public static final String HIGH_DAMAGE_BULLET_IMAGE = path + "/bullet/HighDamageBullet.png";
 	public static final String NORMAL_BULLET_IMAGE = path + "/bullet/NormalBullet.png";
-	public static final String FROZEN_BULLET_IMAGE = path + "/bullet/FrozenBullet.png";
 
 	public static final double NORMAL_GUN_WIDTH = TILE_SIZE * 1.0;
 	public static final double MACHINE_GUN_WIDTH = TILE_SIZE * 1.0;
@@ -102,9 +92,19 @@ public final class Config {
 	public static final double NORMAL_TOWER_SCALE = 0.7;
 	public static final double SNIPER_TOWER_SCALE = 2.0;
 
-	public static final double MACHINE_TOWER_SCALEFORLEVEL = 1.3;
-	public static final double NORMAL_TOWER_SCALEFORLEVEL = 1.2;
-	public static final double SNIPER_TOWER_SCALEFORLEVEL = 2.0;
+	public static final double MACHINE_TOWER_UPGRADED_SCALE = 1.3;
+	public static final double NORMAL_TOWER_UPGRADED_SCALE = 1.2;
+	public static final double SNIPER_TOWER_UPGRADED_SCALE = 2.0;
+
+
+	public static final long MACHINE_TOWER_COST = 10;
+	public static final long NORMAL_TOWER_COST = 20;
+	public static final long SNIPER_TOWER_COST = 30;
+
+	public static final long MACHINE_TOWER_UPGRADED_COST = 10;
+	public static final long NORMAL_TOWER_UPGRADED_COST = 20;
+	public static final long SNIPER_TOWER_UPGRADED_COST = 30;
+
 
 
 	public static final double GUN_ROTATE_SPEED = 1;

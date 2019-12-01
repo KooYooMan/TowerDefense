@@ -13,9 +13,10 @@ public abstract class AbstractBullet extends AbstractEntity implements Updatable
 	private final AbstractBuff abstractBuff;
 	protected int timetoLive;
 	private double degreeRotate;
+	private long cost;
 
 	protected AbstractBullet(double posX, double posY, double deltaX, double deltaY,
-							 long damage, double speed, AbstractBuff abstractBuff, double towerRange, double scale) {
+							 long damage, double speed, AbstractBuff abstractBuff, double towerRange, double scale, long cost) {
 		super(posX - Config.NORMAL_BULLET_WIDTH / 2, posY - Config.NORMAL_BULLET_HEIGHT / 2, Config.NORMAL_BULLET_WIDTH, Config.NORMAL_BULLET_HEIGHT);
 		final double normalize = speed / Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 		this.deltaX = deltaX * normalize;
@@ -24,6 +25,11 @@ public abstract class AbstractBullet extends AbstractEntity implements Updatable
 		abstractBuff.doScale(scale);
 		this.abstractBuff = abstractBuff;
 		this.timetoLive = (int)(towerRange / speed) + 4;
+		this.cost = cost;
+	}
+
+	public long getCost() {
+		return cost;
 	}
 
 	@Override

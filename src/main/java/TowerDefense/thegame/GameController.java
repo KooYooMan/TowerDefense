@@ -14,7 +14,8 @@ public class GameController extends AnimationTimer {
     private GameDrawer gameDrawer;
     private GameWave gameWave;
     private Pane gamePane;
-
+    boolean pause;
+    boolean autoplay;
     public GameController(GraphicsContext graphicsContext, Pane gamePane) {
         this.graphicsContext = graphicsContext;
         this.gameStage = new GameStage();
@@ -39,6 +40,18 @@ public class GameController extends AnimationTimer {
     public void start() {
         super.start();
     }
+
+    boolean isPause() {
+        return pause;
+    }
+    boolean isAutoplay() {
+        return autoplay;
+    }
+    void save() {
+
+
+    }
+
 
     public GameStage getGameStage() { return gameStage; }
     public Pane getGamePane() { return gamePane; }
