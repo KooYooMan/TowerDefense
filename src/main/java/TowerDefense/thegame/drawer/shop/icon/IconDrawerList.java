@@ -22,6 +22,7 @@ public class IconDrawerList {
     static {
         try {
             bulletIconDrawerList = new ArrayList<>(List.of(
+                    new NormalBulletIconDrawer("target/classes/icon/Normal.png"),
                     new BurningBulletIconDrawer("target/classes/icon/Burning.png"),
                     new FrozenBulletIconDrawer("target/classes/icon/Frozen.png")
             ));
