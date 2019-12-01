@@ -23,18 +23,18 @@
     <orderEntry type="library" exported="" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" exported="" name="javax-inject" level="project" />
     <orderEntry type="library" exported="" name="cdi-api-1.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:mac:13.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:mac:13.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:mac:13.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:mac:13.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:mac:13.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:mac:13.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:mac:13.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:13.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:13.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:13.0.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:13.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:win:13.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:13.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:mac:13.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:13.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:mac:13.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:13.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:mac:13.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:13.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:mac:13.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:3.0.2" level="project" />
   </component>
 </module>
