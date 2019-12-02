@@ -13,8 +13,9 @@ public class BulletButtonContainerDrawer {
 
     public BulletButtonContainerDrawer(VBox vBox, List<AbstractIconDrawer> iconDrawerList) throws IOException {
         this.bulletButtonDrawerList = new ArrayList<>(List.of(
-                new BurningBulletButtonDrawer(vBox, iconDrawerList.get(0)),
-                new FrozenBulletButtonDrawer(vBox, iconDrawerList.get(1))
+                new NormalBulletButtonDrawer(vBox, iconDrawerList.get(0)),
+                new BurningBulletButtonDrawer(vBox, iconDrawerList.get(1)),
+                new FrozenBulletButtonDrawer(vBox, iconDrawerList.get(2))
         ));
 
         bulletButtonDrawerList.forEach(bulletButtonDrawer -> bulletButtonVBox.getChildren().add(bulletButtonDrawer.getButtonVBox()));

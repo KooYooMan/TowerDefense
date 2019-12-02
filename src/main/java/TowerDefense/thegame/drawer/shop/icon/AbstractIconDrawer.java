@@ -12,9 +12,9 @@ public abstract class AbstractIconDrawer implements IconDrawer {
     private Image icon;
     private ImageView imageView;
     private String label;
-    private String price;
+    private int price;
 
-    public AbstractIconDrawer(String filePath, String label, String price) throws IOException {
+    public AbstractIconDrawer(String filePath, String label, int price) throws IOException {
         this.icon = new Image(new FileInputStream(filePath));
         this.imageView = new ImageView(icon);
         imageView.setFitWidth(Config.TILE_SIZE);
@@ -25,7 +25,7 @@ public abstract class AbstractIconDrawer implements IconDrawer {
 
     public ImageView getImageView() { return imageView; }
     public String getLabel() { return label; }
-    public String getPrice() { return price; }
+    public int getPrice() { return price; }
 
     @Override
     public void draw(GraphicsContext graphicsContext, double screenPosX, double screenPosY, double screenWidth, double screenHeight) {

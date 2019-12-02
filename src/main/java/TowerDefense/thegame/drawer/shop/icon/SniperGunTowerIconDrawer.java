@@ -4,6 +4,6 @@ import java.io.IOException;
 
 public class SniperGunTowerIconDrawer extends AbstractIconDrawer {
     public SniperGunTowerIconDrawer(String filePath) throws IOException {
-        super(filePath, "Sniper Tower", "420");
+        super(filePath, "Sniper Tower", 420);
     }
 }
