@@ -25,7 +25,7 @@ public final class GameStage {
     }
 
     // for testing
-    public  GameStage() {
+    public GameStage() {
         this.width = Config.SCREEN_WIDTH;
         this.height = Config.SCREEN_HEIGHT;
         this.entities = new ArrayList<>();
