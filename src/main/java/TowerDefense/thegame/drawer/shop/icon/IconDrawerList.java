@@ -9,9 +9,9 @@ public class IconDrawerList {
     static {
         try {
             towerIconDrawerList = new ArrayList<>(List.of(
-                    new NormalGunTowerIconDrawer("target/classes/icon/NormalTower.png"),
-                    new MachineGunTowerIconDrawer("target/classes/icon/MachineGunTower.png"),
-                    new SniperGunTowerIconDrawer("target/classes/icon/SniperTower.png")
+                    new NormalGunTowerIconDrawer("resources/asset/icon/NormalTower.png"),
+                    new MachineGunTowerIconDrawer("resources/asset/icon/MachineGunTower.png"),
+                    new SniperGunTowerIconDrawer("resources/asset/icon/SniperTower.png")
             ));
         } catch (IOException e) {
             e.printStackTrace();
@@ -22,9 +22,9 @@ public class IconDrawerList {
     static {
         try {
             bulletIconDrawerList = new ArrayList<>(List.of(
-                    new NormalBulletIconDrawer("target/classes/icon/Normal.png"),
-                    new BurningBulletIconDrawer("target/classes/icon/Burning.png"),
-                    new FrozenBulletIconDrawer("target/classes/icon/Frozen.png")
+                    new NormalBulletIconDrawer("resources/asset/icon/Normal.png"),
+                    new BurningBulletIconDrawer("resources/asset/icon/Burning.png"),
+                    new FrozenBulletIconDrawer("resources/asset/icon/Frozen.png")
             ));
         } catch (IOException e) {
             e.printStackTrace();
