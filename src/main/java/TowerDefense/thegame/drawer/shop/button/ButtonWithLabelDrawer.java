@@ -24,7 +24,7 @@ public class ButtonWithLabelDrawer {
     //private EventHandler<MouseEvent> onClickEventHandler = mouseEvent -> System.out.println("Hello there");
 
     public ButtonWithLabelDrawer(Button button, Label label) throws IOException {
-        this.coinImage = new ImageView(new Image(new FileInputStream("target/classes/icon/coin.png")));
+        this.coinImage = new ImageView(new Image(new FileInputStream("resources/asset/icon/coin.png")));
         this.coinImage.setFitHeight(32);
         this.coinImage.setFitWidth(32);
 

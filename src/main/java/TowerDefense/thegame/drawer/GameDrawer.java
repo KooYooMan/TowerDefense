@@ -90,7 +90,7 @@ public final class GameDrawer {
 		this.gameField = gameField;
 
 		try {
-			this.stageLoader = new StageLoader("src/main/java/TowerDefense/thegame/drawer/stage/TestStage.txt");
+			this.stageLoader = new StageLoader("resources/map/layout/Map1.txt");
 			this.stageDrawer = new StageDrawer(graphicsContext, stageLoader);
 		} catch (IOException e) {
 			e.printStackTrace();
