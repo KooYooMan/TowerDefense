@@ -17,6 +17,7 @@ public final class GameStage {
     private final long height;
     private final List<GameEntity> entities;
     private final GameWave gameWave = new GameWave();
+    private long money;
 
     public GameStage(long width, long height, List<GameEntity> entities) {
         this.width = width;
@@ -26,6 +27,8 @@ public final class GameStage {
 
     // for testing
     public GameStage() {
+        this.money = 420L;
+
         this.width = Config.SCREEN_WIDTH;
         this.height = Config.SCREEN_HEIGHT;
         this.entities = new ArrayList<>();
@@ -73,12 +76,15 @@ public final class GameStage {
 
     public void addEntity(GameEntity entity) {
         if (entity instanceof AbstractTower) {
-            entities.add(entity);
-            entities.add(((AbstractTower) entity).getGun());
+            if (money >= ((AbstractTower) entity).getCost()) {
+                entities.add(entity);
+                entities.add(((AbstractTower) entity).getGun());
 
-//            for (GameEntity entity1 : this.entities) {
-//                System.out.printf("%s\n", entity1.toString());
-//            }
+                money -= ((AbstractTower) entity).getCost();
+                if (money <= 0L) {
+                    money = 0L;
+                }
+            }
         }
     }
 
@@ -90,5 +96,16 @@ public final class GameStage {
         }
 
         return null;
+    }
+
+    public long getMoney() { return money; }
+
+    public void addMoney(long add) { money += add; }
+    public void reduceMoney(long reduce) {
+        money -= reduce;
+
+        if (money <= 0L) {
+            money = 0L;
+        }
     }
 }

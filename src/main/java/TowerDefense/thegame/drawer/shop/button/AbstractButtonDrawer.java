@@ -15,7 +15,7 @@ public abstract class AbstractButtonDrawer {
 
     public AbstractButtonDrawer(VBox vBox, AbstractIconDrawer iconDrawer) throws IOException {
         this.buttonWithLabelDrawer = new ButtonWithLabelDrawer(
-                new Button(iconDrawer.getLabel(), iconDrawer.getImageView()), new Label(Integer.toString(iconDrawer.getPrice()))
+                new Button(iconDrawer.getLabel(), iconDrawer.getImageView()), new Label(Long.toString(iconDrawer.getPrice()))
         );
 
         this.buttonVBox.getChildren().add(buttonWithLabelDrawer.getButtonLabel());

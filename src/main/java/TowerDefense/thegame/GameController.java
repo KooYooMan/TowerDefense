@@ -16,6 +16,7 @@ public class GameController extends AnimationTimer {
     private Pane gamePane;
     boolean pause;
     boolean autoplay;
+
     public GameController(GraphicsContext graphicsContext, Pane gamePane) {
         this.graphicsContext = graphicsContext;
         this.gameStage = new GameStage();

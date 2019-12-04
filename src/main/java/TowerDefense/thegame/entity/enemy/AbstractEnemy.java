@@ -31,8 +31,8 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
 
     public long getArmor() {
         return armor;
-
     }
+
     protected AbstractEnemy (double posX, double posY, double size, long health, long armor, double speed, long reward) {
         super(posX, posY, size, size);
         this.health = health;
@@ -106,6 +106,7 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
     @Override
     public void onDestroy(GameField field) {
         ///add reward for field;
+        field.getGameStage().addMoney(reward);
     }
 
     @Override
@@ -142,4 +143,5 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         return getHealth() <= 0;
     }
 
+    public long getReward() { return reward; }
 }

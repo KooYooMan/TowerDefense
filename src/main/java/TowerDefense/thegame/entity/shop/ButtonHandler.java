@@ -4,6 +4,9 @@ import TowerDefense.thegame.Config;
 import TowerDefense.thegame.GameStage;
 import TowerDefense.thegame.drawer.GameDrawer;
 import TowerDefense.thegame.drawer.shop.button.*;
+import TowerDefense.thegame.entity.bullet.BurningBullet;
+import TowerDefense.thegame.entity.bullet.FrozenBullet;
+import TowerDefense.thegame.entity.bullet.NormalBullet;
 import TowerDefense.thegame.entity.stage.StageHandler;
 import TowerDefense.thegame.entity.tile.tower.AbstractTower;
 import javafx.scene.layout.Pane;
@@ -52,7 +55,19 @@ public class ButtonHandler {
                 if (gameDrawer.getStageLoader().getCurrentLayout(row, column) == 420) {
                     AbstractTower tower = (AbstractTower) gameStage.getGameEntity(row, column);
                     if (tower != null) {
-                        tower.addBullet(StageHandler.getBulletClass(button.getClass()));
+                        Class bulletClass = StageHandler.getBulletClass(button.getClass());
+
+                        if (gameStage.getMoney() >= 10L) {
+                            if (tower.addBullet(bulletClass)) {
+                                if (bulletClass == BurningBullet.class) {
+                                    gameStage.reduceMoney(Config.BURNING_BULLET_COST);
+                                } else if (bulletClass == FrozenBullet.class) {
+                                    gameStage.reduceMoney(Config.FROZEN_BULLET_COST);
+                                } else if (bulletClass == NormalBullet.class) {
+                                    gameStage.reduceMoney(Config.NORMAL_BULLET_COST);
+                                }
+                            }
+                        }
                     }
                 }
 
