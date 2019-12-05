@@ -1,10 +1,7 @@
 package TowerDefense.thegame.entity.gun;
 
-import TowerDefense.thegame.Config;
-import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.AbstractEntity;
 import TowerDefense.thegame.entity.RotatableEntity;
-import TowerDefense.thegame.entity.UpdatableEntity;
 
 public abstract class AbstractGun extends AbstractEntity implements RotatableEntity {
     private double degreeRotate;

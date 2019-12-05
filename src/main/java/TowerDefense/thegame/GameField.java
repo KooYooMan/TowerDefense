@@ -13,9 +13,11 @@ public final class GameField {
     private List<GameEntity> spawnEntities = new ArrayList<>();
     private final double width;
     private final double height;
-    private GameWave gameWave = new GameWave();
+    private GameWave gameWave;
+    private GameStage gameStage;
 
     public GameField(GameStage gameStage) {
+        this.gameStage = gameStage;
         this.width = gameStage.getWidth();
         this.height = gameStage.getHeight();
         this.entities = gameStage.getEntities();
@@ -85,4 +87,5 @@ public final class GameField {
         spawnEntities.clear();
     }
 
+    public GameStage getGameStage() { return gameStage; }
 }

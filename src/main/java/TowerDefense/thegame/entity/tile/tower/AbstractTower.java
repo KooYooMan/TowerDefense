@@ -2,10 +2,7 @@ package TowerDefense.thegame.entity.tile.tower;
 
 import TowerDefense.thegame.Config;
 import TowerDefense.thegame.GameField;
-import TowerDefense.thegame.entity.AbstractEntity;
-import TowerDefense.thegame.entity.GameEntity;
-import TowerDefense.thegame.entity.UpdatableEntity;
-import TowerDefense.thegame.entity.UpgradableEntity;
+import TowerDefense.thegame.entity.*;
 import TowerDefense.thegame.entity.bullet.AbstractBullet;
 import TowerDefense.thegame.entity.bullet.BurningBullet;
 import TowerDefense.thegame.entity.bullet.FrozenBullet;
@@ -17,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public abstract class AbstractTower extends AbstractEntity implements UpgradableEntity, UpdatableEntity {
+public abstract class AbstractTower extends AbstractEntity implements UpgradableEntity, UpdatableEntity, SpawnListener {
     private final double range;
     private final long speed;
     private List<Class<? extends AbstractBullet>> bulletClassList = new ArrayList<>();
@@ -135,6 +132,9 @@ public abstract class AbstractTower extends AbstractEntity implements Upgradable
         this.gun.update(targetX - centerX,  centerY - targetY);
     }
 
-
+    @Override
+    public void onSpawn(GameField field) {
+        field.getGameStage().reduceMoney(cost);
+    }
 }
 

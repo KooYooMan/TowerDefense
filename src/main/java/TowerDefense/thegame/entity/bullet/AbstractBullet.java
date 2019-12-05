@@ -3,10 +3,9 @@ package TowerDefense.thegame.entity.bullet;
 import TowerDefense.thegame.Config;
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.*;
-import TowerDefense.thegame.entity.enemy.AbstractEnemy;
 import TowerDefense.thegame.entity.buff.AbstractBuff;
 
-public abstract class AbstractBullet extends AbstractEntity implements UpdatableEntity, DestroyableEntity, EffectEntity, RotatableEntity {
+public abstract class AbstractBullet extends AbstractEntity implements UpdatableEntity, DestroyableEntity, EffectEntity, RotatableEntity, SpawnListener {
 	private final double deltaX;
 	private final double deltaY;
 	private long damage;
@@ -68,5 +67,10 @@ public abstract class AbstractBullet extends AbstractEntity implements Updatable
 	public long getDamage() {
 		return this.damage;
 
+	}
+
+	@Override
+	public void onSpawn(GameField field) {
+		field.getGameStage().reduceMoney(cost);
 	}
 }
