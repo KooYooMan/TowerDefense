@@ -15,6 +15,15 @@ public class Wave extends AbstractEntity implements UpdatableEntity, Destroyable
     private int timeToLive;
     private List<AbstractSpawner> spawnerList;
 
+    @Override
+    public String toString() {
+        String waveString = "Wave " + timeToLive + "\n";
+        waveString += spawnerList.size() + "\n";
+        for (AbstractSpawner spawner : spawnerList) {
+            waveString += spawner.toString() + "\n";
+        }
+        return waveString;
+    }
 
     public Wave(int timeToLive) {
         super(1, 1, 1, 1);
@@ -51,8 +60,5 @@ public class Wave extends AbstractEntity implements UpdatableEntity, Destroyable
         return timeToLive <= 0;
     }
 
-    @Override
-    public String toString() {
-        return "Wave " + "";
-    }
+
 }

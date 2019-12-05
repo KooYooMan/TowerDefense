@@ -6,7 +6,11 @@ import TowerDefense.thegame.entity.LivingEntity;
 public abstract class AbstractBuff {
     private long time;
 
-    
+    @Override
+    public String toString() {
+        return time + "";
+    }
+
     public void setTime(long time) {
         this.time = time;
     }

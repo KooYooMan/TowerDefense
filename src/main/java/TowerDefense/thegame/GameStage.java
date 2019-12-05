@@ -1,6 +1,7 @@
 package TowerDefense.thegame;
 
 import TowerDefense.thegame.entity.GameEntity;
+import TowerDefense.thegame.entity.enemy.path.Path;
 import TowerDefense.thegame.entity.tile.Target;
 import TowerDefense.thegame.entity.tile.spawner.BossSpawner;
 import TowerDefense.thegame.entity.tile.spawner.NormalSpawner;
@@ -18,12 +19,11 @@ public final class GameStage {
     private final List<GameEntity> entities;
     private final GameWave gameWave = new GameWave();
     private long money;
-
     public String toString() {
         String gameStageString = new String();
 
-        gameStageString += width + " " + height + '\n';
-        gameStageString += gameWave.toString() + '\n';
+        gameStageString += width + " " + height + " " + money + "\n";
+        gameStageString += gameWave.toString() + "\n";
         gameStageString += "entities\n";
         gameStageString += entities.size() + "\n";
         for (GameEntity ge : entities) {

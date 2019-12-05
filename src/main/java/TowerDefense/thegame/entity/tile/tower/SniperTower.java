@@ -13,4 +13,7 @@ public class SniperTower extends AbstractTower {
                 Config.SNIPER_TOWER_SCALE, Config.SNIPER_TOWER_UPGRADED_SCALE,
                 Config.SNIPER_TOWER_COST, Config.SNIPER_TOWER_UPGRADED_COST);
     }
+    public String toString() {
+        return "SniperTower " + getPosX() + " " + getPosY() + "\n" + super.toString();
+    }
 }

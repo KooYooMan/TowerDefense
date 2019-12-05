@@ -18,4 +18,8 @@ public class SmallerSpawner extends AbstractSpawner {
         return new SmallerEnemy(posX, posY);
     }
 
+    @Override
+    public String toString() {
+        return "SmallerSpawner " + getPosX() + " " + getPosY() + " " + super.toString();
+    }
 }

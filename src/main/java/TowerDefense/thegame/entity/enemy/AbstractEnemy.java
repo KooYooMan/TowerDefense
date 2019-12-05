@@ -29,6 +29,14 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
 
     AbstractBuff[] buffed = new AbstractBuff[2];
 
+    @Override
+    public String toString() {
+        return maxHealth + " " + health + " " +
+                armor + " " + speed + " " + reward + " " + degreeRotate + " " +
+                didInstruction + " " + currInstruction + "\n" +
+                buffed[0].toString() + "\n" + buffed[1].toString();
+    }
+
     public long getArmor() {
         return armor;
     }

@@ -18,6 +18,13 @@ public abstract class AbstractSpawner<E extends AbstractEnemy> extends AbstractT
     private long tickDown;
     private long numOfSpawn;
     private Path path;
+
+    @Override
+    public String toString() {
+        String spawnerString = tickDown + " " + numOfSpawn;
+        return spawnerString;
+    }
+
     protected AbstractSpawner(double posX, double posY, double width, double height, double spawningSize, @Nonnull Class<E> spawningClass, long spawnInterval, long initialDelay, long numOfSpawn) {
         super(posX, posY, width, height);
         this.spawningSize = spawningSize;

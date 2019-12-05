@@ -15,4 +15,9 @@ public class NormalSpawner extends AbstractSpawner<NormalEnemy> {
     protected final NormalEnemy doSpawn(double posX, double posY) {
         return new NormalEnemy(posX, posY);
     }
+
+    @Override
+    public String toString() {
+        return "NormalSpawner " + getPosX() + " " + getPosY() + " " + super.toString();
+    }
 }

@@ -18,7 +18,6 @@ public abstract class AbstractTower extends AbstractEntity implements Upgradable
     private final double range;
     private final long speed;
     private List<Class<? extends AbstractBullet>> bulletClassList = new ArrayList<>();
-    private List<AbstractBullet> bulletList = new ArrayList<>();
     private AbstractGun gun;
     private long tick = 0;
     private int bulletTime;
@@ -28,6 +27,17 @@ public abstract class AbstractTower extends AbstractEntity implements Upgradable
     private long cost;
     private long upgradedCost;
     private final Class<?>[] cArg = new Class<?>[]{double.class, double.class, double.class, double.class, double.class, double.class};
+
+    @Override
+    public String toString() {
+        String abstractTowerString = range + " " + speed + "\n";
+        abstractTowerString += tick + " " + level + " " + scale + " " + upgradedScale + " " + cost + " " + upgradedCost + "\n";
+        abstractTowerString += bulletClassList.size() + "\n";
+        for (Class<? extends AbstractBullet> c : bulletClassList) {
+            abstractTowerString += c.toString() + "\n";
+        }
+        return abstractTowerString;
+    }
 
     protected AbstractTower(double posX, double posY, double width, double height, double range, long speed, AbstractGun gun,
                             Class<? extends AbstractBullet> bullet, int bulletTime, double scale, double upgradeScale, long cost, long upgradedCost) {

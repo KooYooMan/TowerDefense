@@ -73,4 +73,9 @@ public abstract class AbstractBullet extends AbstractEntity implements Updatable
 	public void onSpawn(GameField field) {
 		field.getGameStage().reduceMoney(cost);
 	}
+
+	@Override
+	public String toString() {
+		return "";
+	}
 }

@@ -8,4 +8,9 @@ public class BossEnemy extends AbstractEnemy {
 //        System.out.printf("%f %f\n", posX, posY);
 
     }
+
+    @Override
+    public String toString() {
+        return "BossEnemy " + getPosX() + " " + getPosY() + " " + super.toString();
+    }
 }

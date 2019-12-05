@@ -4,6 +4,12 @@ import TowerDefense.thegame.Config;
 
 public class BurningBuff extends AbstractBuff {
     private long damage, damageInterval;
+
+    @Override
+    public String toString() {
+        return "BurningBuff " + damage + " " + damageInterval + " " + super.toString();
+    }
+
     public BurningBuff() {
         super(Config.BURNING_BUFF_TIME);
         this.damage = Config.BURNING_BUFF_DAMAGE;
@@ -37,5 +43,11 @@ public class BurningBuff extends AbstractBuff {
             return 0;
         }
         return damage;
+    }
+
+    @Override
+    public void doScale(double scale) {
+        super.doScale(scale);
+        damage *= scale;
     }
 }

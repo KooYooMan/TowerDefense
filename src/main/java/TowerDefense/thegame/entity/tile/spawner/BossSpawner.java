@@ -17,4 +17,8 @@ public class BossSpawner extends AbstractSpawner {
         return new BossEnemy(posX, posY);
     }
 
+    @Override
+    public String toString() {
+        return "BossSpawner " + getPosX() + " " + getPosY() + " " + super.toString();
+    }
 }

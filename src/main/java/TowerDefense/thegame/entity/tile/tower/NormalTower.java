@@ -13,4 +13,9 @@ public class NormalTower extends AbstractTower {
                 Config.NORMAL_TOWER_SCALE, Config.NORMAL_TOWER_UPGRADED_SCALE,
                 Config.NORMAL_TOWER_COST, Config.NORMAL_TOWER_UPGRADED_COST);
     }
+
+    @Override
+    public String toString() {
+        return "NormalTower " + getPosX() + " " + getPosY() + "\n" + super.toString();
+    }
 }

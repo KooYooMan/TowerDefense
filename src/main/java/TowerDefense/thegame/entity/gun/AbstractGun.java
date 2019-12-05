@@ -22,4 +22,9 @@ public abstract class AbstractGun extends AbstractEntity implements RotatableEnt
         if (foo >= 2 * Math.PI) foo -= 2 * Math.PI;
         this.degreeRotate = (foo / (2 * Math.PI)) * 360;
     }
+
+    @Override
+    public String toString() {
+        return "";
+    }
 }

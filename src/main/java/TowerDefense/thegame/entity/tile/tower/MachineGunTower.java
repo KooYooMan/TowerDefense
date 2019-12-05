@@ -13,5 +13,10 @@ public class MachineGunTower extends AbstractTower {
                 Config.MACHINE_TOWER_SCALE, Config.MACHINE_TOWER_UPGRADED_SCALE,
                 Config.MACHINE_TOWER_COST, Config.MACHINE_TOWER_UPGRADED_COST);
     }
+
+    @Override
+    public String toString() {
+        return "MachineGunTower " + getPosX() + " " + getPosY() + "\n" + super.toString();
+    }
 }
 

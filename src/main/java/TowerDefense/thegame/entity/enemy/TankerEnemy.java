@@ -8,4 +8,9 @@ public class TankerEnemy extends AbstractEnemy{
 //        System.out.printf("%f %f\n", posX, posY);
 
     }
+
+    @Override
+    public String toString() {
+        return "TankerEnemy " + getPosX() + " " + getPosY() + " " +  super.toString();
+    }
 }

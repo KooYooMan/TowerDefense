@@ -38,7 +38,10 @@ public class GameController extends AnimationTimer {
     public void handle(long l) {
         gameField.handle();
         gameDrawer.render();
+
+        System.out.println();
         System.out.println(toString());
+        System.out.println();
     }
 
     public void start() {

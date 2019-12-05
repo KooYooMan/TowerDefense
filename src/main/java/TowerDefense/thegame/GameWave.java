@@ -12,6 +12,17 @@ import java.util.List;
 public class GameWave extends AbstractEntity implements UpdatableEntity, DestroyableEntity {
     private int currentWaveID;
     private List<Wave> waveList;
+
+    @Override
+    public String toString() {
+        String gameWaveString = "GameWave " + currentWaveID + "\n";
+        gameWaveString += waveList.size() + "\n";
+        for (Wave wave : waveList) {
+            gameWaveString += wave.toString() + "\n";
+        }
+        return gameWaveString;
+    }
+
     public GameWave() {
         super(1, 1, 1, 1);
         currentWaveID = -1;

@@ -166,7 +166,7 @@ public final class Config {
 	public static final long FROZEN_BUFF_TIME = 100;
 	public static final double FROZEN_BUFF_SPEED_DOWN = 0.5;
 
-
+	public static final int MAX_PATH = 5;
 
     public static final String GAME_NAME = "Tower Defense";
 
