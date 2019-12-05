@@ -23,6 +23,8 @@ public class GameController extends AnimationTimer {
         this.gameDrawer = new GameDrawer(graphicsContext, gameField);
         this.gameWave = this.gameField.getGameWave();
         this.gamePane = gamePane;
+        pause = false;
+        autoplay = false;
     }
 
     final void closeRequestHandler(WindowEvent windowEvent) {
@@ -46,6 +48,13 @@ public class GameController extends AnimationTimer {
     }
     boolean isAutoplay() {
         return autoplay;
+    }
+    void changePause() {
+        pause = !pause;
+    }
+    void changeAutoplay() {
+        autoplay = !autoplay;
+
     }
     void save() {
 

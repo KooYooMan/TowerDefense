@@ -26,9 +26,9 @@ public class AbstractEnemyDrawer extends AbstractDrawer implements EntityDrawer 
     @Override
     public void draw(GraphicsContext graphicsContext, GameEntity entity, double screenPosX, double screenPosY, double screenWidth, double screenHeight, double rotateDegree) {
         graphicsContext.setFill(Color.RED);
-        graphicsContext.fillRect(screenPosX + screenWidth / 4, screenPosY, screenWidth / 2, 10);
+        graphicsContext.fillRect(screenPosX + screenWidth / 4, screenPosY - 10, screenWidth / 2, 5);
         graphicsContext.setFill(Color.GREEN);
-        graphicsContext.fillRect(screenPosX + screenWidth / 4, screenPosY, screenWidth / 2 * ((LivingEntity) entity).getRatioHealth(), 10);
+        graphicsContext.fillRect(screenPosX + screenWidth / 4, screenPosY - 10, screenWidth / 2 * ((LivingEntity) entity).getRatioHealth(), 5);
         graphicsContext.save();
         rotate(graphicsContext, rotateDegree, screenPosX + screenWidth / 2, screenPosY + screenHeight / 2);
         graphicsContext.drawImage(image, screenPosX, screenPosY, screenWidth, screenHeight);
