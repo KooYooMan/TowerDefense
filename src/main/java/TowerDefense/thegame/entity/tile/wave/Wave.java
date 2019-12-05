@@ -50,4 +50,9 @@ public class Wave extends AbstractEntity implements UpdatableEntity, Destroyable
     public boolean isDestroyed() {
         return timeToLive <= 0;
     }
+
+    @Override
+    public String toString() {
+        return "Wave " + "";
+    }
 }

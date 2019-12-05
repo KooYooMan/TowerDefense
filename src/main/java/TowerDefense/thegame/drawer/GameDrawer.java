@@ -55,12 +55,14 @@ public final class GameDrawer {
 		FrozenBullet.class,
 		BurningBullet.class,
 
-		BossEnemy.class,
-		TankerEnemy.class,
-		NormalEnemy.class,
 		SmallerEnemy.class,
+		NormalEnemy.class,
+		TankerEnemy.class,
+		BossEnemy.class,
+
 
 		Target.class
+
 	);
 
 	private static final Map<Class<? extends GameEntity>, EntityDrawer> ENTITY_DRAWER_MAP = new HashMap<>(Map.ofEntries(
@@ -76,10 +78,10 @@ public final class GameDrawer {
 			Map.entry(BurningBullet.class, new BurningBulletDrawer()),
 			Map.entry(FrozenBullet.class, new FrozenBulletDrawer()),
 
+			Map.entry(BossEnemy.class, new BossEnemyDrawer()),
+			Map.entry(TankerEnemy.class, new TankerEnemyDrawer()),
 			Map.entry(NormalEnemy.class, new NormalEnemyDrawer()),
 			Map.entry(SmallerEnemy.class, new SmallerEnemyDrawer()),
-			Map.entry(TankerEnemy.class, new TankerEnemyDrawer()),
-			Map.entry(BossEnemy.class, new BossEnemyDrawer()),
 
 			Map.entry(Target.class, new TargetDrawer())
 	));

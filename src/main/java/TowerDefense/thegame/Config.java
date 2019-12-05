@@ -1,7 +1,7 @@
 package TowerDefense.thegame;
 
 public final class Config {
-	private static final String path = "target/classes";
+	private static final String path = "resources/asset";
 	public static final long TILE_SIZE = 64;
 
 	public static final long TILE_HORIZONTAL = 10;
@@ -42,13 +42,13 @@ public final class Config {
 	public static final long BURNING_BULLET_COST = 10;
 
 
-	public static final double NORMAL_TOWER_RANGE = TILE_SIZE * 2;
+	public static final double NORMAL_TOWER_RANGE = TILE_SIZE * 4;
 	public static final double SNIPER_TOWER_RANGE = TILE_SIZE * 5;
-	public static final double MACHINE_GUN_TOWER_RANGE = TILE_SIZE;
+	public static final double MACHINE_GUN_TOWER_RANGE = TILE_SIZE * 2;
 
 	public static final long NORMAL_TOWER_SPEED = 50;
-	public static final long SNIPER_TOWER_SPEED = 55;
-	public static final long MACHINE_GUN_TOWER_SPEED = 45;
+	public static final long SNIPER_TOWER_SPEED = 100;
+	public static final long MACHINE_GUN_TOWER_SPEED = 10;
 
 
 
@@ -159,7 +159,7 @@ public final class Config {
 
 	// buff region
 	public static final long NUMBER_OF_BUFFED = 2;
-	public static final long BURNING_BUFF_TIME = 1000;
+	public static final long BURNING_BUFF_TIME = 300;
 	public static final long BURNING_BUFF_DAMAGE = 10;
 	public static final long BURNING_BUFF_DAMAGE_INTERVAL = 100;
 

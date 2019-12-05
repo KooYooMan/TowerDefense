@@ -13,7 +13,7 @@ public class MoneyDrawer {
     private GraphicsContext graphicsContext;
 
     public MoneyDrawer(GraphicsContext graphicsContext) throws FileNotFoundException {
-        this.image = new Image(new FileInputStream("target/classes/icon/coin.png"));
+        this.image = new Image(new FileInputStream("resources/asset/icon/coin.png"));
         this.graphicsContext = graphicsContext;
         graphicsContext.setFont(Font.loadFont(new FileInputStream("target/classes/font/pkmnfl.ttf"), 32));
     }

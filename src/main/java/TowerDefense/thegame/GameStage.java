@@ -19,6 +19,20 @@ public final class GameStage {
     private final GameWave gameWave = new GameWave();
     private long money;
 
+    public String toString() {
+        String gameStageString = new String();
+
+        gameStageString += width + " " + height + '\n';
+        gameStageString += gameWave.toString() + '\n';
+        gameStageString += "entities\n";
+        gameStageString += entities.size() + "\n";
+        for (GameEntity ge : entities) {
+            gameStageString += ge.toString() + '\n';
+        }
+        return gameStageString;
+    }
+
+
     public GameStage(long width, long height, List<GameEntity> entities) {
         this.width = width;
         this.height = height;

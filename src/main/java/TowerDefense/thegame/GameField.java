@@ -16,6 +16,19 @@ public final class GameField {
     private GameWave gameWave;
     private GameStage gameStage;
 
+    @Override
+    public String toString() {
+        String gameFieldString = gameStage.toString();
+
+        gameFieldString += "spawnEntities\n";
+        gameFieldString += spawnEntities.size() + "\n";
+        for (GameEntity ge : spawnEntities) {
+            gameFieldString += ge.toString() + '\n';
+        }
+        gameFieldString += '\n';
+        return gameFieldString;
+    }
+
     public GameField(GameStage gameStage) {
         this.gameStage = gameStage;
         this.width = gameStage.getWidth();

@@ -38,6 +38,7 @@ public class GameController extends AnimationTimer {
     public void handle(long l) {
         gameField.handle();
         gameDrawer.render();
+        System.out.println(toString());
     }
 
     public void start() {
@@ -66,4 +67,9 @@ public class GameController extends AnimationTimer {
     public GameStage getGameStage() { return gameStage; }
     public Pane getGamePane() { return gamePane; }
     public GameDrawer getGameDrawer() { return gameDrawer; }
+
+    @Override
+    public String toString() {
+        return gameField.toString();
+    }
 }
