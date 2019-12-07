@@ -1,6 +1,7 @@
 package TowerDefense.thegame;
 
 import TowerDefense.thegame.entity.GameEntity;
+import TowerDefense.thegame.entity.enemy.*;
 import TowerDefense.thegame.entity.enemy.path.Path;
 import TowerDefense.thegame.entity.tile.Target;
 import TowerDefense.thegame.entity.tile.spawner.*;
@@ -92,10 +93,15 @@ public final class GameStage {
         enemyPath[0].addInstruction(Pair.immutableOf(3.0 * Config.TILE_SIZE, 1));
         enemyPath[0].addInstruction(Pair.immutableOf(10.0 * Config.TILE_SIZE, 2));
     }
-    public GameStage(String filePath) throws FileNotFoundException {
+    public GameStage(String filePath) {
         filePath = Config.SAVE_FOLDER + filePath;
         File file = new File(filePath);
-        Scanner sc = new Scanner(file);
+        Scanner sc = null;
+        try {
+            sc = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         this.width = sc.nextLong();
         this.height = sc.nextLong();
         this.money = sc.nextLong();
@@ -103,13 +109,16 @@ public final class GameStage {
         int nPath = 0;
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
+            System.out.println(line);
             if (line.equals("")) continue;
             if (line.equals("Path")) {
                 int pathSize = sc.nextInt();
+                System.out.println(pathSize);
                 enemyPath[nPath] = new Path();
                 for (int i = 0; i < pathSize; i++) {
                     double len = sc.nextDouble();
                     int dir = sc.nextInt();
+                    System.out.printf("%f %d\n", len, dir);
                     enemyPath[nPath].addInstruction(Pair.immutableOf(len, dir));
                 }
                 nPath++;
@@ -118,12 +127,14 @@ public final class GameStage {
             else if (line.equals("GameWave")) {
                 int curID = sc.nextInt();
                 int numWave = sc.nextInt();
+                System.out.printf("%d %d\n", curID, numWave);
                 gameWave.setCurrentWaveID(curID);
                 for (int i = 0; i < numWave; i++) {
                     String waveString = sc.nextLine();
-                    if (waveString == "") continue;
+                    System.out.printf("%s\n", waveString);
                     int timeToLive = sc.nextInt();
                     int numSpawners = sc.nextInt();
+                    System.out.printf("%d %d\n", timeToLive, numSpawners);
                     Wave wave = new Wave(timeToLive);
                     for (int j = 0; j < numSpawners; j++) {
                         String spawnerString = sc.nextLine();
@@ -132,7 +143,7 @@ public final class GameStage {
                         long tickDown = sc.nextLong();
                         long numOfSpawn = sc.nextLong();
                         int idPath = sc.nextInt();
-                        AbstractSpawner spawner = new NormalSpawner(1, 1);
+                        AbstractSpawner spawner;
                         if (spawnerString.equals("BossSpawner")) {
                             spawner = new BossSpawner(posX, posY);
                         } else if (spawnerString.equals("NormalSpawner")) {
@@ -141,6 +152,9 @@ public final class GameStage {
                             spawner = new SmallerSpawner(posX, posY);
                         } else if (spawnerString.equals("TankerSpawner")) {
                             spawner = new TankerSpawner(posX, posY);
+                        } else {
+                            System.out.println("Not found\n");
+                            continue;
                         }
                         spawner.setInfo(tickDown, numOfSpawn, idPath);
                         wave.addSpawner(spawner);
@@ -148,6 +162,58 @@ public final class GameStage {
                     gameWave.addWave(wave);
                     continue;
                 }
+                entities.add(gameWave);
+            } else if (line.equals("entities")) {
+                int size = sc.nextInt();
+            } else if (line.equals("Target")) {
+                double posX = sc.nextDouble();
+                double posY = sc.nextDouble();
+                long health = sc.nextLong();
+                long maxHealth = sc.nextLong();
+
+                Target target = new Target(posX, posY);
+                target.setHealth(health);
+                target.setMaxHealth(maxHealth);
+                entities.add(target);
+            } else if (line.equals("NormalEnemy") || line.equals("SmallerEnemy") || line.equals("TankerEnemy") || line.equals("BossEnemy")) {
+                /// maxhealth, health, armor, speed, reward, degreerotate, didinstr, currins
+
+                double posX = sc.nextDouble();
+                double posY = sc.nextDouble();
+                long maxHealth = sc.nextLong();
+                long health = sc.nextLong();
+                long armor = sc.nextLong();
+                double speed = sc.nextDouble();
+                long reward = sc.nextLong();
+                double degreeRotate = sc.nextDouble();
+                double didInstruction = sc.nextDouble();
+                int currInstruction = sc.nextInt();
+                int idPath = sc.nextInt();
+                long damage, damageInterval, time, time2;
+                double speedDown;
+                damage = sc.nextLong();
+                damageInterval = sc.nextLong();
+                time = sc.nextLong();
+                speedDown = sc.nextDouble();
+                time2 = sc.nextLong();
+                AbstractEnemy enemy;
+                if (line.equals("NormalEnemy")) {
+                    enemy = new NormalEnemy(posX, posY);
+                } else if (line.equals("SmallerEnemy")) {
+                    enemy = new SmallerEnemy(posX, posY);
+                } else if (line.equals("TankerEnemy")) {
+                    enemy = new TankerEnemy(posX, posY);
+                } else if (line.equals("BossEnemy")) {
+                    enemy = new BossEnemy(posX, posY);
+                } else {
+                    System.out.println("Not found\n");
+                    continue;
+                }
+                enemy.setInfo(maxHealth, health, armor, speed, reward, degreeRotate, didInstruction, currInstruction);
+                enemy.setPath(this, idPath);
+                enemy.setBuff(damage, damageInterval, time, speedDown, time2);
+            } else if (line.equals("NormalTower") || line.equals("SniperTower") || line.equals("MachineGunTower")) {
+
             }
         }
     }

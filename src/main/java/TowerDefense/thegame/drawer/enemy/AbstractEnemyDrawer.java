@@ -11,11 +11,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class AbstractEnemyDrawer extends AbstractDrawer implements EntityDrawer {
-
+    Image boomImage;
     protected AbstractEnemyDrawer(String path) {
         super(path);
+
+        try {
+            boomImage = new Image(new FileInputStream("resources/asset/vfx/boom.png"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void rotate(GraphicsContext gc, double angle, double px, double py) {
@@ -25,6 +32,10 @@ public class AbstractEnemyDrawer extends AbstractDrawer implements EntityDrawer 
 
     @Override
     public void draw(GraphicsContext graphicsContext, GameEntity entity, double screenPosX, double screenPosY, double screenWidth, double screenHeight, double rotateDegree) {
+        if (((LivingEntity) entity).isDestroyed()) {
+            graphicsContext.drawImage(boomImage, screenPosX, screenPosY, screenWidth, screenHeight);
+            return;
+        }
         graphicsContext.setFill(Color.RED);
         graphicsContext.fillRect(screenPosX + screenWidth / 4, screenPosY - 10, screenWidth / 2, 5);
         graphicsContext.setFill(Color.GREEN);

@@ -21,6 +21,11 @@ public class BurningBuff extends AbstractBuff {
     public long getDamage() {
         return this.damage;
     }
+
+    public void setDamageInterval(long damageInterval) {
+        this.damageInterval = damageInterval;
+    }
+
     public long getDamageInterval() { return this.damageInterval; }
 
     @Override

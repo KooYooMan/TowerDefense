@@ -7,6 +7,8 @@ import TowerDefense.thegame.entity.*;
 import TowerDefense.thegame.entity.buff.AbstractBuff;
 import TowerDefense.thegame.entity.buff.BurningBuff;
 import TowerDefense.thegame.entity.buff.FrozenBuff;
+import TowerDefense.thegame.entity.bullet.BurningBullet;
+import TowerDefense.thegame.entity.bullet.FrozenBullet;
 import TowerDefense.thegame.entity.enemy.path.Path;
 
 import javax.annotation.Nonnull;
@@ -39,11 +41,7 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
                 buffed[0].toString() + " " + buffed[1].toString();
     }
 
-    public long getArmor() {
-        return armor;
-    }
-
-    protected AbstractEnemy (double posX, double posY, double size, long health, long armor, double speed, long reward) {
+    protected AbstractEnemy(double posX, double posY, double size, long health, long armor, double speed, long reward) {
         super(posX, posY, size, size);
         this.health = health;
         this.armor = armor;
@@ -59,14 +57,39 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
         }
 
     }
-    @Override
-    public double getRatioHealth() {
-        return (double)this.health / (double)this.maxHealth;
+    public void setInfo(long maxHealth, long health, long armor, double speed, long reward, double degreeRotate, double didInstruction, int currInstruction) {
+        this.maxHealth = maxHealth;
+        this.health = health;
+        this.armor = armor;
+        this.speed = speed;
+        this.reward = reward;
+        this.degreeRotate = degreeRotate;
+        this.didInstruction = didInstruction;
+        this.currInstruction = currInstruction;
+        /// maxhealth, health, armor, speed, reward, degreerotate, didinstr, currins
     }
     public void setPath (GameStage gameStage, int idPath) {
         this.idPath = idPath;
         this.path = gameStage.getPath(idPath);
     }
+    public void setBuff(long damage, long damageInterval, long time, double speedDown, long time2) {
+        buffed[0] = new BurningBuff();
+        buffed[0].setTime(time);
+        ((BurningBuff) buffed[0]).setDamage(damage);
+        ((BurningBuff) buffed[0]).setDamageInterval(damageInterval);
+        buffed[1].setTime(time2);
+        ((FrozenBuff) buffed[1]).setSpeedDown(speedDown);
+    }
+    public long getArmor() {
+        return armor;
+    }
+
+
+    @Override
+    public double getRatioHealth() {
+        return (double)this.health / (double)this.maxHealth;
+    }
+
     public final void onUpdate (@Nonnull GameField field) {
         /// update position
         final double enemyPosX = getPosX();

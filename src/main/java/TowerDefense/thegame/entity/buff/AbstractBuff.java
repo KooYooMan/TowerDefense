@@ -11,9 +11,6 @@ public abstract class AbstractBuff {
         return time + "";
     }
 
-    public void setTime(long time) {
-        this.time = time;
-    }
 
     public AbstractBuff (long time) {
         this.time = time;
@@ -34,4 +31,8 @@ public abstract class AbstractBuff {
     public long getTime () {
         return time;
     }
+    public void setTime(long time) {
+        this.time = time;
+    }
+
 }

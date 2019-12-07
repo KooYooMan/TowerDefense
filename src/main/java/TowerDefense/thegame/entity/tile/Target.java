@@ -9,13 +9,21 @@ public class Target extends AbstractTile implements LivingEntity {
 
     @Override
     public String toString() {
-        return "Target\n" + getPosX() + " " + getPosY() + health + " " + maxHealth + "\n";
+        return "Target\n" + getPosX() + " " + getPosY() + " " + health + " " + maxHealth + "\n";
     }
 
     public Target (double posX, double posY) {
         super(posX, posY, Config.TARGET_WIDTH, Config.TARGET_HEIGHT);
         health = Config.TARGET_HEALTH;
         maxHealth = health;
+    }
+
+    public void setMaxHealth(long maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
+    public void setHealth(long health) {
+        this.health = health;
     }
 
     @Override
