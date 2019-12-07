@@ -5,6 +5,10 @@ import TowerDefense.thegame.entity.gun.NormalGun;
 import TowerDefense.thegame.entity.bullet.NormalBullet;
 
 public class NormalTower extends AbstractTower {
+    public static final String NAME = "Normal Tower";
+    public static final long RANGE = (long) Config.NORMAL_TOWER_RANGE / Config.TILE_SIZE;
+    public static final long SPEED = Config.NORMAL_TOWER_SPEED;
+
     public NormalTower(double posX, double posY) {
         super(posX, posY, Config.NORMAL_TOWER_WIDTH, Config.NORMAL_TOWER_HEIGHT,
                 Config.NORMAL_TOWER_RANGE, Config.NORMAL_TOWER_SPEED,

@@ -15,6 +15,7 @@ public class StageDrawer {
     private int[][] layout;
     private boolean isPlacingTower;
     private boolean isUpgradingTower;
+    private boolean isSellingTower;
 
     public StageDrawer(GraphicsContext graphicsContext, StageLoader stageLoader) throws IOException {
         this.graphicsContext = graphicsContext;
@@ -25,6 +26,7 @@ public class StageDrawer {
 
     public void setPlacingTower(boolean placingTower) { isPlacingTower = placingTower; }
     public void setUpgradingTower(boolean upgradingTower) { isUpgradingTower = upgradingTower; }
+    public void setSellingTower(boolean sellingTower) { isSellingTower = sellingTower; }
 
     public void draw() {
         graphicsContext.drawImage(background, 0, 0, Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
@@ -45,7 +47,7 @@ public class StageDrawer {
             graphicsContext.setStroke(Color.rgb(46, 204, 113));
         }
 
-        if (isUpgradingTower) {
+        if (isUpgradingTower || isSellingTower) {
             graphicsContext.setStroke(Color.YELLOW);
 
             for (int i = 0; i < Config.TILE_VERTICAL; ++i) {

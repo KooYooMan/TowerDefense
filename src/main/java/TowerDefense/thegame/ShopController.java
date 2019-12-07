@@ -34,5 +34,9 @@ public class ShopController extends AnimationTimer {
 
     public void start() { super.start(); }
 
+    public ShopDrawer getShopDrawer() { return shopDrawer; }
+
     public ShopHandler getShopHandler() { return shopHandler; }
+
+    public Pane getShopPane() { return shopPane; }
 }

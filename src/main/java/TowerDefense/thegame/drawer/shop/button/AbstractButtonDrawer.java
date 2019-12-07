@@ -5,28 +5,40 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 
 public abstract class AbstractButtonDrawer {
-    private VBox buttonVBox = new VBox();
+    private HBox buttonHBox = new HBox();
     private ButtonWithLabelDrawer buttonWithLabelDrawer;
 
-    public AbstractButtonDrawer(VBox vBox, AbstractIconDrawer iconDrawer) throws IOException {
+    public AbstractButtonDrawer(HBox hBox, AbstractIconDrawer iconDrawer) throws IOException {
         this.buttonWithLabelDrawer = new ButtonWithLabelDrawer(
-                new Button(iconDrawer.getLabel(), iconDrawer.getImageView()), new Label(Long.toString(iconDrawer.getPrice()))
+                new Button("", iconDrawer.getImageView()), new Label(Long.toString(iconDrawer.getPrice()))
         );
 
-        this.buttonVBox.getChildren().add(buttonWithLabelDrawer.getButtonLabel());
+        this.buttonHBox.getChildren().add(buttonWithLabelDrawer.getButtonLabel());
 
-        vBox.getChildren().add(this.buttonVBox);
+        hBox.getChildren().add(this.buttonHBox);
     }
 
-    public VBox getButtonVBox() { return buttonVBox; }
+    public HBox getButtonHBox() { return buttonHBox; }
+
+    public void setOnMouseClicked(EventHandler<MouseEvent> event) {
+        this.buttonWithLabelDrawer.setOnMouseClicked(event);
+    }
 
     public void setOnMousePressed(EventHandler<MouseEvent> event) {
         this.buttonWithLabelDrawer.setOnMousePressed(event);
+    }
+
+    public void setOnMouseEntered(EventHandler<MouseEvent> event) {
+        this.buttonWithLabelDrawer.setOnMouseEntered(event);
+    }
+
+    public void setOnMouseExited(EventHandler<MouseEvent> event) {
+        this.buttonWithLabelDrawer.setOnMouseExited(event);
     }
 
     //public ButtonWithLabelDrawer getButtonWithLabelDrawer() { return buttonWithLabelDrawer; }
