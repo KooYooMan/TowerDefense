@@ -169,7 +169,7 @@ public final class Config {
 	public static final int MAX_PATH = 5;
 
     public static final String GAME_NAME = "Tower Defense";
-
+	public static final String SAVE_FOLDER = "save/";
 
     private Config() {}
 }

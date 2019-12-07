@@ -17,10 +17,10 @@ public class Wave extends AbstractEntity implements UpdatableEntity, Destroyable
 
     @Override
     public String toString() {
-        String waveString = "Wave " + timeToLive + "\n";
+        String waveString = "Wave\n" + timeToLive + "\n";
         waveString += spawnerList.size() + "\n";
         for (AbstractSpawner spawner : spawnerList) {
-            waveString += spawner.toString() + "\n";
+            waveString += spawner.toString();
         }
         return waveString;
     }
@@ -44,7 +44,6 @@ public class Wave extends AbstractEntity implements UpdatableEntity, Destroyable
     @Override
     public void onUpdate(@Nonnull  GameField field) {
         timeToLive--;
-        System.out.printf("TimeToLive of Wave = %d\n", timeToLive);
         for (AbstractSpawner spawner : spawnerList) {
             spawner.onUpdate(field);
         }

@@ -18,6 +18,6 @@ public class NormalSpawner extends AbstractSpawner<NormalEnemy> {
 
     @Override
     public String toString() {
-        return "NormalSpawner " + getPosX() + " " + getPosY() + " " + super.toString();
+        return "NormalSpawner\n" + getPosX() + " " + getPosY() + " " + super.toString() + "\n";
     }
 }

@@ -10,6 +10,6 @@ public class NormalEnemy extends AbstractEnemy {
 
     @Override
     public String toString() {
-        return "NormalEnemy " + getPosX() + " " + getPosY() + " " + super.toString();
+        return "NormalEnemy\n" + getPosX() + " " + getPosY() + " " + super.toString() + "\n";
     }
 }

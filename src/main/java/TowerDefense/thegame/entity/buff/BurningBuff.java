@@ -7,7 +7,7 @@ public class BurningBuff extends AbstractBuff {
 
     @Override
     public String toString() {
-        return "BurningBuff " + damage + " " + damageInterval + " " + super.toString();
+        return damage + " " + damageInterval + " " + super.toString();
     }
 
     public BurningBuff() {

@@ -7,7 +7,7 @@ public class FrozenBuff extends AbstractBuff {
 
     @Override
     public String toString() {
-        return "FrozenBuff " + speedDown + " " + super.toString();
+        return speedDown + " " + super.toString();
     }
 
     public FrozenBuff() {

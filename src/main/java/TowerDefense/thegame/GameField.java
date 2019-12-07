@@ -20,12 +20,6 @@ public final class GameField {
     public String toString() {
         String gameFieldString = gameStage.toString();
 
-        gameFieldString += "spawnEntities\n";
-        gameFieldString += spawnEntities.size() + "\n";
-        for (GameEntity ge : spawnEntities) {
-            gameFieldString += ge.toString() + '\n';
-        }
-        gameFieldString += '\n';
         return gameFieldString;
     }
 
@@ -56,11 +50,6 @@ public final class GameField {
     }
 
     public final void handle() {
-        System.out.printf("Size = %d\n", entities.size());
-        for (GameEntity entity : this.entities) {
-            System.out.printf("%s\n", entity.toString());
-        }
-        System.out.println();
 
         //1.Update UpdatableEntity
         for (final GameEntity entity : entities) {

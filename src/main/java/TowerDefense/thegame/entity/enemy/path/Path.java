@@ -23,4 +23,14 @@ public class Path {
     public Integer getDirect (int i) {
         return instructions.get(i).getB();
     }
+
+    @Override
+    public String toString() {
+
+        String pathString = "Path\n" + instructions.size() + "\n";
+        for (Pair<Double, Integer> p : instructions) {
+            pathString += p.getA().toString() + " " + p.getB().toString() + "\n";
+        }
+        return pathString;
+    }
 }

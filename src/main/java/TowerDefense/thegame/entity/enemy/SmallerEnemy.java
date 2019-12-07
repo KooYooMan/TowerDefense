@@ -11,6 +11,6 @@ public class SmallerEnemy extends AbstractEnemy{
 
     @Override
     public String toString() {
-        return "SmallerEnemy " + getPosX() + " " + getPosY() + " " + super.toString();
+        return "SmallerEnemy\n" + getPosX() + " " + getPosY() + " " + super.toString() + "\n";
     }
 }

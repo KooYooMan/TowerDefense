@@ -11,6 +11,6 @@ public class BossEnemy extends AbstractEnemy {
 
     @Override
     public String toString() {
-        return "BossEnemy " + getPosX() + " " + getPosY() + " " + super.toString();
+        return "BossEnemy\n" + getPosX() + " " + getPosY() + " " + super.toString() + "\n";
     }
 }

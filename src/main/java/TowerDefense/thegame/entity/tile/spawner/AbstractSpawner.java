@@ -2,6 +2,7 @@ package TowerDefense.thegame.entity.tile.spawner;
 
 import TowerDefense.thegame.Config;
 import TowerDefense.thegame.GameField;
+import TowerDefense.thegame.GameStage;
 import TowerDefense.thegame.entity.DestroyableEntity;
 import TowerDefense.thegame.entity.UpdatableEntity;
 import TowerDefense.thegame.entity.enemy.AbstractEnemy;
@@ -18,13 +19,18 @@ public abstract class AbstractSpawner<E extends AbstractEnemy> extends AbstractT
     private long tickDown;
     private long numOfSpawn;
     private Path path;
-
+    private int idPath;
     @Override
+
     public String toString() {
-        String spawnerString = tickDown + " " + numOfSpawn;
+        String spawnerString = tickDown + " " + numOfSpawn + " " + idPath;
         return spawnerString;
     }
-
+    public void setInfo(long tickDown, long numOfSpawn, int idPath) {
+        this.tickDown = tickDown;
+        this.numOfSpawn = numOfSpawn;
+        this.idPath = idPath;
+    }
     protected AbstractSpawner(double posX, double posY, double width, double height, double spawningSize, @Nonnull Class<E> spawningClass, long spawnInterval, long initialDelay, long numOfSpawn) {
         super(posX, posY, width, height);
         this.spawningSize = spawningSize;
@@ -32,16 +38,11 @@ public abstract class AbstractSpawner<E extends AbstractEnemy> extends AbstractT
         this.spawnInterval = spawnInterval;
         this.tickDown = initialDelay;
         this.numOfSpawn = numOfSpawn;
-        findPath();
     }
-    public void findPath () {
-        path = new Path();
-        path.addInstruction(Pair.immutableOf(8.0 * Config.TILE_SIZE, 2));
-        path.addInstruction(Pair.immutableOf(4.0 * Config.TILE_SIZE, 1));
-        path.addInstruction(Pair.immutableOf(6.0 * Config.TILE_SIZE, 3));
-        path.addInstruction(Pair.immutableOf(3.0 * Config.TILE_SIZE, 1));
-        path.addInstruction(Pair.immutableOf(10.0 * Config.TILE_SIZE, 2));
-
+    public AbstractSpawner setPath (GameStage gameStage, int idPath) {
+        this.idPath = idPath;
+        this.path = gameStage.getPath(idPath);
+        return this;
     }
     public final void onUpdate(@Nonnull GameField field) {
         //System.out.printf("spawn pos = %f %f, size = %f %f, spawningSize = %f, tickdown = %d\n", getPosX(), getPosY(), getWidth(), getHeight(), spawningSize, tickDown);
@@ -49,7 +50,7 @@ public abstract class AbstractSpawner<E extends AbstractEnemy> extends AbstractT
         if (tickDown <= 0 && numOfSpawn > 0) {
             numOfSpawn -= 1;
             E newEnemy = doSpawn(getPosX(), getPosY());
-            newEnemy.setPath(path);
+            newEnemy.setPath(field.getGameStage(), idPath);
             field.getSpawnEntities().add(newEnemy);
             this.tickDown = spawnInterval;
         }

@@ -11,6 +11,6 @@ public class TankerEnemy extends AbstractEnemy{
 
     @Override
     public String toString() {
-        return "TankerEnemy " + getPosX() + " " + getPosY() + " " +  super.toString();
+        return "TankerEnemy\n" + getPosX() + " " + getPosY() + " " +  super.toString() + "\n";
     }
 }

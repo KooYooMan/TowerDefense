@@ -19,6 +19,6 @@ public class BossSpawner extends AbstractSpawner {
 
     @Override
     public String toString() {
-        return "BossSpawner " + getPosX() + " " + getPosY() + " " + super.toString();
+        return "BossSpawner\n" + getPosX() + " " + getPosY() + " " + super.toString() + "\n";
     }
 }

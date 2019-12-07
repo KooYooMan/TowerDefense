@@ -30,8 +30,8 @@ public abstract class AbstractTower extends AbstractEntity implements Upgradable
 
     @Override
     public String toString() {
-        String abstractTowerString = range + " " + speed + "\n";
-        abstractTowerString += tick + " " + level + " " + scale + " " + upgradedScale + " " + cost + " " + upgradedCost + "\n";
+        String abstractTowerString = range + " " + speed + " ";
+        abstractTowerString += tick + " " + level + " " + scale + " " + upgradedScale + " " + cost + " " + upgradedCost + " ";
         abstractTowerString += bulletClassList.size() + "\n";
         for (Class<? extends AbstractBullet> c : bulletClassList) {
             abstractTowerString += c.toString() + "\n";

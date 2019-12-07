@@ -20,6 +20,6 @@ public class SmallerSpawner extends AbstractSpawner {
 
     @Override
     public String toString() {
-        return "SmallerSpawner " + getPosX() + " " + getPosY() + " " + super.toString();
+        return "SmallerSpawner\n" + getPosX() + " " + getPosY() + " " + super.toString() + "\n";
     }
 }

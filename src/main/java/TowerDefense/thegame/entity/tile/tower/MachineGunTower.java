@@ -16,7 +16,7 @@ public class MachineGunTower extends AbstractTower {
 
     @Override
     public String toString() {
-        return "MachineGunTower " + getPosX() + " " + getPosY() + "\n" + super.toString();
+        return "MachineGunTower\n" + getPosX() + " " + getPosY() + "\n" + super.toString();
     }
 }
 

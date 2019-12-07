@@ -2,6 +2,7 @@ package TowerDefense.thegame.entity.enemy;
 
 import TowerDefense.thegame.Config;
 import TowerDefense.thegame.GameField;
+import TowerDefense.thegame.GameStage;
 import TowerDefense.thegame.entity.*;
 import TowerDefense.thegame.entity.buff.AbstractBuff;
 import TowerDefense.thegame.entity.buff.BurningBuff;
@@ -24,6 +25,7 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
     private long reward;
     private double degreeRotate;
     Path path;
+    int idPath;
     double didInstruction = 0;
     int currInstruction = 0;
 
@@ -33,8 +35,8 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
     public String toString() {
         return maxHealth + " " + health + " " +
                 armor + " " + speed + " " + reward + " " + degreeRotate + " " +
-                didInstruction + " " + currInstruction + "\n" +
-                buffed[0].toString() + "\n" + buffed[1].toString();
+                didInstruction + " " + currInstruction + " " + idPath + " " +
+                buffed[0].toString() + " " + buffed[1].toString();
     }
 
     public long getArmor() {
@@ -61,8 +63,9 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
     public double getRatioHealth() {
         return (double)this.health / (double)this.maxHealth;
     }
-    public void setPath (Path path) {
-        this.path = path;
+    public void setPath (GameStage gameStage, int idPath) {
+        this.idPath = idPath;
+        this.path = gameStage.getPath(idPath);
     }
     public final void onUpdate (@Nonnull GameField field) {
         /// update position

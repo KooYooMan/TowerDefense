@@ -15,10 +15,10 @@ public class GameWave extends AbstractEntity implements UpdatableEntity, Destroy
 
     @Override
     public String toString() {
-        String gameWaveString = "GameWave " + currentWaveID + "\n";
+        String gameWaveString = "GameWave\n" + currentWaveID + "\n";
         gameWaveString += waveList.size() + "\n";
         for (Wave wave : waveList) {
-            gameWaveString += wave.toString() + "\n";
+            gameWaveString += wave.toString();
         }
         return gameWaveString;
     }
@@ -28,6 +28,11 @@ public class GameWave extends AbstractEntity implements UpdatableEntity, Destroy
         currentWaveID = -1;
         waveList = new ArrayList<>();
     }
+
+    public void setCurrentWaveID(int currentWaveID) {
+        this.currentWaveID = currentWaveID;
+    }
+
     public int getCurrentWaveID() {
         return currentWaveID;
     }

@@ -19,6 +19,6 @@ public class TankerSpawner extends AbstractSpawner {
 
     @Override
     public String toString() {
-        return "TankSpawner " + getPosX() + " " + getPosY() + " " + super.toString();
+        return "TankSpawner\n" + getPosX() + " " + getPosY() + " " + super.toString() + "\n";
     }
 }
