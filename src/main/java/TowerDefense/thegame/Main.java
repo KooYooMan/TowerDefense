@@ -21,8 +21,8 @@ public final class Main extends Application {
 		final Canvas shopCanvas = new Canvas(Config.SHOP_WIDTH, Config.SCREEN_HEIGHT);
 
 		final Pane startScreenPane = new StackPane(startScreenCanvas);
-		final Pane gamePane = new StackPane(gameCanvas);
-		final Pane shopPane = new StackPane(shopCanvas);
+		final Pane gamePane = new Pane(gameCanvas);
+		final Pane shopPane = new Pane(shopCanvas);
 		//final Pane allPane = new StackPane(new HBox(gamePane, shopPane), startScreenPane);
 
 		final Scene primaryScene = new Scene(startScreenPane);

@@ -1,6 +1,7 @@
 package TowerDefense.thegame.entity.shop;
 
 import TowerDefense.thegame.Config;
+import TowerDefense.thegame.GameController;
 import TowerDefense.thegame.GameStage;
 import TowerDefense.thegame.drawer.GameDrawer;
 import TowerDefense.thegame.drawer.shop.ShopDrawer;
@@ -17,12 +18,15 @@ import javafx.scene.layout.Pane;
 import java.lang.reflect.InvocationTargetException;
 
 public class ButtonHandler {
+    private GameController gameController;
     private GameStage gameStage;
     private Pane gamePane;
     private GameDrawer gameDrawer;
     private ShopDrawer shopDrawer;
 
-    public ButtonHandler(GameStage gameStage, Pane gamePane, GameDrawer gameDrawer, ShopDrawer shopDrawer) {
+    public ButtonHandler(GameController gameController, GameStage gameStage,
+                         Pane gamePane, GameDrawer gameDrawer, ShopDrawer shopDrawer) {
+        this.gameController = gameController;
         this.gameStage = gameStage;
         this.gamePane = gamePane;
         this.gameDrawer = gameDrawer;
@@ -162,6 +166,22 @@ public class ButtonHandler {
 
             shopDrawer.setRenderingRemovingTowerFunction(false);
             shopDrawer.setRenderingUpgradingTowerFunction(true);
+        });
+    }
+
+    public void handlePauseEvent(Button button) {
+        button.setOnMousePressed(mouseEvent -> {
+            if (!gameController.isPause()) {
+                gameController.setPause(true);
+            }
+        });
+    }
+
+    public void handleResumeEvent(Button button) {
+        button.setOnMousePressed(mouseEvent -> {
+            if (gameController.isPause()) {
+                gameController.setPause(false);
+            }
         });
     }
 }

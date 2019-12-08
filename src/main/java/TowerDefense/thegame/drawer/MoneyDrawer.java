@@ -21,6 +21,6 @@ public class MoneyDrawer {
     public void draw(long money) {
         graphicsContext.drawImage(image, 0, 0, 24, 24);
         graphicsContext.setFill(Color.BLACK);
-        graphicsContext.fillText(Long.toString(money), 32, 24);
+        graphicsContext.fillText(Long.toString(money), 32, 21);
     }
 }

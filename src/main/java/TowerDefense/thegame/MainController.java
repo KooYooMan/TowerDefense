@@ -22,8 +22,8 @@ public class MainController extends AnimationTimer {
         this.startScreenController = startScreenController;
         this.gameController = gameController;
         this.shopController = shopController;
-        this.buttonHandler = new ButtonHandler(gameController.getGameStage(), gameController.getGamePane(),
-                gameController.getGameDrawer(), shopController.getShopDrawer());
+        this.buttonHandler = new ButtonHandler(gameController, gameController.getGameStage(),
+                gameController.getGamePane(), gameController.getGameDrawer(), shopController.getShopDrawer());
 
         this.shopController.getShopHandler().getTowerButtonDrawerList().forEach(towerButtonDrawer ->
                 this.buttonHandler.handleEventTower(towerButtonDrawer)
@@ -35,6 +35,9 @@ public class MainController extends AnimationTimer {
 
         this.buttonHandler.handleEventSellingTower(this.shopController.getShopHandler().getSellingTowerButton());
         this.buttonHandler.handleEventUpgradingTower(this.shopController.getShopHandler().getUpgradingTowerButton());
+
+        this.buttonHandler.handlePauseEvent(this.shopController.getShopHandler().getPauseButton());
+        this.buttonHandler.handleResumeEvent(this.shopController.getShopHandler().getResumeButton());
     }
 
     final void closeRequestHandler(WindowEvent windowEvent) {
@@ -52,7 +55,9 @@ public class MainController extends AnimationTimer {
                 //allPane.getChildren().remove(startScreenController.getPane());
                 scene.setRoot(new HBox(gameController.getGamePane(), shopController.getShopPane()));
 
-                gameController.handle(l);
+                if (!gameController.isPause()) {
+                    gameController.handle(l);
+                }
                 shopController.handle(l);
             }
         } else {

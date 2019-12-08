@@ -42,15 +42,19 @@ public class GameController extends AnimationTimer {
         super.start();
     }
 
-    boolean isPause() {
+    public boolean isPause() {
         return pause;
     }
-    boolean isAutoplay() {
+    public boolean isAutoplay() {
         return autoplay;
     }
     void save() {
 
 
+    }
+
+    public void setPause(boolean pause) {
+        this.pause = pause;
     }
 
 
