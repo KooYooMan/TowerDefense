@@ -25,4 +25,5 @@ public class ButtonContainerDrawer {
     public List<TowerButtonDrawer> getTowerButtonDrawerList() { return towerButtonContainerDrawer.getTowerButtonDrawerList(); }
     public List<BulletButtonDrawer> getBulletButtonDrawerList() { return bulletButtonContainerDrawer.getBulletButtonDrawerList(); }
     public Button getSellingTowerButton() { return towerButtonContainerDrawer.getSellingTowerButton(); }
+    public Button getUpgradingTowerButton() { return bulletButtonContainerDrawer.getUpgradingTowerButton(); }
 }

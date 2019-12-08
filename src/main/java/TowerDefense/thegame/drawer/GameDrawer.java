@@ -31,10 +31,12 @@ import TowerDefense.thegame.entity.gun.NormalGun;
 import TowerDefense.thegame.entity.gun.SniperGun;
 import TowerDefense.thegame.entity.stage.StageLoader;
 import TowerDefense.thegame.entity.tile.Target;
+import TowerDefense.thegame.entity.tile.tower.AbstractTower;
 import TowerDefense.thegame.entity.tile.tower.MachineGunTower;
 import TowerDefense.thegame.entity.tile.tower.NormalTower;
 import TowerDefense.thegame.entity.tile.tower.SniperTower;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -142,6 +144,12 @@ public final class GameDrawer {
 				} else {
 					drawer.draw(this.graphicsContext, entity, entity.getPosX(), entity.getPosY(), entity.getWidth(),
 							entity.getHeight(), 0);
+				}
+
+				if (entity instanceof AbstractTower) {
+					this.graphicsContext.setFill(Color.BLACK);
+					this.graphicsContext.fillText(Integer.toString(((AbstractTower) entity).getLevel()),
+							entity.getPosX(), entity.getPosY());
 				}
 			}
 		}

@@ -34,6 +34,7 @@ public class MainController extends AnimationTimer {
         );
 
         this.buttonHandler.handleEventSellingTower(this.shopController.getShopHandler().getSellingTowerButton());
+        this.buttonHandler.handleEventUpgradingTower(this.shopController.getShopHandler().getUpgradingTowerButton());
     }
 
     final void closeRequestHandler(WindowEvent windowEvent) {

@@ -15,13 +15,20 @@ public final class ShopDrawer {
     private final Image background;
     private boolean isRenderingTowerStats;
     private boolean isRenderingBulletStats;
+    private boolean isRenderingRemovingTowerFunction;
+    private boolean isRenderingUpgradingTowerFunction;
     private Class<? extends AbstractTower> towerClass;
     private Class<? extends AbstractBullet> bulletClass;
 
     public ShopDrawer(GraphicsContext graphicsContext, String filePath) throws IOException {
         this.graphicsContext = graphicsContext;
         this.background = new Image(new FileInputStream(filePath));
+
         this.isRenderingTowerStats = false;
+        this.isRenderingBulletStats = false;
+        this.isRenderingRemovingTowerFunction = false;
+        this.isRenderingUpgradingTowerFunction = false;
+
         this.towerClass = null;
         this.bulletClass = null;
 
@@ -30,6 +37,12 @@ public final class ShopDrawer {
 
     public void setRenderingTowerStats(boolean renderingTowerStats) { isRenderingTowerStats = renderingTowerStats; }
     public void setRenderingBulletStats(boolean renderingBulletStats) { isRenderingBulletStats = renderingBulletStats; }
+    public void setRenderingRemovingTowerFunction(boolean renderingRemovingTowerFunction) {
+        isRenderingRemovingTowerFunction = renderingRemovingTowerFunction;
+    }
+    public void setRenderingUpgradingTowerFunction(boolean renderingUpgradingTowerFunction) {
+        isRenderingUpgradingTowerFunction = renderingUpgradingTowerFunction;
+    }
 
     public void setTowerClass(Class<? extends AbstractTower> towerClass) { this.towerClass = towerClass; }
     public void setBulletClass(Class<? extends AbstractBullet> bulletClass) { this.bulletClass = bulletClass; }
@@ -43,6 +56,14 @@ public final class ShopDrawer {
 
         if (isRenderingBulletStats && bulletClass != null) {
             renderBulletStats(bulletClass);
+        }
+
+        if (isRenderingRemovingTowerFunction) {
+            renderRemovingTowerFunction();
+        }
+
+        if (isRenderingUpgradingTowerFunction) {
+            renderUpgradingTowerFunction();
         }
     }
 
@@ -94,5 +115,13 @@ public final class ShopDrawer {
         if (!stats.toString().equals("")) {
             graphicsContext.fillText(stats.toString(), 5, 260);
         }
+    }
+
+    public final void renderRemovingTowerFunction() {
+        graphicsContext.fillText("Removes a tower", 5, 260);
+    }
+
+    public final void renderUpgradingTowerFunction() {
+        graphicsContext.fillText("Upgrades a tower", 5, 260);
     }
 }

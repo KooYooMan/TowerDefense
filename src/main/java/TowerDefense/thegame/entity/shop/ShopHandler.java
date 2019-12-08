@@ -19,4 +19,5 @@ public class ShopHandler {
     public List<TowerButtonDrawer> getTowerButtonDrawerList() { return buttonContainerDrawer.getTowerButtonDrawerList(); }
     public List<BulletButtonDrawer> getBulletButtonDrawerList() { return buttonContainerDrawer.getBulletButtonDrawerList(); }
     public Button getSellingTowerButton() { return buttonContainerDrawer.getSellingTowerButton(); }
+    public Button getUpgradingTowerButton() { return buttonContainerDrawer.getUpgradingTowerButton(); }
 }
