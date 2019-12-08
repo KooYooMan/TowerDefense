@@ -19,6 +19,7 @@ public class GameController extends AnimationTimer {
 
     public GameController(GraphicsContext graphicsContext, Pane gamePane) {
         this.graphicsContext = graphicsContext;
+        //this.gameStage = new GameStage();
         this.gameStage = new GameStage("save1.txt");
         this.gameField = new GameField(gameStage);
         this.gameDrawer = new GameDrawer(graphicsContext, gameField);

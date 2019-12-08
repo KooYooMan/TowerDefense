@@ -110,7 +110,6 @@ public final class GameStage {
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
             System.out.println(line);
-            if (line.equals("")) continue;
             if (line.equals("Path")) {
                 int pathSize = sc.nextInt();
                 System.out.println(pathSize);
@@ -125,24 +124,27 @@ public final class GameStage {
                 continue;
             }
             else if (line.equals("GameWave")) {
-                int curID = sc.nextInt();
-                int numWave = sc.nextInt();
-                System.out.printf("%d %d\n", curID, numWave);
+                int curID = Integer.parseInt(sc.nextLine());
+                int numWave = Integer.parseInt(sc.nextLine());
                 gameWave.setCurrentWaveID(curID);
                 for (int i = 0; i < numWave; i++) {
                     String waveString = sc.nextLine();
-                    System.out.printf("%s\n", waveString);
-                    int timeToLive = sc.nextInt();
-                    int numSpawners = sc.nextInt();
+
+                    int timeToLive = Integer.parseInt(sc.nextLine());
+                    int numSpawners = Integer.parseInt(sc.nextLine());
                     System.out.printf("%d %d\n", timeToLive, numSpawners);
+
                     Wave wave = new Wave(timeToLive);
                     for (int j = 0; j < numSpawners; j++) {
                         String spawnerString = sc.nextLine();
-                        long posX = sc.nextLong();
-                        long posY = sc.nextLong();
-                        long tickDown = sc.nextLong();
-                        long numOfSpawn = sc.nextLong();
-                        int idPath = sc.nextInt();
+                        String spawnerInfoLine = sc.nextLine();
+                        String[] splits = spawnerInfoLine.split(" ");
+                        System.out.printf("%s\n%s\n", spawnerString, spawnerInfoLine);
+                        double posX = Double.parseDouble(splits[0]);
+                        double posY = Double.parseDouble(splits[1]);
+                        long tickDown = Long.parseLong(splits[2]);
+                        long numOfSpawn = Long.parseLong(splits[3]);
+                        int idPath = Integer.parseInt(splits[4]);
                         AbstractSpawner spawner;
                         if (spawnerString.equals("BossSpawner")) {
                             spawner = new BossSpawner(posX, posY);
@@ -164,12 +166,15 @@ public final class GameStage {
                 }
                 entities.add(gameWave);
             } else if (line.equals("entities")) {
-                int size = sc.nextInt();
+                int size = Integer.parseInt(sc.nextLine());
+                System.out.printf("size = %d\n", size);
             } else if (line.equals("Target")) {
-                double posX = sc.nextDouble();
-                double posY = sc.nextDouble();
-                long health = sc.nextLong();
-                long maxHealth = sc.nextLong();
+                String targetInfoLine = sc.nextLine();
+                String[] targetSplits = targetInfoLine.split(" ");
+                double posX = Double.parseDouble(targetSplits[0]);
+                double posY = Double.parseDouble(targetSplits[1]);
+                long health = Long.parseLong(targetSplits[2]);
+                long maxHealth = Long.parseLong(targetSplits[3]);
 
                 Target target = new Target(posX, posY);
                 target.setHealth(health);
@@ -177,25 +182,27 @@ public final class GameStage {
                 entities.add(target);
             } else if (line.equals("NormalEnemy") || line.equals("SmallerEnemy") || line.equals("TankerEnemy") || line.equals("BossEnemy")) {
                 /// maxhealth, health, armor, speed, reward, degreerotate, didinstr, currins
-
-                double posX = sc.nextDouble();
-                double posY = sc.nextDouble();
-                long maxHealth = sc.nextLong();
-                long health = sc.nextLong();
-                long armor = sc.nextLong();
-                double speed = sc.nextDouble();
-                long reward = sc.nextLong();
-                double degreeRotate = sc.nextDouble();
-                double didInstruction = sc.nextDouble();
-                int currInstruction = sc.nextInt();
-                int idPath = sc.nextInt();
+                String enemyInfoLine = sc.nextLine();
+                String[] enemySplits = enemyInfoLine.split(" ");
+                double posX = Double.parseDouble(enemySplits[0]);
+                double posY = Double.parseDouble(enemySplits[1]);
+                long maxHealth = Long.parseLong(enemySplits[2]);
+                long health = Long.parseLong(enemySplits[3]);
+                long armor = Long.parseLong(enemySplits[4]);
+                double speed = Double.parseDouble(enemySplits[5]);
+                long reward = Long.parseLong(enemySplits[6]);
+                double degreeRotate = Double.parseDouble(enemySplits[7]);
+                double didInstruction = Double.parseDouble(enemySplits[8]);
+                int currInstruction = Integer.parseInt(enemySplits[9]);
+                int idPath = Integer.parseInt(enemySplits[10]);
                 long damage, damageInterval, time, time2;
                 double speedDown;
-                damage = sc.nextLong();
-                damageInterval = sc.nextLong();
-                time = sc.nextLong();
-                speedDown = sc.nextDouble();
-                time2 = sc.nextLong();
+                damage = Long.parseLong(enemySplits[11]);
+                damageInterval = Long.parseLong(enemySplits[12]);
+                time = Long.parseLong(enemySplits[13]);
+                speedDown = Double.parseDouble(enemySplits[14]);
+                time2 = Long.parseLong(enemySplits[15]);
+                System.out.printf("%f %f\n", posX, posY);
                 AbstractEnemy enemy;
                 if (line.equals("NormalEnemy")) {
                     enemy = new NormalEnemy(posX, posY);
@@ -212,7 +219,11 @@ public final class GameStage {
                 enemy.setInfo(maxHealth, health, armor, speed, reward, degreeRotate, didInstruction, currInstruction);
                 enemy.setPath(this, idPath);
                 enemy.setBuff(damage, damageInterval, time, speedDown, time2);
+                entities.add(enemy);
             } else if (line.equals("NormalTower") || line.equals("SniperTower") || line.equals("MachineGunTower")) {
+                String towerInfoLine = sc.nextLine();
+                double posX;
+                double posY;
 
             }
         }

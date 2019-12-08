@@ -16,6 +16,6 @@ public class NormalTower extends AbstractTower {
 
     @Override
     public String toString() {
-        return "NormalTower\n" + getPosX() + " " + getPosY() + "\n" + super.toString();
+        return "NormalTower\n" + getPosX() + " " + getPosY() + " " + super.toString();
     }
 }

@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Random;
 
 public abstract class AbstractTower extends AbstractEntity implements UpgradableEntity, UpdatableEntity, SpawnListener {
-    private final double range;
-    private final long speed;
+    private double range;
+    private long speed;
     private List<Class<? extends AbstractBullet>> bulletClassList = new ArrayList<>();
     private AbstractGun gun;
     private long tick = 0;
@@ -30,6 +30,7 @@ public abstract class AbstractTower extends AbstractEntity implements Upgradable
 
     @Override
     public String toString() {
+        /// dou range, long speed, long tick, int level, dou scale, dou upscale, long cost, long upcost, int  size;
         String abstractTowerString = range + " " + speed + " ";
         abstractTowerString += tick + " " + level + " " + scale + " " + upgradedScale + " " + cost + " " + upgradedCost + " ";
         abstractTowerString += bulletClassList.size() + "\n";
@@ -38,7 +39,16 @@ public abstract class AbstractTower extends AbstractEntity implements Upgradable
         }
         return abstractTowerString;
     }
-
+    void setInfo(double range, long speed, long tick, int level, double scale, double upgradedScale, long cost, long upgradedCost) {
+        this.range = range;
+        this.speed = speed;
+        this.tick = tick;
+        this.level = level;
+        this.scale = scale;
+        this.upgradedScale = upgradedScale;
+        this.cost = cost;
+        this.upgradedCost = upgradedCost;
+    }
     protected AbstractTower(double posX, double posY, double width, double height, double range, long speed, AbstractGun gun,
                             Class<? extends AbstractBullet> bullet, int bulletTime, double scale, double upgradeScale, long cost, long upgradedCost) {
         super(posX, posY, width, height);
