@@ -149,7 +149,7 @@ public final class GameDrawer {
 				if (entity instanceof AbstractTower) {
 					this.graphicsContext.setFill(Color.BLACK);
 					this.graphicsContext.fillText(Integer.toString(((AbstractTower) entity).getLevel()),
-							entity.getPosX(), entity.getPosY());
+							entity.getPosX(), entity.getPosY() + entity.getHeight());
 				}
 			}
 		}

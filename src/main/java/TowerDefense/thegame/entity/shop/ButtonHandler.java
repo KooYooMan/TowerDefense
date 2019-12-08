@@ -57,6 +57,9 @@ public class ButtonHandler {
             shopDrawer.setRenderingRemovingTowerFunction(false);
             shopDrawer.setRenderingUpgradingTowerFunction(false);
 
+            shopDrawer.setRenderingPauseFunction(false);
+            shopDrawer.setRenderingResumeFunction(false);
+
             shopDrawer.setBulletClass(null);
             shopDrawer.setRenderingBulletStats(false);
 
@@ -99,6 +102,9 @@ public class ButtonHandler {
             shopDrawer.setRenderingRemovingTowerFunction(false);
             shopDrawer.setRenderingUpgradingTowerFunction(false);
 
+            shopDrawer.setRenderingPauseFunction(false);
+            shopDrawer.setRenderingResumeFunction(false);
+
             shopDrawer.setTowerClass(null);
             shopDrawer.setRenderingTowerStats(false);
 
@@ -127,6 +133,9 @@ public class ButtonHandler {
         });
 
         button.setOnMouseEntered(mouseEnteredEvent -> {
+            shopDrawer.setRenderingPauseFunction(false);
+            shopDrawer.setRenderingResumeFunction(false);
+
             shopDrawer.setTowerClass(null);
             shopDrawer.setRenderingTowerStats(false);
 
@@ -158,6 +167,9 @@ public class ButtonHandler {
         });
 
         button.setOnMouseEntered(mouseEnteredEvent -> {
+            shopDrawer.setRenderingPauseFunction(false);
+            shopDrawer.setRenderingResumeFunction(false);
+
             shopDrawer.setTowerClass(null);
             shopDrawer.setRenderingTowerStats(false);
 
@@ -175,6 +187,20 @@ public class ButtonHandler {
                 gameController.setPause(true);
             }
         });
+
+        button.setOnMouseEntered(mouseEnteredEvent -> {
+            shopDrawer.setTowerClass(null);
+            shopDrawer.setRenderingTowerStats(false);
+
+            shopDrawer.setBulletClass(null);
+            shopDrawer.setRenderingBulletStats(false);
+
+            shopDrawer.setRenderingRemovingTowerFunction(false);
+            shopDrawer.setRenderingUpgradingTowerFunction(false);
+
+            shopDrawer.setRenderingResumeFunction(false);
+            shopDrawer.setRenderingPauseFunction(true);
+        });
     }
 
     public void handleResumeEvent(Button button) {
@@ -182,6 +208,20 @@ public class ButtonHandler {
             if (gameController.isPause()) {
                 gameController.setPause(false);
             }
+        });
+
+        button.setOnMouseEntered(mouseEnteredEvent -> {
+            shopDrawer.setTowerClass(null);
+            shopDrawer.setRenderingTowerStats(false);
+
+            shopDrawer.setBulletClass(null);
+            shopDrawer.setRenderingBulletStats(false);
+
+            shopDrawer.setRenderingRemovingTowerFunction(false);
+            shopDrawer.setRenderingUpgradingTowerFunction(false);
+
+            shopDrawer.setRenderingPauseFunction(false);
+            shopDrawer.setRenderingResumeFunction(true);
         });
     }
 }

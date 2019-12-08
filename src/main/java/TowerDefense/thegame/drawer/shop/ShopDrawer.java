@@ -17,6 +17,8 @@ public final class ShopDrawer {
     private boolean isRenderingBulletStats;
     private boolean isRenderingRemovingTowerFunction;
     private boolean isRenderingUpgradingTowerFunction;
+    private boolean isRenderingPauseFunction;
+    private boolean isRenderingResumeFunction;
     private Class<? extends AbstractTower> towerClass;
     private Class<? extends AbstractBullet> bulletClass;
 
@@ -28,6 +30,8 @@ public final class ShopDrawer {
         this.isRenderingBulletStats = false;
         this.isRenderingRemovingTowerFunction = false;
         this.isRenderingUpgradingTowerFunction = false;
+        this.isRenderingPauseFunction = false;
+        this.isRenderingResumeFunction = false;
 
         this.towerClass = null;
         this.bulletClass = null;
@@ -42,6 +46,12 @@ public final class ShopDrawer {
     }
     public void setRenderingUpgradingTowerFunction(boolean renderingUpgradingTowerFunction) {
         isRenderingUpgradingTowerFunction = renderingUpgradingTowerFunction;
+    }
+    public void setRenderingPauseFunction(boolean renderingPauseFunction) {
+        isRenderingPauseFunction = renderingPauseFunction;
+    }
+    public void setRenderingResumeFunction(boolean renderingResumeFunction) {
+        isRenderingResumeFunction = renderingResumeFunction;
     }
 
     public void setTowerClass(Class<? extends AbstractTower> towerClass) { this.towerClass = towerClass; }
@@ -64,6 +74,14 @@ public final class ShopDrawer {
 
         if (isRenderingUpgradingTowerFunction) {
             renderUpgradingTowerFunction();
+        }
+
+        if (isRenderingPauseFunction) {
+            renderPauseFunction();
+        }
+
+        if (isRenderingResumeFunction) {
+            renderResumeFunction();
         }
     }
 
@@ -123,5 +141,13 @@ public final class ShopDrawer {
 
     public final void renderUpgradingTowerFunction() {
         graphicsContext.fillText("Upgrades a tower", 5, 260);
+    }
+
+    public final void renderPauseFunction() {
+        graphicsContext.fillText("Pause", 5, 260);
+    }
+
+    public final void renderResumeFunction() {
+        graphicsContext.fillText("Resume", 5, 260);
     }
 }

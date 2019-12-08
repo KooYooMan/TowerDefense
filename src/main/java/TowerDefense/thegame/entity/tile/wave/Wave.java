@@ -3,7 +3,6 @@ package TowerDefense.thegame.entity.tile.wave;
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.AbstractEntity;
 import TowerDefense.thegame.entity.DestroyableEntity;
-import TowerDefense.thegame.entity.GameEntity;
 import TowerDefense.thegame.entity.UpdatableEntity;
 import TowerDefense.thegame.entity.tile.spawner.AbstractSpawner;
 
@@ -35,7 +34,7 @@ public class Wave extends AbstractEntity implements UpdatableEntity, Destroyable
     @Override
     public void onUpdate(@Nonnull  GameField field) {
         timeToLive--;
-        System.out.printf("TimeToLive of Wave = %d\n", timeToLive);
+        //System.out.printf("TimeToLive of Wave = %d\n", timeToLive);
         for (AbstractSpawner spawner : spawnerList) {
             spawner.onUpdate(field);
         }
