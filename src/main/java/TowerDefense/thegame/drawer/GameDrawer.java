@@ -97,7 +97,7 @@ public final class GameDrawer {
 		this.gameField = gameField;
 
 		try {
-			this.stageLoader = new StageLoader("resources/map/layout/Map1.txt");
+			this.stageLoader = new StageLoader();
 			this.stageDrawer = new StageDrawer(graphicsContext, stageLoader);
 			this.moneyDrawer = new MoneyDrawer(graphicsContext);
 		} catch (IOException e) {
@@ -159,4 +159,8 @@ public final class GameDrawer {
 
 	public StageDrawer getStageDrawer() { return stageDrawer; }
 	public StageLoader getStageLoader() { return stageLoader; }
+	public GraphicsContext getGraphicsContext() { return graphicsContext; }
+
+	public void setStageLoader(StageLoader stageLoader) { this.stageLoader = stageLoader; }
+	public void setStageDrawer(StageDrawer stageDrawer) { this.stageDrawer = stageDrawer; }
 }

@@ -6,7 +6,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 
 public class StageDrawer {
@@ -21,7 +20,7 @@ public class StageDrawer {
         this.graphicsContext = graphicsContext;
         this.graphicsContext.setStroke(Color.rgb(46, 204, 113));
         this.layout = stageLoader.getLayout();
-        this.background = new Image(new FileInputStream("resources/map/image/Map1.png"));
+        this.background = stageLoader.getBackground();
     }
 
     public void setPlacingTower(boolean placingTower) { isPlacingTower = placingTower; }

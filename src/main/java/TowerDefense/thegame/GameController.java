@@ -57,7 +57,6 @@ public class GameController extends AnimationTimer {
         this.pause = pause;
     }
 
-
     public GameStage getGameStage() { return gameStage; }
     public Pane getGamePane() { return gamePane; }
     public GameDrawer getGameDrawer() { return gameDrawer; }

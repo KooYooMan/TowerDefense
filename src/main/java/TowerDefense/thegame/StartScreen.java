@@ -13,17 +13,71 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class StartScreen {
+    private Pane startScreenPane;
+
     private Image startScreenImage;
+    private boolean isInStartScreen;
+    private boolean isInWelcomeScreen;
+    private boolean isInMapPickingScreen;
+    private boolean isQuit;
+
+    private WelcomeScreen welcomeScreen;
+    private MapPickingScreen mapPickingScreen;
+
+    public StartScreen(Pane startScreenPane) throws IOException {
+        this.startScreenPane = startScreenPane;
+
+        this.startScreenImage = new Image(new FileInputStream("target/classes/startScreen/StartScreen.jpg"));
+
+        this.welcomeScreen = new WelcomeScreen(this);
+        this.mapPickingScreen = new MapPickingScreen(this);
+
+        this.startScreenPane.getChildren().add(welcomeScreen.getVBox());
+
+        this.isInStartScreen = true;
+        this.isInWelcomeScreen = true;
+        this.isInMapPickingScreen = false;
+        this.isQuit = false;
+    }
+
+    public Image getStartScreenImage() { return startScreenImage; }
+
+    public Pane getStartScreenPane() { return startScreenPane; }
+
+    public boolean isInStartScreen() { return isInStartScreen; }
+    public boolean isInWelcomeScreen() { return isInWelcomeScreen; }
+    public boolean isInMapPickingScreen() { return isInMapPickingScreen; }
+    public boolean isQuit() { return isQuit; }
+
+    public void setInStartScreen(boolean inStartScreen) { isInStartScreen = inStartScreen; }
+    public void setInWelcomeScreen(boolean inWelcomeScreen) { isInWelcomeScreen = inWelcomeScreen; }
+    public void setInMapPickingScreen(boolean inMapPickingScreen) { isInMapPickingScreen = inMapPickingScreen; }
+    public void setQuit(boolean quit) { isQuit = quit; }
+
+    public WelcomeScreen getWelcomeScreen() { return welcomeScreen; }
+    public MapPickingScreen getMapPickingScreen() { return mapPickingScreen; }
+
+    public void handleEvent() {
+        if (isInWelcomeScreen) {
+            welcomeScreen.handleEvent();
+        }
+
+        if (isInMapPickingScreen) {
+            mapPickingScreen.handleEvent();
+        }
+    }
+}
+
+class WelcomeScreen {
     private VBox vBox;
     private Button startButton;
     private Button loadButton;
     private Button quitButton;
-    private boolean isInStartScreen;
-    private boolean isInMapPickingScreen;
-    private boolean isQuit;
 
-    public StartScreen(Pane pane) throws IOException {
-        this.startScreenImage = new Image(new FileInputStream("target/classes/startScreen/StartScreen.jpg"));
+    private StartScreen startScreen;
+
+    public WelcomeScreen(StartScreen startScreen) {
+        this.startScreen = startScreen;
 
         this.vBox = new VBox(8);
 
@@ -42,46 +96,42 @@ public class StartScreen {
         this.vBox.getChildren().addAll(startButton, loadButton, quitButton);
 
         this.vBox.setAlignment(Pos.CENTER);
-
-        pane.getChildren().add(vBox);
-
-        this.isInStartScreen = true;
-        this.isInMapPickingScreen = false;
-        this.isQuit = false;
     }
 
-    public Image getStartScreenImage() { return startScreenImage; }
-
-    public boolean isInStartScreen() { return isInStartScreen; }
-    public boolean isInMapPickingScreen() { return isInMapPickingScreen; }
-    public boolean isQuit() { return isQuit; }
-
-    public void setInStartScreen(boolean inStartScreen) { isInStartScreen = inStartScreen; }
+    public VBox getVBox() { return vBox; }
 
     public void handleEvent() {
-        startButton.setOnMousePressed(mouseEvent -> isInStartScreen = false);
+        startButton.setOnMousePressed(mouseEvent -> {
+            startScreen.getStartScreenPane().getChildren().remove(vBox);
+            startScreen.getStartScreenPane().getChildren().add(startScreen.getMapPickingScreen().getHBox());
+
+            startScreen.setInWelcomeScreen(false);
+            startScreen.setInMapPickingScreen(true);
+        });
+
 //        loadButton.setOnMousePressed(mouseEvent -> {
 //            //isInStartScreen = false;
 //            isInMapPickingScreen = true;
 //        });
-        quitButton.setOnMousePressed(mouseEvent -> isQuit = true);
-    }
 
-    public void removeAll(Pane pane) {
-        pane.getChildren().removeAll(vBox);
+        quitButton.setOnMousePressed(mouseEvent -> startScreen.setQuit(true));
     }
 }
 
-class MapPickerScreen {
+class MapPickingScreen {
     private ImageView map1;
     private ImageView map2;
     private Button map1PickingButton;
     private Button map2PickingButton;
     private HBox hBox;
-    private Pane pane;
 
-    public MapPickerScreen(Pane pane) throws IOException {
-        this.pane = pane;
+    private boolean pickedMap1;
+    private boolean pickedMap2;
+
+    private StartScreen startScreen;
+
+    public MapPickingScreen(StartScreen startScreen) throws IOException {
+        this.startScreen = startScreen;
 
         this.hBox = new HBox(200);
 
@@ -104,6 +154,33 @@ class MapPickerScreen {
         this.hBox.getChildren().addAll(map1PickingButton, map2PickingButton);
         this.hBox.setAlignment(Pos.CENTER);
 
-        pane.getChildren().add(hBox);
+        this.pickedMap1 = false;
+        this.pickedMap2 = false;
+    }
+
+    public HBox getHBox() { return hBox; }
+
+    public void setPickedMap1(boolean pickedMap1) { this.pickedMap1 = pickedMap1; }
+    public void setPickedMap2(boolean pickedMap2) { this.pickedMap2 = pickedMap2; }
+
+    public boolean isPickedMap1() { return pickedMap1; }
+    public boolean isPickedMap2() { return pickedMap2; }
+
+    public void handleEvent() {
+        map1PickingButton.setOnMousePressed(mouseEvent -> {
+            pickedMap1 = true;
+            pickedMap2 = false;
+
+            startScreen.setInMapPickingScreen(false);
+            startScreen.setInStartScreen(false);
+        });
+
+        map2PickingButton.setOnMousePressed(mouseEvent -> {
+            pickedMap2 = true;
+            pickedMap1 = false;
+
+            startScreen.setInMapPickingScreen(false);
+            startScreen.setInStartScreen(false);
+        });
     }
 }
