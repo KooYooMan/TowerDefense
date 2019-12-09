@@ -161,6 +161,20 @@ public final class GameDrawer {
 	public StageLoader getStageLoader() { return stageLoader; }
 	public GraphicsContext getGraphicsContext() { return graphicsContext; }
 
+	public int getCurrentMap() { return stageLoader.getCurrentMap(); }
+
 	public void setStageLoader(StageLoader stageLoader) { this.stageLoader = stageLoader; }
 	public void setStageDrawer(StageDrawer stageDrawer) { this.stageDrawer = stageDrawer; }
+
+	public void setMap(int i) {
+		try {
+			this.stageLoader = StageLoader.loadStage(i);
+
+			if (stageLoader != null) {
+				this.stageDrawer = new StageDrawer(this.graphicsContext, this.stageLoader);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

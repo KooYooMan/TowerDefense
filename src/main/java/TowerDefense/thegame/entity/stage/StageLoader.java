@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class StageLoader {
+    private int currentMap = -1;
     private int[][] layout = new int[(int) Config.TILE_VERTICAL][(int) Config.TILE_HORIZONTAL];
     private Image background;
 
@@ -15,7 +16,7 @@ public class StageLoader {
         this.background = null;
     }
 
-    public StageLoader(String layoutFilePath, String mapFilePath) throws IOException {
+    private StageLoader(String layoutFilePath, String mapFilePath, int currentMap) throws IOException {
         Scanner scan = new Scanner(new FileInputStream(layoutFilePath));
 
         for (int i = 0; i < Config.TILE_VERTICAL; ++i) {
@@ -28,8 +29,20 @@ public class StageLoader {
         scan.close();
 
         this.background = new Image(new FileInputStream(mapFilePath));
+
+        this.currentMap = currentMap;
     }
 
+    public static StageLoader loadStage(int i) throws IOException {
+        if (i == 1) {
+            return new StageLoader("resources/map/layout/Map1.txt", "resources/map/image/Map1.png", 1);
+        } else if (i == 2) {
+            return new StageLoader("resources/map/layout/Map2.txt", "resources/map/image/Map2.png", 2);
+        }
+        return null;
+    }
+
+    public int getCurrentMap() { return currentMap; }
     public int[][] getLayout() { return layout; }
     public Image getBackground() { return background; }
 
@@ -47,4 +60,6 @@ public class StageLoader {
             }
         }
     }
+
+
 }
