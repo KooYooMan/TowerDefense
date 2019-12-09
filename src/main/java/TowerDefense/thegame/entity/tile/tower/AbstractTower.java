@@ -39,7 +39,7 @@ public abstract class AbstractTower extends AbstractEntity implements Upgradable
         }
         return abstractTowerString;
     }
-    void setInfo(double range, long speed, long tick, int level, double scale, double upgradedScale, long cost, long upgradedCost) {
+    public void setInfo(double range, long speed, long tick, int level, double scale, double upgradedScale, long cost, long upgradedCost) {
         this.range = range;
         this.speed = speed;
         this.tick = tick;

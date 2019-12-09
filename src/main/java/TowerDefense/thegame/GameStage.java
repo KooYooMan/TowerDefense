@@ -1,11 +1,18 @@
 package TowerDefense.thegame;
 
 import TowerDefense.thegame.entity.GameEntity;
+import TowerDefense.thegame.entity.bullet.BurningBullet;
+import TowerDefense.thegame.entity.bullet.FrozenBullet;
+import TowerDefense.thegame.entity.bullet.NormalBullet;
 import TowerDefense.thegame.entity.enemy.*;
 import TowerDefense.thegame.entity.enemy.path.Path;
+import TowerDefense.thegame.entity.gun.AbstractGun;
 import TowerDefense.thegame.entity.tile.Target;
 import TowerDefense.thegame.entity.tile.spawner.*;
 import TowerDefense.thegame.entity.tile.tower.AbstractTower;
+import TowerDefense.thegame.entity.tile.tower.MachineGunTower;
+import TowerDefense.thegame.entity.tile.tower.NormalTower;
+import TowerDefense.thegame.entity.tile.tower.SniperTower;
 import TowerDefense.thegame.entity.tile.wave.Wave;
 import TowerDefense.utilities.Pair;
 
@@ -221,10 +228,49 @@ public final class GameStage {
                 enemy.setBuff(damage, damageInterval, time, speedDown, time2);
                 entities.add(enemy);
             } else if (line.equals("NormalTower") || line.equals("SniperTower") || line.equals("MachineGunTower")) {
+                //double range, long speed, long tick, int level, double scale, double upgradedScale, long cost, long upgradedCost
                 String towerInfoLine = sc.nextLine();
-                double posX;
-                double posY;
-
+                String[] towerSplits = towerInfoLine.split(" ");
+                double posX = Double.parseDouble(towerSplits[0]);
+                double posY = Double.parseDouble(towerSplits[1]);
+                double range = Double.parseDouble(towerSplits[2]);
+                long speed = Long.parseLong(towerSplits[3]);
+                long tick = Long.parseLong(towerSplits[4]);
+                int level = Integer.parseInt(towerSplits[5]);
+                double scale = Double.parseDouble(towerSplits[6]);
+                double upgradedScale = Double.parseDouble(towerSplits[7]);
+                long cost = Long.parseLong(towerSplits[8]);
+                long upgradedCost = Long.parseLong(towerSplits[9]);
+                int numberBullet = Integer.parseInt(towerSplits[10]);
+                AbstractTower tower;
+                if (line.equals("NormalTower")) {
+                    tower = new NormalTower(posX, posY);
+                } else if (line.equals("SniperTower")) {
+                    tower = new SniperTower(posX, posY);
+                } else if (line.equals("MachineGunTower")) {
+                    tower = new MachineGunTower(posX, posY);
+                } else {
+                    System.out.printf("Not found\n");
+                    continue;
+                }
+                tower.setInfo(range, speed, tick, level, scale, upgradedScale, cost, upgradedCost);
+                for (int i = 0; i < numberBullet; i++) {
+                    String bulletClass = sc.nextLine();
+                    System.out.printf("bulletClass = %s\n", bulletClass);
+                    if (bulletClass.equals(NormalBullet.class.toString())) {
+                        tower.addBullet(NormalBullet.class);
+                    } else if (bulletClass.equals(FrozenBullet.class.toString())) {
+                        tower.addBullet(FrozenBullet.class);
+                    } else if (bulletClass.equals(BurningBullet.class.toString())) {
+                        tower.addBullet(BurningBullet.class);
+                    } else {
+                        System.out.println("Not found");
+                        continue;
+                    }
+                }
+                AbstractGun gun = tower.getGun();
+                entities.add(tower);
+                entities.add(gun);
             }
         }
     }
