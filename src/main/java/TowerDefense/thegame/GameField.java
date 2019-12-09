@@ -11,6 +11,7 @@ import java.util.*;
 public final class GameField {
     private List<GameEntity> entities;
     private List<GameEntity> spawnEntities = new ArrayList<>();
+    private List<GameEntity> destroyedEntities = new ArrayList<>();
     private final double width;
     private final double height;
     private GameWave gameWave;
@@ -50,6 +51,15 @@ public final class GameField {
     }
 
     public final void handle() {
+        //4.Destroy entities
+        entities.removeAll(destroyedEntities);
+
+        //5.Destroy out-map entities
+        entities.removeIf(entity -> !entity.isBeingOverlapped(0, 0, width, height));
+
+        //6. Spawn Entity
+        entities.addAll(spawnEntities);
+        spawnEntities.clear();
 
         //1.Update UpdatableEntity
         for (final GameEntity entity : entities) {
@@ -70,7 +80,6 @@ public final class GameField {
             }
         }
         //3.Update Destroyable Entity
-        final List<GameEntity> destroyedEntities = new ArrayList<>();
         for (final GameEntity entity : entities) {
             if (entity instanceof DestroyableEntity && ((DestroyableEntity) entity).isDestroyed()) {
                 if (entity instanceof DestroyListener) ((DestroyListener) entity).onDestroy(this);
@@ -78,15 +87,6 @@ public final class GameField {
             }
         }
 
-        //4.Destroy entities
-        entities.removeAll(destroyedEntities);
-
-        //5.Destroy out-map entities
-        entities.removeIf(entity -> !entity.isBeingOverlapped(0, 0, width, height));
-
-        //6. Spawn Entity
-        entities.addAll(spawnEntities);
-        spawnEntities.clear();
     }
 
     public GameStage getGameStage() { return gameStage; }

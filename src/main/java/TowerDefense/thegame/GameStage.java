@@ -101,7 +101,6 @@ public final class GameStage {
         enemyPath[0].addInstruction(Pair.immutableOf(10.0 * Config.TILE_SIZE, 2));
     }
     public GameStage(String filePath) {
-        filePath = Config.SAVE_FOLDER + filePath;
         File file = new File(filePath);
         Scanner sc = null;
         try {
@@ -273,6 +272,7 @@ public final class GameStage {
                 entities.add(gun);
             }
         }
+        sc.close();
     }
     public GameWave getGameWave() { return gameWave; }
     public List<GameEntity> getEntities() {

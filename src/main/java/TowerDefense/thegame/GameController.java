@@ -7,6 +7,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.stage.WindowEvent;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.Buffer;
+
 public class GameController extends AnimationTimer {
     private final GraphicsContext graphicsContext;
     private GameStage gameStage;
@@ -19,8 +24,8 @@ public class GameController extends AnimationTimer {
 
     public GameController(GraphicsContext graphicsContext, Pane gamePane) {
         this.graphicsContext = graphicsContext;
-        //this.gameStage = new GameStage();
-        this.gameStage = new GameStage("save1.txt");
+        this.gameStage = new GameStage();
+        //this.gameStage = new GameStage("save1.txt");
         this.gameField = new GameField(gameStage);
         this.gameDrawer = new GameDrawer(graphicsContext, gameField);
         this.gameWave = this.gameField.getGameWave();
@@ -28,7 +33,17 @@ public class GameController extends AnimationTimer {
         pause = false;
         autoplay = false;
     }
+    public GameController(GraphicsContext graphicsContext, Pane gamePane, String filePath) {
+        this.graphicsContext = graphicsContext;
+        this.gameStage = new GameStage(filePath);
+        this.gameField = new GameField(gameStage);
+        this.gameDrawer = new GameDrawer(graphicsContext, gameField);
+        this.gameWave = this.gameField.getGameWave();
+        this.gamePane = gamePane;
+        pause = false;
+        autoplay = false;
 
+    }
     final void closeRequestHandler(WindowEvent windowEvent) {
         stop();
         Platform.exit();
@@ -62,9 +77,20 @@ public class GameController extends AnimationTimer {
         autoplay = !autoplay;
 
     }
-    void save() {
+    void save(String filePath) {
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter(new FileWriter(filePath));
+            writer.write(toString());
 
-
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setPause(boolean pause) {
