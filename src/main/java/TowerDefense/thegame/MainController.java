@@ -36,6 +36,9 @@ public class MainController extends AnimationTimer {
         this.buttonHandler.handleEventSellingTower(this.shopController.getShopHandler().getSellingTowerButton());
         this.buttonHandler.handleEventUpgradingTower(this.shopController.getShopHandler().getUpgradingTowerButton());
 
+        this.buttonHandler.handleEnablingAutoplayEvent(this.shopController.getShopHandler().getEnableAutoButton());
+        this.buttonHandler.handleDisablingAutoplayEvent(this.shopController.getShopHandler().getDisableAutoButton());
+
         this.buttonHandler.handlePauseEvent(this.shopController.getShopHandler().getPauseButton());
         this.buttonHandler.handleResumeEvent(this.shopController.getShopHandler().getResumeButton());
     }

@@ -56,6 +56,7 @@ public class GameController extends AnimationTimer {
     public void setPause(boolean pause) {
         this.pause = pause;
     }
+    public void setAutoplay(boolean autoplay) { this.autoplay = autoplay; }
 
     public GameStage getGameStage() { return gameStage; }
     public Pane getGamePane() { return gamePane; }

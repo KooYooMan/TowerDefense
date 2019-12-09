@@ -16,6 +16,10 @@ import java.util.List;
 public class ShopHandler {
     private ButtonContainerDrawer buttonContainerDrawer;
 
+    private HBox autoplayHBox = new HBox();
+    private Button enableAutoButton;
+    private Button disableAutoButton;
+
     private HBox utilitiesHBox = new HBox();
     private Button pauseButton;
     private Button resumeButton;
@@ -23,24 +27,36 @@ public class ShopHandler {
     public ShopHandler(Pane pane) throws IOException {
         this.buttonContainerDrawer = new ButtonContainerDrawer(pane);
 
+        this.enableAutoButton = new Button("", new ImageView(new Image(
+                new FileInputStream("resources/icon/ai.png")
+        )));
+        this.disableAutoButton = new Button("", new ImageView(new Image(
+                new FileInputStream("resources/icon/noai.png")
+        )));
+        this.autoplayHBox.setSpacing(24);
+        this.autoplayHBox.setLayoutY(496);
+        this.autoplayHBox.getChildren().addAll(enableAutoButton, disableAutoButton);
+
         this.pauseButton = new Button("", new ImageView(new Image(
                 new FileInputStream("resources/icon/pause.png")
         )));
         this.resumeButton = new Button("", new ImageView(new Image(
                 new FileInputStream("resources/icon/resume.png")
         )));
-
         this.utilitiesHBox.setSpacing(24);
         this.utilitiesHBox.setLayoutY(582);
         this.utilitiesHBox.getChildren().addAll(pauseButton, resumeButton);
 
-        pane.getChildren().add(utilitiesHBox);
+        pane.getChildren().addAll(autoplayHBox, utilitiesHBox);
     }
 
     public List<TowerButtonDrawer> getTowerButtonDrawerList() { return buttonContainerDrawer.getTowerButtonDrawerList(); }
     public List<BulletButtonDrawer> getBulletButtonDrawerList() { return buttonContainerDrawer.getBulletButtonDrawerList(); }
     public Button getSellingTowerButton() { return buttonContainerDrawer.getSellingTowerButton(); }
     public Button getUpgradingTowerButton() { return buttonContainerDrawer.getUpgradingTowerButton(); }
+
+    public Button getEnableAutoButton() { return enableAutoButton; }
+    public Button getDisableAutoButton() { return disableAutoButton; }
 
     public Button getPauseButton() { return pauseButton; }
     public Button getResumeButton() { return resumeButton; }
