@@ -11,15 +11,18 @@ public class MainController extends AnimationTimer {
     //private Pane allPane;
     private Scene scene;
     private StartScreenController startScreenController;
+    private ClosingScreenController closingScreenController;
     private GameController gameController;
     private ShopController shopController;
     private ButtonHandler buttonHandler;
 
     public MainController(Scene scene, StartScreenController startScreenController,
+                          ClosingScreenController closingScreenController,
                           GameController gameController, ShopController shopController) {
         //this.allPane = allPane;
         this.scene = scene;
         this.startScreenController = startScreenController;
+        this.closingScreenController = closingScreenController;
         this.gameController = gameController;
         this.shopController = shopController;
         this.buttonHandler = new ButtonHandler(gameController, gameController.getGameStage(),
@@ -35,6 +38,9 @@ public class MainController extends AnimationTimer {
 
         this.buttonHandler.handleEventSellingTower(this.shopController.getShopHandler().getSellingTowerButton());
         this.buttonHandler.handleEventUpgradingTower(this.shopController.getShopHandler().getUpgradingTowerButton());
+
+        this.buttonHandler.handleEnablingAutoplayEvent(this.shopController.getShopHandler().getEnableAutoButton());
+        this.buttonHandler.handleDisablingAutoplayEvent(this.shopController.getShopHandler().getDisableAutoButton());
 
         this.buttonHandler.handlePauseEvent(this.shopController.getShopHandler().getPauseButton());
         this.buttonHandler.handleResumeEvent(this.shopController.getShopHandler().getResumeButton());
@@ -62,10 +68,16 @@ public class MainController extends AnimationTimer {
 
                 scene.setRoot(new HBox(gameController.getGamePane(), shopController.getShopPane()));
 
-                if (!gameController.isPause()) {
-                    gameController.handle(l);
+                if (!gameController.isGameOver()) {
+                    if (!gameController.isPause()) {
+                        gameController.handle(l);
+                    }
+                    shopController.handle(l);
+                } else {
+                    closingScreenController.getClosingScreen().setInClosingScreen(true);
+                    scene.setRoot(closingScreenController.getPane());
+                    closingScreenController.handle(l);
                 }
-                shopController.handle(l);
             }
         } else {
             this.stop();

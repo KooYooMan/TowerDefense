@@ -25,6 +25,7 @@ import java.util.Scanner;
 public final class GameStage {
     private final long width;
     private final long height;
+    private final Target target;
     private final List<GameEntity> entities;
     private final GameWave gameWave = new GameWave();
     private long money;
@@ -59,6 +60,7 @@ public final class GameStage {
     public GameStage(long width, long height, List<GameEntity> entities) {
         this.width = width;
         this.height = height;
+        this.target = null;
         this.entities = List.copyOf(entities);
     }
     // for testing
@@ -81,7 +83,8 @@ public final class GameStage {
         gameWave.addWave(wave);
         gameWave.addWave(wave1);
 
-        this.entities.add(new Target(0 * Config.TILE_SIZE, 8 * Config.TILE_SIZE));
+        this.target = new Target(0 * Config.TILE_SIZE, 8 * Config.TILE_SIZE);
+        this.entities.add(this.target);
         this.entities.add(gameWave);
         //magic.addBullet(HighDamageBullet.class); magic.addBullet(BurningBullet.class);
         //magic.addBullet(FrozenBullet.class);
@@ -279,6 +282,8 @@ public final class GameStage {
         }
         sc.close();
     }
+
+    public Target getTarget() { return target; }
     public GameWave getGameWave() { return gameWave; }
     public List<GameEntity> getEntities() {
         return entities;

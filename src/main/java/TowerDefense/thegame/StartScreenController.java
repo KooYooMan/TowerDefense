@@ -21,7 +21,8 @@ public class StartScreenController extends AnimationTimer {
     public void handle(long l) {
         if (startScreen.isInStartScreen()) {
             startScreenGraphicsContext.drawImage(startScreen.getStartScreenImage(), 0, 0,
-                    Config.SCREEN_WIDTH + Config.SHOP_WIDTH, Config.SCREEN_HEIGHT);
+                    Config.SCREEN_WIDTH + Config.SHOP_WIDTH, Config.SCREEN_HEIGHT
+            );
 
             startScreen.handleEvent();
         }

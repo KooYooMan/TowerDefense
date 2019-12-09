@@ -60,6 +60,9 @@ public class ButtonHandler {
             shopDrawer.setRenderingRemovingTowerFunction(false);
             shopDrawer.setRenderingUpgradingTowerFunction(false);
 
+            shopDrawer.setRenderingEnablingAutoplayFunction(false);
+            shopDrawer.setRenderingDisablingAutoplayFunction(false);
+
             shopDrawer.setRenderingPauseFunction(false);
             shopDrawer.setRenderingResumeFunction(false);
 
@@ -105,6 +108,9 @@ public class ButtonHandler {
             shopDrawer.setRenderingRemovingTowerFunction(false);
             shopDrawer.setRenderingUpgradingTowerFunction(false);
 
+            shopDrawer.setRenderingEnablingAutoplayFunction(false);
+            shopDrawer.setRenderingDisablingAutoplayFunction(false);
+
             shopDrawer.setRenderingPauseFunction(false);
             shopDrawer.setRenderingResumeFunction(false);
 
@@ -136,6 +142,9 @@ public class ButtonHandler {
         });
 
         button.setOnMouseEntered(mouseEnteredEvent -> {
+            shopDrawer.setRenderingEnablingAutoplayFunction(false);
+            shopDrawer.setRenderingDisablingAutoplayFunction(false);
+
             shopDrawer.setRenderingPauseFunction(false);
             shopDrawer.setRenderingResumeFunction(false);
 
@@ -159,7 +168,7 @@ public class ButtonHandler {
 
                 if (gameDrawer.getStageLoader().getCurrentLayout(row, column) == 420) {
                     AbstractTower tower = (AbstractTower) gameStage.getGameEntity(row, column);
-                    if (tower != null) {
+                    if (tower != null && gameStage.getMoney() >= tower.getUpgradedCost()) {
                         tower.upgrade();
                         gameStage.reduceMoney(tower.getUpgradedCost());
                     }
@@ -170,6 +179,9 @@ public class ButtonHandler {
         });
 
         button.setOnMouseEntered(mouseEnteredEvent -> {
+            shopDrawer.setRenderingEnablingAutoplayFunction(false);
+            shopDrawer.setRenderingDisablingAutoplayFunction(false);
+
             shopDrawer.setRenderingPauseFunction(false);
             shopDrawer.setRenderingResumeFunction(false);
 
@@ -181,6 +193,56 @@ public class ButtonHandler {
 
             shopDrawer.setRenderingRemovingTowerFunction(false);
             shopDrawer.setRenderingUpgradingTowerFunction(true);
+        });
+    }
+
+    public void handleEnablingAutoplayEvent(Button button) {
+        button.setOnMousePressed(mouseEvent -> {
+            if (!gameController.isAutoplay()) {
+                gameController.setAutoplay(true);
+            }
+        });
+
+        button.setOnMouseEntered(mouseEnteredEvent -> {
+            shopDrawer.setTowerClass(null);
+            shopDrawer.setRenderingTowerStats(false);
+
+            shopDrawer.setBulletClass(null);
+            shopDrawer.setRenderingBulletStats(false);
+
+            shopDrawer.setRenderingRemovingTowerFunction(false);
+            shopDrawer.setRenderingUpgradingTowerFunction(false);
+
+            shopDrawer.setRenderingPauseFunction(false);
+            shopDrawer.setRenderingResumeFunction(false);
+
+            shopDrawer.setRenderingDisablingAutoplayFunction(false);
+            shopDrawer.setRenderingEnablingAutoplayFunction(true);
+        });
+    }
+
+    public void handleDisablingAutoplayEvent(Button button) {
+        button.setOnMousePressed(mouseEvent -> {
+            if (gameController.isAutoplay()) {
+                gameController.setAutoplay(false);
+            }
+        });
+
+        button.setOnMouseEntered(mouseEnteredEvent -> {
+            shopDrawer.setTowerClass(null);
+            shopDrawer.setRenderingTowerStats(false);
+
+            shopDrawer.setBulletClass(null);
+            shopDrawer.setRenderingBulletStats(false);
+
+            shopDrawer.setRenderingRemovingTowerFunction(false);
+            shopDrawer.setRenderingUpgradingTowerFunction(false);
+
+            shopDrawer.setRenderingPauseFunction(false);
+            shopDrawer.setRenderingResumeFunction(false);
+
+            shopDrawer.setRenderingEnablingAutoplayFunction(false);
+            shopDrawer.setRenderingDisablingAutoplayFunction(true);
         });
     }
 
@@ -200,6 +262,9 @@ public class ButtonHandler {
 
             shopDrawer.setRenderingRemovingTowerFunction(false);
             shopDrawer.setRenderingUpgradingTowerFunction(false);
+
+            shopDrawer.setRenderingEnablingAutoplayFunction(false);
+            shopDrawer.setRenderingDisablingAutoplayFunction(false);
 
             shopDrawer.setRenderingResumeFunction(false);
             shopDrawer.setRenderingPauseFunction(true);
@@ -222,6 +287,9 @@ public class ButtonHandler {
 
             shopDrawer.setRenderingRemovingTowerFunction(false);
             shopDrawer.setRenderingUpgradingTowerFunction(false);
+
+            shopDrawer.setRenderingEnablingAutoplayFunction(false);
+            shopDrawer.setRenderingDisablingAutoplayFunction(false);
 
             shopDrawer.setRenderingPauseFunction(false);
             shopDrawer.setRenderingResumeFunction(true);

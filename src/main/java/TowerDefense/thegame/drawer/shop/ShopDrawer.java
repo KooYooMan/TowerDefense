@@ -17,6 +17,8 @@ public final class ShopDrawer {
     private boolean isRenderingBulletStats;
     private boolean isRenderingRemovingTowerFunction;
     private boolean isRenderingUpgradingTowerFunction;
+    private boolean isRenderingEnablingAutoplayFunction;
+    private boolean isRenderingDisablingAutoplayFunction;
     private boolean isRenderingPauseFunction;
     private boolean isRenderingResumeFunction;
     private Class<? extends AbstractTower> towerClass;
@@ -47,6 +49,12 @@ public final class ShopDrawer {
     public void setRenderingUpgradingTowerFunction(boolean renderingUpgradingTowerFunction) {
         isRenderingUpgradingTowerFunction = renderingUpgradingTowerFunction;
     }
+    public void setRenderingEnablingAutoplayFunction(boolean renderingEnablingAutoplayFunction) {
+        isRenderingEnablingAutoplayFunction = renderingEnablingAutoplayFunction;
+    }
+    public void setRenderingDisablingAutoplayFunction(boolean renderingDisablingAutoplayFunction) {
+        isRenderingDisablingAutoplayFunction = renderingDisablingAutoplayFunction;
+    }
     public void setRenderingPauseFunction(boolean renderingPauseFunction) {
         isRenderingPauseFunction = renderingPauseFunction;
     }
@@ -74,6 +82,14 @@ public final class ShopDrawer {
 
         if (isRenderingUpgradingTowerFunction) {
             renderUpgradingTowerFunction();
+        }
+
+        if (isRenderingEnablingAutoplayFunction) {
+            renderEnablingAutoplayFunction();
+        }
+
+        if (isRenderingDisablingAutoplayFunction) {
+            renderDisablingAutoplayFunction();
         }
 
         if (isRenderingPauseFunction) {
@@ -136,11 +152,19 @@ public final class ShopDrawer {
     }
 
     public final void renderRemovingTowerFunction() {
-        graphicsContext.fillText("Removes a tower", 5, 260);
+        graphicsContext.fillText("Remove a tower", 5, 260);
     }
 
     public final void renderUpgradingTowerFunction() {
-        graphicsContext.fillText("Upgrades a tower", 5, 260);
+        graphicsContext.fillText("Upgrade a tower", 5, 260);
+    }
+
+    public final void renderEnablingAutoplayFunction() {
+        graphicsContext.fillText("Enable Autoplay", 5, 260);
+    }
+
+    public final void renderDisablingAutoplayFunction() {
+        graphicsContext.fillText("Disable Autoplay", 5, 260);
     }
 
     public final void renderPauseFunction() {

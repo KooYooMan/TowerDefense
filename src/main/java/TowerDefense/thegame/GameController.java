@@ -22,6 +22,8 @@ public class GameController extends AnimationTimer {
     boolean pause;
     boolean autoplay;
 
+    private boolean isGameOver;
+
     public GameController(GraphicsContext graphicsContext, Pane gamePane) {
         this.graphicsContext = graphicsContext;
         String loadFile = Config.MAP_LAYOUT + 2 + ".txt";
@@ -68,46 +70,27 @@ public class GameController extends AnimationTimer {
 
     @Override
     public void handle(long l) {
-        gameField.handle();
-        gameDrawer.render();
+        if (!isGameOver) {
+            gameField.handle();
+            gameDrawer.render();
 
-        //System.out.println();
-        System.out.printf("%b %b %b\n", isPlaying(), isLose(), isWin());
-        //System.out.println();
-        //save("save/save1.txt");
-    }
-
-    public void start() {
-        super.start();
+            if (gameStage.getTarget().isDestroyed()) {
+                isGameOver = true;
+            }
+        }
     }
 
-    public boolean isPause() {
-        return pause;
-    }
-    public boolean isAutoplay() {
-        return autoplay;
-    }
-    void changePause() {
-        pause = !pause;
-    }
-    void changeAutoplay() {
-        autoplay = !autoplay;
-    }
-    public boolean isLose() {
-        return gameField.isLose();
-    }
-    public boolean isWin() {
-        return gameField.isWin();
-    }
-    public boolean isPlaying() {
-        return gameField.isPlaying();
-    }
+    public void start() { super.start(); }
+
+    public boolean isPause() { return pause; }
+    public boolean isAutoplay() { return autoplay; }
+    public boolean isGameOver() { return isGameOver; }
+
     void save(String filePath) {
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(filePath));
             writer.write(toString());
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -121,6 +104,7 @@ public class GameController extends AnimationTimer {
     public void setPause(boolean pause) {
         this.pause = pause;
     }
+    public void setAutoplay(boolean autoplay) { this.autoplay = autoplay; }
 
     public GameStage getGameStage() { return gameStage; }
     public Pane getGamePane() { return gamePane; }
