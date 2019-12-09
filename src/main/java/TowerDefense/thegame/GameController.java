@@ -72,7 +72,7 @@ public class GameController extends AnimationTimer {
         gameDrawer.render();
 
         //System.out.println();
-        System.out.printf("%b %b %b\n", gameField.isPlaying(), gameField.isLose(), gameField.isWin());
+        System.out.printf("%b %b %b\n", isPlaying(), isLose(), isWin());
         //System.out.println();
         //save("save/save1.txt");
     }
@@ -92,7 +92,15 @@ public class GameController extends AnimationTimer {
     }
     void changeAutoplay() {
         autoplay = !autoplay;
-
+    }
+    public boolean isLose() {
+        return gameField.isLose();
+    }
+    public boolean isWin() {
+        return gameField.isWin();
+    }
+    public boolean isPlaying() {
+        return gameField.isPlaying();
     }
     void save(String filePath) {
         BufferedWriter writer = null;
