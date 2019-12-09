@@ -12,6 +12,8 @@ public class StageLoader {
     private int[][] layout = new int[(int) Config.TILE_VERTICAL][(int) Config.TILE_HORIZONTAL];
     private Image background;
 
+    
+
     private StageLoader() {
         this.background = null;
     }
