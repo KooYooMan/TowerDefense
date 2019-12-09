@@ -2,6 +2,8 @@ package TowerDefense.thegame;
 
 
 import TowerDefense.thegame.entity.*;
+import TowerDefense.thegame.entity.enemy.AbstractEnemy;
+import TowerDefense.thegame.entity.tile.Target;
 
 import java.util.*;
 
@@ -16,7 +18,42 @@ public final class GameField {
     private final double height;
     private GameWave gameWave;
     private GameStage gameStage;
-
+    int state = 0;
+    private void checkWin() {
+        for (GameEntity e : entities) {
+            if (e instanceof AbstractEnemy) {
+                return;
+            }
+        }
+        for (GameEntity e : spawnEntities) {
+            if (e instanceof AbstractEnemy) {
+                return;
+            }
+        }
+        if (!gameWave.isDestroyed()) {
+            return;
+        }
+        if (state == 0) {
+            state = 1;
+        }
+    }
+    private void checkLose() {
+        for (GameEntity e : destroyedEntities) {
+            if (e instanceof Target) {
+                if (state == 0) state = 2;
+                return;
+            }
+        }
+    }
+    public boolean isPlaying() {
+        return state == 0;
+    }
+    public boolean isWin() {
+        return state == 1;
+    }
+    public boolean isLose() {
+        return state == 2;
+    }
     @Override
     public String toString() {
         String gameFieldString = gameStage.toString();
@@ -86,7 +123,8 @@ public final class GameField {
                 destroyedEntities.add(entity);
             }
         }
-
+        checkLose();
+        checkWin();
     }
 
     public GameStage getGameStage() { return gameStage; }

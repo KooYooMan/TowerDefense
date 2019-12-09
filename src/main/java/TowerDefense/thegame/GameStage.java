@@ -108,6 +108,10 @@ public final class GameStage {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        String skipLine;
+        for (int i = 0; i < 1 + Config.TILE_HORIZONTAL; i++) {
+            skipLine = sc.nextLine();
+        }
         this.width = sc.nextLong();
         this.height = sc.nextLong();
         this.money = sc.nextLong();
@@ -115,14 +119,15 @@ public final class GameStage {
         int nPath = 0;
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
-            System.out.println(line);
+            System.out.printf("line = %s\n", line);
             if (line.equals("Path")) {
-                int pathSize = sc.nextInt();
+                int pathSize = Integer.parseInt(sc.nextLine());
                 System.out.println(pathSize);
                 enemyPath[nPath] = new Path();
                 for (int i = 0; i < pathSize; i++) {
-                    double len = sc.nextDouble();
-                    int dir = sc.nextInt();
+                    String[] insInfo = sc.nextLine().split(" ");
+                    double len = Double.parseDouble(insInfo[0]);
+                    int dir = Integer.parseInt(insInfo[1]);
                     System.out.printf("%f %d\n", len, dir);
                     enemyPath[nPath].addInstruction(Pair.immutableOf(len, dir));
                 }

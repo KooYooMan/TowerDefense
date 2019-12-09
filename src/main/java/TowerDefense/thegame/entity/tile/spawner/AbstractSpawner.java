@@ -20,8 +20,12 @@ public abstract class AbstractSpawner<E extends AbstractEnemy> extends AbstractT
     private long numOfSpawn;
     private Path path;
     private int idPath;
-    @Override
 
+    public long getNumOfSpawn() {
+        return numOfSpawn;
+    }
+
+    @Override
     public String toString() {
         String spawnerString = tickDown + " " + numOfSpawn + " " + idPath;
         return spawnerString;

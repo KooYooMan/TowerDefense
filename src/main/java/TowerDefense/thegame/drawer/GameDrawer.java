@@ -99,10 +99,15 @@ public final class GameDrawer {
 	private MoneyDrawer moneyDrawer;
 	private WaveDrawer waveDrawer;
 
+	@Override
+	public String toString() {
+		return stageLoader.toString();
+	}
+
 	public GameDrawer(GraphicsContext graphicsContext, GameField gameField) {
 		this.graphicsContext = graphicsContext;
 		try {
-			this.graphicsContext.setFont(Font.loadFont(new FileInputStream("target/classes/font/pkmnfl.ttf"), 24));
+			this.graphicsContext.setFont(Font.loadFont(new FileInputStream("resources/asset/font/pkmnfl.ttf"), 24));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -119,7 +124,26 @@ public final class GameDrawer {
 
 		this.waveDrawer = new WaveDrawer(graphicsContext);
 	}
+	public GameDrawer(GraphicsContext graphicsContext, GameField gameField, String filePath) {
+		this.graphicsContext = graphicsContext;
+		try {
+			this.graphicsContext.setFont(Font.loadFont(new FileInputStream("resources/asset/font/pkmnfl.ttf"), 24));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
+		this.gameField = gameField;
+
+		try {
+			this.stageLoader = new StageLoader(filePath);
+			this.stageDrawer = new StageDrawer(graphicsContext, stageLoader);
+			this.moneyDrawer = new MoneyDrawer(graphicsContext);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		this.waveDrawer = new WaveDrawer(graphicsContext);
+	}
 	private static int entityDrawingOrderComparator(GameEntity entityA, GameEntity entityB) {
 		final int compareOrder = Integer.compare(
 				ENTITY_DRAWING_ORDER.indexOf(entityA.getClass()),

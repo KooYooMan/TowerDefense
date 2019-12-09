@@ -55,6 +55,11 @@ public class Wave extends AbstractEntity implements UpdatableEntity, Destroyable
 
     @Override
     public boolean isDestroyed() {
+        long maxNumOfSpawn = 0;
+        for (int i = 0; i < spawnerList.size(); i++) {
+            maxNumOfSpawn = Math.max(maxNumOfSpawn, spawnerList.get(i).getNumOfSpawn());
+        }
+        if (maxNumOfSpawn == 0) return true;
         return timeToLive <= 0;
     }
 

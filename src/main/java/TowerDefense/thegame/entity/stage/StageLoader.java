@@ -4,6 +4,7 @@ import TowerDefense.thegame.Config;
 import javafx.scene.image.Image;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -12,15 +13,27 @@ public class StageLoader {
     private int[][] layout = new int[(int) Config.TILE_VERTICAL][(int) Config.TILE_HORIZONTAL];
     private Image background;
 
-    
+    @Override
+    public String toString() {
+        String stageString = currentMap + "\n";
+        for (int i = 0; i < Config.TILE_VERTICAL; i++) {
+            for (int j = 0; j < Config.TILE_HORIZONTAL; j++) {
+                if (j != Config.TILE_HORIZONTAL - 1)
+                    stageString += layout[i][j] + " ";
+
+            }
+            stageString += "\n";
+        }
+        return stageString;
+    }
 
     private StageLoader() {
         this.background = null;
     }
 
-    private StageLoader(String layoutFilePath, String mapFilePath, int currentMap) throws IOException {
+    private StageLoader(String layoutFilePath, int currentMap) throws IOException {
         Scanner scan = new Scanner(new FileInputStream(layoutFilePath));
-
+        int idMap = Integer.parseInt(scan.nextLine());
         for (int i = 0; i < Config.TILE_VERTICAL; ++i) {
             String[] entries = scan.nextLine().split("\\s+");
             for (int j = 0; j < entries.length; ++j) {
@@ -30,16 +43,28 @@ public class StageLoader {
 
         scan.close();
 
-        this.background = new Image(new FileInputStream(mapFilePath));
-
+        this.background = new Image(new FileInputStream(Config.MAP_IMAGE + idMap + ".png"));
         this.currentMap = currentMap;
     }
 
     public static StageLoader loadStage(int i) throws IOException {
-        return new StageLoader("resources/map/layout/Map" + i + ".txt",
-                "resources/map/image/Map" + i + ".png", i);
+        return new StageLoader(Config.MAP_LAYOUT + i + ".txt", i);
     }
+    public StageLoader(String filePath) throws FileNotFoundException {
+        Scanner scan = new Scanner(new FileInputStream(filePath));
+        int idMap = Integer.parseInt(scan.nextLine());
+        for (int i = 0; i < Config.TILE_VERTICAL; ++i) {
+            String[] entries = scan.nextLine().split("\\s+");
+            for (int j = 0; j < entries.length; ++j) {
+                this.layout[i][j] = Integer.parseInt(entries[j]);
+            }
+        }
 
+        scan.close();
+
+        this.background = new Image(new FileInputStream(Config.MAP_IMAGE + idMap + ".png"));
+        this.currentMap = idMap;
+    }
     public static StageLoader nullStage() {
         return new StageLoader();
     }

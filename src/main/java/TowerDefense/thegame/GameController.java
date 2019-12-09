@@ -24,10 +24,26 @@ public class GameController extends AnimationTimer {
 
     public GameController(GraphicsContext graphicsContext, Pane gamePane) {
         this.graphicsContext = graphicsContext;
-        this.gameStage = new GameStage();
-        //this.gameStage = new GameStage("save1.txt");
+        String loadFile = Config.MAP_LAYOUT + 2 + ".txt";
+        String savedFile = "save/save1.txt";
+        int DEBUG = 1;
+        if (DEBUG == 0) {
+            this.gameStage = new GameStage();
+        } else if (DEBUG == 1) {
+            //this.gameStage = new GameStage("save/save1.txt");
+            this.gameStage = new GameStage(loadFile);
+        } else if (DEBUG == 2) {
+            this.gameStage = new GameStage(savedFile);
+        }
         this.gameField = new GameField(gameStage);
-        this.gameDrawer = new GameDrawer(graphicsContext, gameField);
+        //this.gameDrawer = new GameDrawer(graphicsContext, gameField, "save/save3.txt");
+        if (DEBUG == 0) {
+            this.gameDrawer = new GameDrawer(graphicsContext, gameField);
+        } else if (DEBUG == 1) {
+            this.gameDrawer = new GameDrawer(graphicsContext, gameField, loadFile);
+        } else if (DEBUG == 2) {
+            this.gameDrawer = new GameDrawer(graphicsContext, gameField, savedFile);
+        }
         this.gameWave = this.gameField.getGameWave();
         this.gamePane = gamePane;
         pause = false;
@@ -37,7 +53,7 @@ public class GameController extends AnimationTimer {
         this.graphicsContext = graphicsContext;
         this.gameStage = new GameStage(filePath);
         this.gameField = new GameField(gameStage);
-        this.gameDrawer = new GameDrawer(graphicsContext, gameField);
+        this.gameDrawer = new GameDrawer(graphicsContext, gameField, filePath);
         this.gameWave = this.gameField.getGameWave();
         this.gamePane = gamePane;
         pause = false;
@@ -55,9 +71,10 @@ public class GameController extends AnimationTimer {
         gameField.handle();
         gameDrawer.render();
 
-        System.out.println();
-        System.out.println(toString());
-        System.out.println();
+        //System.out.println();
+        System.out.printf("%b %b %b\n", gameField.isPlaying(), gameField.isLose(), gameField.isWin());
+        //System.out.println();
+        //save("save/save1.txt");
     }
 
     public void start() {
@@ -103,6 +120,6 @@ public class GameController extends AnimationTimer {
 
     @Override
     public String toString() {
-        return gameField.toString();
+        return gameDrawer.toString() +  gameField.toString();
     }
 }

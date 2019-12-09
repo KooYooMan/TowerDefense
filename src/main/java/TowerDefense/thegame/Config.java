@@ -2,6 +2,8 @@ package TowerDefense.thegame;
 
 public final class Config {
 	private static final String path = "resources/asset";
+	public static final String MAP_IMAGE = "resources/map/image/Map";
+	public static final String MAP_LAYOUT = "resources/map/layout/Map";
 	public static final long TILE_SIZE = 64;
 
 	public static final long TILE_HORIZONTAL = 10;
@@ -29,7 +31,7 @@ public final class Config {
 	public static final double NORMAL_BULLET_WIDTH = 10;
 	public static final double NORMAL_BULLET_HEIGHT = 10;
 	public static final double NORMAL_BULLET_SPEED = 3;
-	public static final long NORMAL_BULLET_DAMAGE = 20;
+	public static final long NORMAL_BULLET_DAMAGE = 40;
 	public static final long NORMAL_BULLET_COST = 10;
 
 
@@ -112,27 +114,27 @@ public final class Config {
 
 
 	//region Enemy
-	public static final double NORMAL_ENEMY_SIZE = 0.4 * TILE_SIZE;
+	public static final double NORMAL_ENEMY_SIZE = 0.5 * TILE_SIZE;
 	public static final long NORMAL_ENEMY_HEALTH = 100;
-	public static final long NORMAL_ENEMY_ARMOR = 100;
-	public static final double NORMAL_ENEMY_SPEED = 0.3;
+	public static final long NORMAL_ENEMY_ARMOR = 5;
+	public static final double NORMAL_ENEMY_SPEED = 1.5;
 	public static final long NORMAL_ENEMY_REWARD = 1;
 
-	public static final double SMALLER_ENEMY_SIZE = 0.4 * TILE_SIZE;
+	public static final double SMALLER_ENEMY_SIZE = 0.3 * TILE_SIZE;
 	public static final long SMALLER_ENEMY_HEALTH = 50;
 	public static final long SMALLER_ENEMY_ARMOR = 0;
-	public static final double SMALLER_ENEMY_SPEED = 0.4;
+	public static final double SMALLER_ENEMY_SPEED = 3;
 	public static final long SMALLER_ENEMY_REWARD = 2;
 
 	public static final double TANKER_ENEMY_SIZE = 0.7 * TILE_SIZE;
 	public static final long TANKER_ENEMY_HEALTH = 300;
-	public static final long TANKER_ENEMY_ARMOR = 5;
-	public static final double TANKER_ENEMY_SPEED = 0.2;
+	public static final long TANKER_ENEMY_ARMOR = 20;
+	public static final double TANKER_ENEMY_SPEED = 0.7;
 	public static final long TANKER_ENEMY_REWARD = 3;
 
 	public static final double BOSS_ENEMY_SIZE = 1.0 * TILE_SIZE;
 	public static final long BOSS_ENEMY_HEALTH = 500;
-	public static final long BOSS_ENEMY_ARMOR = 8;
+	public static final long BOSS_ENEMY_ARMOR = 20;
 	public static final double BOSS_ENEMY_SPEED = 0.3;
 	public static final long BOSS_ENEMY_REWARD = 10;
 	//endregion
@@ -148,7 +150,7 @@ public final class Config {
 	public static final long SMALLER_INITDELAY = 10;
 
 	public static final long TANKER_SPAWNINTERVAL = 500;
-	public static final long TANKER_NUM_OF_SPAWN = 10;
+	public static final long TANKER_NUM_OF_SPAWN = 3;
 	public static final long TANKER_INITDELAY = 10;
 
 	public static final long BOSS_SPAWNINTERVAL = 100;
