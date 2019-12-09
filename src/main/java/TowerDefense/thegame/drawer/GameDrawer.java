@@ -36,8 +36,12 @@ import TowerDefense.thegame.entity.tile.tower.MachineGunTower;
 import TowerDefense.thegame.entity.tile.tower.NormalTower;
 import TowerDefense.thegame.entity.tile.tower.SniperTower;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -93,18 +97,27 @@ public final class GameDrawer {
 	private StageDrawer stageDrawer;
 	private StageLoader stageLoader;
 	private MoneyDrawer moneyDrawer;
+	private WaveDrawer waveDrawer;
 
 	public GameDrawer(GraphicsContext graphicsContext, GameField gameField) {
 		this.graphicsContext = graphicsContext;
+		try {
+			this.graphicsContext.setFont(Font.loadFont(new FileInputStream("target/classes/font/pkmnfl.ttf"), 24));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		this.gameField = gameField;
 
 		try {
-			this.stageLoader = new StageLoader();
+			this.stageLoader = StageLoader.nullStage();
 			this.stageDrawer = new StageDrawer(graphicsContext, stageLoader);
 			this.moneyDrawer = new MoneyDrawer(graphicsContext);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		this.waveDrawer = new WaveDrawer(graphicsContext);
 	}
 
 	private static int entityDrawingOrderComparator(GameEntity entityA, GameEntity entityB) {
@@ -157,12 +170,56 @@ public final class GameDrawer {
 		}
 
 		moneyDrawer.draw(gameField.getGameStage().getMoney());
+		waveDrawer.draw(gameField.getGameWave().getCurrentWaveID(), gameField.getGameWave().getNumberWave());
 	}
 
 	public StageDrawer getStageDrawer() { return stageDrawer; }
 	public StageLoader getStageLoader() { return stageLoader; }
 	public GraphicsContext getGraphicsContext() { return graphicsContext; }
 
+	public int getCurrentMap() { return stageLoader.getCurrentMap(); }
+
 	public void setStageLoader(StageLoader stageLoader) { this.stageLoader = stageLoader; }
 	public void setStageDrawer(StageDrawer stageDrawer) { this.stageDrawer = stageDrawer; }
+
+	public void setMap(int i) {
+		try {
+			this.stageLoader = StageLoader.loadStage(i);
+
+			if (stageLoader != null) {
+				this.stageDrawer = new StageDrawer(this.graphicsContext, this.stageLoader);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+class MoneyDrawer {
+	private Image image;
+	private GraphicsContext graphicsContext;
+
+	public MoneyDrawer(GraphicsContext graphicsContext) throws FileNotFoundException {
+		this.image = new Image(new FileInputStream("target/classes/icon/coin.png"));
+		this.graphicsContext = graphicsContext;
+	}
+
+	public void draw(long money) {
+		graphicsContext.drawImage(image, 5, 0, 24, 24);
+		graphicsContext.setFill(Color.BLACK);
+		graphicsContext.fillText(Long.toString(money), 37, 21);
+	}
+}
+
+class WaveDrawer {
+	private GraphicsContext graphicsContext;
+
+	public WaveDrawer(GraphicsContext graphicsContext) {
+		this.graphicsContext = graphicsContext;
+	}
+
+	public void draw(int currentWave, int waveNumber) {
+		graphicsContext.setFill(Color.BLACK);
+		graphicsContext.fillText("Wave: " + currentWave + "/" + waveNumber, 5, 48);
+	}
 }

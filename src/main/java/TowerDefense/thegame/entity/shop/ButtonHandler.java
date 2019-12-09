@@ -42,11 +42,14 @@ public class ButtonHandler {
 
                 if (gameDrawer.getStageLoader().getCurrentLayout(row, column) == 0) {
                     try {
-                        gameStage.addEntity(StageHandler.getEntityClass(button.getClass()).getDeclaredConstructor(double.class, double.class).newInstance(column * Config.TILE_SIZE, row * Config.TILE_SIZE));
+                        if (gameStage.addEntity(StageHandler.getEntityClass(button.getClass())
+                                .getDeclaredConstructor(double.class, double.class)
+                                .newInstance(column * Config.TILE_SIZE, row * Config.TILE_SIZE))) {
+                            gameDrawer.getStageLoader().setCurrentLayout(row, column, 420);
+                        }
                     } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                         e.printStackTrace();
                     }
-                    gameDrawer.getStageLoader().setCurrentLayout(row, column, 420);
                 }
 
                 gameDrawer.getStageDrawer().setPlacingTower(false);

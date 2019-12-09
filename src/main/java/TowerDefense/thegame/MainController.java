@@ -1,15 +1,11 @@
 package TowerDefense.thegame;
 
-import TowerDefense.thegame.drawer.stage.StageDrawer;
 import TowerDefense.thegame.entity.shop.ButtonHandler;
-import TowerDefense.thegame.entity.stage.StageLoader;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.stage.WindowEvent;
-
-import java.io.IOException;
 
 public class MainController extends AnimationTimer {
     //private Pane allPane;
@@ -57,30 +53,10 @@ public class MainController extends AnimationTimer {
                 startScreenController.handle(l);
             } else {
                 if (startScreenController.getStartScreen().getMapPickingScreen().isPickedMap1()) {
-                    try {
-                        gameController.getGameDrawer().setStageLoader(new StageLoader(
-                                "resources/map/layout/Map1.txt", "resources/map/image/Map1.png"
-                        ));
-                        gameController.getGameDrawer().setStageDrawer(new StageDrawer(
-                                gameController.getGameDrawer().getGraphicsContext(),
-                                gameController.getGameDrawer().getStageLoader()
-                        ));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    gameController.getGameDrawer().setMap(1);
                     startScreenController.getStartScreen().getMapPickingScreen().setPickedMap1(false);
                 } else if (startScreenController.getStartScreen().getMapPickingScreen().isPickedMap2()) {
-                    try {
-                        gameController.getGameDrawer().setStageLoader(new StageLoader(
-                                "resources/map/layout/Map2.txt", "resources/map/image/Map2.png"
-                        ));
-                        gameController.getGameDrawer().setStageDrawer(new StageDrawer(
-                                gameController.getGameDrawer().getGraphicsContext(),
-                                gameController.getGameDrawer().getStageLoader()
-                        ));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    gameController.getGameDrawer().setMap(2);
                     startScreenController.getStartScreen().getMapPickingScreen().setPickedMap2(false);
                 }
 

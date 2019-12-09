@@ -287,7 +287,7 @@ public final class GameStage {
         return height;
     }
 
-    public void addEntity(GameEntity entity) {
+    public boolean addEntity(GameEntity entity) {
         if (entity instanceof AbstractTower) {
             if (money >= ((AbstractTower) entity).getCost()) {
                 entities.add(entity);
@@ -297,8 +297,12 @@ public final class GameStage {
                 if (money <= 0L) {
                     money = 0L;
                 }
+
+                return true;
             }
+            return false;
         }
+        return false;
     }
 
     public void removeEntity(GameEntity entity) {
