@@ -1,6 +1,5 @@
 package TowerDefense.thegame;
 
-import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.AbstractEntity;
 import TowerDefense.thegame.entity.DestroyableEntity;
 import TowerDefense.thegame.entity.UpdatableEntity;
@@ -20,6 +19,7 @@ public class GameWave extends AbstractEntity implements UpdatableEntity, Destroy
     public int getCurrentWaveID() {
         return currentWaveID;
     }
+    public int getNumberWave() { return waveList.size(); }
     public void addWave(Wave wave) {
         waveList.add(wave);
     }

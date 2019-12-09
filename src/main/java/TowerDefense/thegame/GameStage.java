@@ -42,24 +42,11 @@ public final class GameStage {
         //wave1.addSpawner(new TankerSpawner(9 * Config.TILE_SIZE, 1.25 * Config.TILE_SIZE));
         wave1.addSpawner(new BossSpawner(9 * Config.TILE_SIZE, 1.0  * Config.TILE_SIZE));
 
-
-
-
         gameWave.addWave(wave);
         gameWave.addWave(wave1);
 
         this.entities.add(new Target(0 * Config.TILE_SIZE, 8 * Config.TILE_SIZE));
         this.entities.add(gameWave);
-        //magic.addBullet(HighDamageBullet.class); magic.addBullet(BurningBullet.class);
-        //magic.addBullet(FrozenBullet.class);
-
-//        this.entities.add(foo.getGun());
-//        this.entities.add(bar.getGun());
-//        for (GameEntity entity : this.entities) {
-//            System.out.printf("%s\n", entity.toString());
-//        }
-//        this.entities.add(foo.getGun());
-//        this.entities.add(bar.getGun());
     }
     public GameWave getGameWave() { return gameWave; }
     public List<GameEntity> getEntities() {
@@ -74,7 +61,7 @@ public final class GameStage {
         return height;
     }
 
-    public void addEntity(GameEntity entity) {
+    public boolean addEntity(GameEntity entity) {
         if (entity instanceof AbstractTower) {
             if (money >= ((AbstractTower) entity).getCost()) {
                 entities.add(entity);
@@ -84,8 +71,12 @@ public final class GameStage {
                 if (money <= 0L) {
                     money = 0L;
                 }
+
+                return true;
             }
+            return false;
         }
+        return false;
     }
 
     public void removeEntity(GameEntity entity) {

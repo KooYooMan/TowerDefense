@@ -12,7 +12,7 @@ public class StageLoader {
     private int[][] layout = new int[(int) Config.TILE_VERTICAL][(int) Config.TILE_HORIZONTAL];
     private Image background;
 
-    public StageLoader() {
+    private StageLoader() {
         this.background = null;
     }
 
@@ -34,12 +34,12 @@ public class StageLoader {
     }
 
     public static StageLoader loadStage(int i) throws IOException {
-        if (i == 1) {
-            return new StageLoader("resources/map/layout/Map1.txt", "resources/map/image/Map1.png", 1);
-        } else if (i == 2) {
-            return new StageLoader("resources/map/layout/Map2.txt", "resources/map/image/Map2.png", 2);
-        }
-        return null;
+        return new StageLoader("resources/map/layout/Map" + i + ".txt",
+                "resources/map/image/Map" + i + ".png", i);
+    }
+
+    public static StageLoader nullStage() {
+        return new StageLoader();
     }
 
     public int getCurrentMap() { return currentMap; }
