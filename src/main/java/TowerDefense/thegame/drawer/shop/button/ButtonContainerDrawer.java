@@ -1,6 +1,7 @@
 package TowerDefense.thegame.drawer.shop.button;
 
 import TowerDefense.thegame.drawer.shop.icon.IconDrawerList;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -13,7 +14,8 @@ public class ButtonContainerDrawer {
     private BulletButtonContainerDrawer bulletButtonContainerDrawer;
 
     public ButtonContainerDrawer(Pane pane) throws IOException {
-        this.vBox.setSpacing(48);
+        this.vBox.setSpacing(24);
+
         this.towerButtonContainerDrawer = new TowerButtonContainerDrawer(vBox, IconDrawerList.getTowerIconDrawerList());
         this.bulletButtonContainerDrawer = new BulletButtonContainerDrawer(vBox, IconDrawerList.getBulletIconDrawerList());
 
@@ -22,4 +24,6 @@ public class ButtonContainerDrawer {
 
     public List<TowerButtonDrawer> getTowerButtonDrawerList() { return towerButtonContainerDrawer.getTowerButtonDrawerList(); }
     public List<BulletButtonDrawer> getBulletButtonDrawerList() { return bulletButtonContainerDrawer.getBulletButtonDrawerList(); }
+    public Button getSellingTowerButton() { return towerButtonContainerDrawer.getSellingTowerButton(); }
+    public Button getUpgradingTowerButton() { return bulletButtonContainerDrawer.getUpgradingTowerButton(); }
 }

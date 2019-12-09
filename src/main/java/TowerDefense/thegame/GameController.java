@@ -49,10 +49,10 @@ public class GameController extends AnimationTimer {
         super.start();
     }
 
-    boolean isPause() {
+    public boolean isPause() {
         return pause;
     }
-    boolean isAutoplay() {
+    public boolean isAutoplay() {
         return autoplay;
     }
     void changePause() {
@@ -67,6 +67,9 @@ public class GameController extends AnimationTimer {
 
     }
 
+    public void setPause(boolean pause) {
+        this.pause = pause;
+    }
 
     public GameStage getGameStage() { return gameStage; }
     public Pane getGamePane() { return gamePane; }

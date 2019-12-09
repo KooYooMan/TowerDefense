@@ -31,10 +31,12 @@ import TowerDefense.thegame.entity.gun.NormalGun;
 import TowerDefense.thegame.entity.gun.SniperGun;
 import TowerDefense.thegame.entity.stage.StageLoader;
 import TowerDefense.thegame.entity.tile.Target;
+import TowerDefense.thegame.entity.tile.tower.AbstractTower;
 import TowerDefense.thegame.entity.tile.tower.MachineGunTower;
 import TowerDefense.thegame.entity.tile.tower.NormalTower;
 import TowerDefense.thegame.entity.tile.tower.SniperTower;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -97,7 +99,7 @@ public final class GameDrawer {
 		this.gameField = gameField;
 
 		try {
-			this.stageLoader = new StageLoader("resources/map/layout/Map1.txt");
+			this.stageLoader = new StageLoader();
 			this.stageDrawer = new StageDrawer(graphicsContext, stageLoader);
 			this.moneyDrawer = new MoneyDrawer(graphicsContext);
 		} catch (IOException e) {
@@ -145,6 +147,12 @@ public final class GameDrawer {
 					drawer.draw(this.graphicsContext, entity, entity.getPosX(), entity.getPosY(), entity.getWidth(),
 							entity.getHeight(), 0);
 				}
+
+				if (entity instanceof AbstractTower) {
+					this.graphicsContext.setFill(Color.BLACK);
+					this.graphicsContext.fillText(Integer.toString(((AbstractTower) entity).getLevel()),
+							entity.getPosX(), entity.getPosY() + entity.getHeight());
+				}
 			}
 		}
 
@@ -153,4 +161,8 @@ public final class GameDrawer {
 
 	public StageDrawer getStageDrawer() { return stageDrawer; }
 	public StageLoader getStageLoader() { return stageLoader; }
+	public GraphicsContext getGraphicsContext() { return graphicsContext; }
+
+	public void setStageLoader(StageLoader stageLoader) { this.stageLoader = stageLoader; }
+	public void setStageDrawer(StageDrawer stageDrawer) { this.stageDrawer = stageDrawer; }
 }

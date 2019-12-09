@@ -301,6 +301,15 @@ public final class GameStage {
         }
     }
 
+    public void removeEntity(GameEntity entity) {
+        if (entity instanceof AbstractTower) {
+            entities.remove(entity);
+            entities.remove(((AbstractTower) entity).getGun());
+
+            money += ((AbstractTower) entity).getSoldCost();
+        }
+    }
+
     public GameEntity getGameEntity(int i, int j) {
         for (GameEntity entity : entities) {
             if ((int) entity.getPosY() / Config.TILE_SIZE == i && (int) entity.getPosX() / Config.TILE_SIZE == j) {

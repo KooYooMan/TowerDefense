@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -22,9 +21,11 @@ public final class Main extends Application {
 		final Canvas shopCanvas = new Canvas(Config.SHOP_WIDTH, Config.SCREEN_HEIGHT);
 
 		final Pane startScreenPane = new StackPane(startScreenCanvas);
-		final Pane gamePane = new StackPane(gameCanvas);
-		final Pane shopPane = new StackPane(shopCanvas);
-		final Pane allPane = new StackPane(new HBox(gamePane, shopPane), startScreenPane);
+		final Pane gamePane = new Pane(gameCanvas);
+		final Pane shopPane = new Pane(shopCanvas);
+		//final Pane allPane = new StackPane(new HBox(gamePane, shopPane), startScreenPane);
+
+		final Scene primaryScene = new Scene(startScreenPane);
 
 		final GraphicsContext startScreenGraphicsContext = startScreenCanvas.getGraphicsContext2D();
 		final GraphicsContext gameGraphicsContext = gameCanvas.getGraphicsContext2D();
@@ -34,12 +35,13 @@ public final class Main extends Application {
 		final GameController gameController = new GameController(gameGraphicsContext, gamePane);
 		final ShopController shopController = new ShopController(shopGraphicsContext, shopPane);
 
-		final MainController mainController = new MainController(allPane, startScreenController, gameController, shopController);
+		final MainController mainController = new MainController(primaryScene, startScreenController, gameController, shopController);
 		
 		primaryStage.setResizable(false);
 		primaryStage.setTitle(Config.GAME_NAME);
 
-		primaryStage.setScene(new Scene(allPane));
+		//primaryStage.setScene(new Scene(allPane));
+		primaryStage.setScene(primaryScene);
 		primaryStage.show();
 
 //		gameController.start();

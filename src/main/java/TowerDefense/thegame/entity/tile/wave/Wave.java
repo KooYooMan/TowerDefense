@@ -3,7 +3,6 @@ package TowerDefense.thegame.entity.tile.wave;
 import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.AbstractEntity;
 import TowerDefense.thegame.entity.DestroyableEntity;
-import TowerDefense.thegame.entity.GameEntity;
 import TowerDefense.thegame.entity.UpdatableEntity;
 import TowerDefense.thegame.entity.tile.spawner.AbstractSpawner;
 

@@ -15,12 +15,12 @@ public class MoneyDrawer {
     public MoneyDrawer(GraphicsContext graphicsContext) throws FileNotFoundException {
         this.image = new Image(new FileInputStream("resources/asset/icon/coin.png"));
         this.graphicsContext = graphicsContext;
-        graphicsContext.setFont(Font.loadFont(new FileInputStream("target/classes/font/pkmnfl.ttf"), 32));
+        graphicsContext.setFont(Font.loadFont(new FileInputStream("target/classes/font/pkmnfl.ttf"), 24));
     }
 
     public void draw(long money) {
-        graphicsContext.drawImage(image, 0, 0, 32, 32);
+        graphicsContext.drawImage(image, 0, 0, 24, 24);
         graphicsContext.setFill(Color.BLACK);
-        graphicsContext.fillText(Long.toString(money), 40, 28);
+        graphicsContext.fillText(Long.toString(money), 32, 21);
     }
 }
