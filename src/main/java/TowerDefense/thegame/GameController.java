@@ -17,6 +17,8 @@ public class GameController extends AnimationTimer {
     boolean pause;
     boolean autoplay;
 
+    private boolean isGameOver;
+
     public GameController(GraphicsContext graphicsContext, Pane gamePane) {
         this.graphicsContext = graphicsContext;
         this.gameStage = new GameStage();
@@ -34,20 +36,22 @@ public class GameController extends AnimationTimer {
 
     @Override
     public void handle(long l) {
-        gameField.handle();
-        gameDrawer.render();
+        if (!isGameOver) {
+            gameField.handle();
+            gameDrawer.render();
+
+            if (gameStage.getTarget().isDestroyed()) {
+                isGameOver = true;
+            }
+        }
     }
 
-    public void start() {
-        super.start();
-    }
+    public void start() { super.start(); }
 
-    public boolean isPause() {
-        return pause;
-    }
-    public boolean isAutoplay() {
-        return autoplay;
-    }
+    public boolean isPause() { return pause; }
+    public boolean isAutoplay() { return autoplay; }
+    public boolean isGameOver() { return isGameOver; }
+
     void save() {
 
 
