@@ -1,6 +1,5 @@
 package TowerDefense.thegame;
 
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +15,7 @@ public class StartScreen {
     private Pane startScreenPane;
 
     private Image startScreenImage;
+    private Image logo;
 
     private boolean isInStartScreen;
     private boolean isInWelcomeScreen;
@@ -30,6 +30,7 @@ public class StartScreen {
         this.startScreenPane = startScreenPane;
 
         this.startScreenImage = new Image(new FileInputStream("target/classes/startScreen/StartScreen.jpg"));
+        this.logo = new Image(new FileInputStream("resources/logo/logo.png"));
 
         this.welcomeScreen = new WelcomeScreen(this);
         this.mapPickingScreen = new MapPickingScreen(this);
@@ -44,6 +45,7 @@ public class StartScreen {
     }
 
     public Image getStartScreenImage() { return startScreenImage; }
+    public Image getLogo() { return logo; }
 
     public Pane getStartScreenPane() { return startScreenPane; }
 
@@ -100,7 +102,8 @@ class WelcomeScreen {
 
         this.vBox.getChildren().addAll(startButton, continueButton, quitButton);
 
-        this.vBox.setAlignment(Pos.CENTER);
+        this.vBox.setLayoutX(290);
+        this.vBox.setLayoutY(330);
     }
 
     public VBox getVBox() { return vBox; }
@@ -158,7 +161,9 @@ class MapPickingScreen {
         this.map2PickingButton.setMaxSize(200, 200);
 
         this.hBox.getChildren().addAll(map1PickingButton, map2PickingButton);
-        this.hBox.setAlignment(Pos.CENTER);
+
+        this.hBox.setLayoutX(180);
+        this.hBox.setLayoutY(330);
 
         this.pickedMap1 = false;
         this.pickedMap2 = false;
