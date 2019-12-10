@@ -51,9 +51,8 @@ public class GameController extends AnimationTimer {
         this.gamePane = gamePane;
         pause = false;
         autoplay = false;
-        this.gameAutoplay = new GameAutoplay(gameDrawer.getStageLoader().getLayout());
+        this.gameAutoplay = new GameAutoplay(gameField, gameDrawer.getStageLoader().getLayout());
     }
-
     public GameController(GraphicsContext graphicsContext, Pane gamePane, String filePath) throws FileNotFoundException {
         this.graphicsContext = graphicsContext;
         this.gameStage = new GameStage(filePath);
@@ -62,7 +61,8 @@ public class GameController extends AnimationTimer {
         this.gameWave = this.gameField.getGameWave();
         this.gamePane = gamePane;
         pause = false;
-        autoplay = false;
+        autoplay = true;
+        this.gameAutoplay = new GameAutoplay(gameField, gameDrawer.getStageLoader().getLayout());
     }
 
     final void closeRequestHandler(WindowEvent windowEvent) {
@@ -71,12 +71,14 @@ public class GameController extends AnimationTimer {
         System.exit(0);
     }
     public void doAutoplay() {
-        System.out.println(gameAutoplay.getLayout(0, 0));
-        System.out.println(gameDrawer.getStageLoader().getCurrentLayout(0, 0));
+        gameAutoplay.doAutoplay();
     }
     @Override
     public void handle(long l) {
         System.out.println(autoplay);
+        System.out.println(gameDrawer.getStageLoader().getLayout());
+        System.out.println(gameAutoplay.getLayout());
+
         if (isAutoplay()) {
             doAutoplay();
         }
@@ -95,7 +97,7 @@ public class GameController extends AnimationTimer {
     public boolean isPause() { return pause; }
     public boolean isAutoplay() { return autoplay; }
     public boolean isGameOver() { return isGameOver; }
-
+    public boolean isWin() { return gameField.isWin(); }
     void save(String filePath) {
         BufferedWriter writer = null;
         try {

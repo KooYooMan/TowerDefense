@@ -33,17 +33,17 @@ public final class Config {
 	// Tile
 	public static final double NORMAL_BULLET_WIDTH = 10;
 	public static final double NORMAL_BULLET_HEIGHT = 10;
-	public static final double NORMAL_BULLET_SPEED = 3;
+	public static final double NORMAL_BULLET_SPEED = 10;
 	public static final long NORMAL_BULLET_DAMAGE = 40;
 	public static final long NORMAL_BULLET_COST = 10;
 
 
 	public static final long FROZEN_BULLET_DAMAGE = 10;
-	public static final long FROZEN_BULLET_SPEED = 40;
+	public static final long FROZEN_BULLET_SPEED = 10;
 	public static final long FROZEN_BULLET_COST = 10;
 
 	public static final long BURNING_BULLET_DAMAGE = 10;
-	public static final long BURNING_BULLET_SPEED = 40;
+	public static final long BURNING_BULLET_SPEED = 10;
 	public static final long BURNING_BULLET_COST = 10;
 
 
