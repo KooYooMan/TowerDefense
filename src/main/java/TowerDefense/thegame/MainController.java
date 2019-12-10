@@ -100,13 +100,18 @@ public class MainController extends AnimationTimer {
 
                 scene.setRoot(new HBox(gameController.getGamePane(), shopController.getShopPane()));
 
-                if (!gameController.isGameOver()) {
+                if (!gameController.isGameOver() && !gameController.isGameClear()) {
                     if (!gameController.isPause()) {
                         gameController.handle(l);
                     }
                     shopController.handle(l);
                 } else {
                     closingScreenController.getClosingScreen().setInClosingScreen(true);
+                    if (gameController.isGameOver()) {
+                        closingScreenController.setLose(true);
+                    } else if (gameController.isGameClear()) {
+                        closingScreenController.setLose(false);
+                    }
                     scene.setRoot(closingScreenController.getPane());
                     closingScreenController.handle(l);
                 }
