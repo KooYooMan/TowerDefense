@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.WindowEvent;
 
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.Buffer;
@@ -18,15 +19,16 @@ public class GameController extends AnimationTimer {
     private GameField gameField;
     private GameDrawer gameDrawer;
     private GameWave gameWave;
+    private GameAutoplay gameAutoplay;
     private Pane gamePane;
     boolean pause;
     boolean autoplay;
 
     private boolean isGameOver;
 
-    public GameController(GraphicsContext graphicsContext, Pane gamePane) {
+    public GameController(GraphicsContext graphicsContext, Pane gamePane) throws FileNotFoundException {
         this.graphicsContext = graphicsContext;
-        String loadFile = Config.MAP_LAYOUT + 2 + ".txt";
+        String loadFile = Config.MAP_LAYOUT + 1 + ".txt";
         String savedFile = "save/save1.txt";
         int DEBUG = 1;
         if (DEBUG == 0) {
@@ -50,8 +52,9 @@ public class GameController extends AnimationTimer {
         this.gamePane = gamePane;
         pause = false;
         autoplay = false;
+        this.gameAutoplay = new GameAutoplay(gameDrawer.getStageLoader().getLayout());
     }
-    public GameController(GraphicsContext graphicsContext, Pane gamePane, String filePath) {
+    public GameController(GraphicsContext graphicsContext, Pane gamePane, String filePath) throws FileNotFoundException {
         this.graphicsContext = graphicsContext;
         this.gameStage = new GameStage(filePath);
         this.gameField = new GameField(gameStage);
@@ -67,14 +70,21 @@ public class GameController extends AnimationTimer {
         Platform.exit();
         System.exit(0);
     }
-
+    public void doAutoplay() {
+        System.out.println(gameAutoplay.getLayout(0, 0));
+        System.out.println(gameDrawer.getStageLoader().getCurrentLayout(0, 0));
+    }
     @Override
     public void handle(long l) {
+        System.out.println(autoplay);
+        if (isAutoplay()) {
+            doAutoplay();
+        }
         if (!isGameOver) {
             gameField.handle();
             gameDrawer.render();
 
-            if (gameStage.getTarget().isDestroyed()) {
+            if (gameField.isLose()) {
                 isGameOver = true;
             }
         }

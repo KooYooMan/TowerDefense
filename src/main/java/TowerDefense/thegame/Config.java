@@ -5,7 +5,6 @@ public final class Config {
 	public static final String MAP_IMAGE = "resources/map/image/Map";
 	public static final String MAP_LAYOUT = "resources/map/layout/Map";
 	public static final long TILE_SIZE = 64;
-
 	public static final long TILE_HORIZONTAL = 10;
 	public static final long TILE_VERTICAL = 10;
 
@@ -16,7 +15,11 @@ public final class Config {
 
 	public static final long SHOP_WIDTH = 360;
 
-
+	public static final long START_LAYOUT = -1;
+	public static final long ROAD_LAYOUT = 1;
+	public static final long END_LAYOUT = -2;
+	public static final long MOUNTAIN_LAYOUT = 0;
+	public static final long TOWER_LAYOUT = 420;
 	// Tile region
 	public static final double MOUNTAIN_WIDTH = TILE_SIZE * 1.0;
 	public static final double MOUNTAIN_HEIGHT = TILE_SIZE * 1.0;

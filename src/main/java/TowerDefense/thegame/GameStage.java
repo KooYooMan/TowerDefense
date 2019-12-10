@@ -25,7 +25,6 @@ import java.util.Scanner;
 public final class GameStage {
     private final long width;
     private final long height;
-    private final Target target;
     private final List<GameEntity> entities;
     private final GameWave gameWave = new GameWave();
     private long money;
@@ -60,7 +59,6 @@ public final class GameStage {
     public GameStage(long width, long height, List<GameEntity> entities) {
         this.width = width;
         this.height = height;
-        this.target = null;
         this.entities = List.copyOf(entities);
     }
     // for testing
@@ -83,8 +81,6 @@ public final class GameStage {
         gameWave.addWave(wave);
         gameWave.addWave(wave1);
 
-        this.target = new Target(0 * Config.TILE_SIZE, 8 * Config.TILE_SIZE);
-        this.entities.add(this.target);
         this.entities.add(gameWave);
         //magic.addBullet(HighDamageBullet.class); magic.addBullet(BurningBullet.class);
         //magic.addBullet(FrozenBullet.class);
@@ -103,15 +99,11 @@ public final class GameStage {
         enemyPath[0].addInstruction(Pair.immutableOf(3.0 * Config.TILE_SIZE, 1));
         enemyPath[0].addInstruction(Pair.immutableOf(10.0 * Config.TILE_SIZE, 2));
     }
-    public GameStage(String filePath) {
+    public GameStage(String filePath) throws FileNotFoundException {
         File file = new File(filePath);
         Scanner sc = null;
-        try {
-            sc = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        String skipLine;
+        sc = new Scanner(file);
+        String skipLine = new String();
         for (int i = 0; i < 1 + Config.TILE_HORIZONTAL; i++) {
             skipLine = sc.nextLine();
         }
@@ -283,7 +275,6 @@ public final class GameStage {
         sc.close();
     }
 
-    public Target getTarget() { return target; }
     public GameWave getGameWave() { return gameWave; }
     public List<GameEntity> getEntities() {
         return entities;
