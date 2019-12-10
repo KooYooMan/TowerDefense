@@ -24,6 +24,7 @@ public class GameController extends AnimationTimer {
     boolean autoplay;
 
     private boolean isGameOver;
+    private boolean isGameClear;
 
     public GameController(GraphicsContext graphicsContext, Pane gamePane) throws FileNotFoundException {
         this.graphicsContext = graphicsContext;
@@ -63,6 +64,8 @@ public class GameController extends AnimationTimer {
         pause = false;
         autoplay = false;
         this.gameAutoplay = new GameAutoplay(gameField, gameDrawer.getStageLoader().getLayout());
+        isGameOver = false;
+        isGameClear = false;
     }
 
     final void closeRequestHandler(WindowEvent windowEvent) {
@@ -88,6 +91,8 @@ public class GameController extends AnimationTimer {
 
             if (gameField.isLose()) {
                 isGameOver = true;
+            } else if (gameField.isWin()) {
+                isGameClear = true;
             }
         }
     }
@@ -97,8 +102,9 @@ public class GameController extends AnimationTimer {
     public boolean isPause() { return pause; }
     public boolean isAutoplay() { return autoplay; }
     public boolean isGameOver() { return isGameOver; }
-    public boolean isWin() { return gameField.isWin(); }
-    void save(String filePath) {
+    public boolean isGameClear() { return isGameClear; }
+
+    public void save(String filePath) {
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(filePath));

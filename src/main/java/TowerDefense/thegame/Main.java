@@ -4,9 +4,11 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.io.FileInputStream;
 
 public final class Main extends Application {
 	//SSSDSSDDSSDSDSSSSSSSSSDSDS
@@ -21,7 +23,7 @@ public final class Main extends Application {
 		final Canvas gameCanvas = new Canvas(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		final Canvas shopCanvas = new Canvas(Config.SHOP_WIDTH, Config.SCREEN_HEIGHT);
 
-		final Pane startScreenPane = new StackPane(startScreenCanvas);
+		final Pane startScreenPane = new Pane(startScreenCanvas);
 		final Pane closingScreenPane = new Pane(closingScreenCanvas);
 		final Pane gamePane = new Pane(gameCanvas);
 		final Pane shopPane = new Pane(shopCanvas);
@@ -45,6 +47,7 @@ public final class Main extends Application {
 		
 		primaryStage.setResizable(false);
 		primaryStage.setTitle(Config.GAME_NAME);
+		primaryStage.getIcons().add(new Image(new FileInputStream("resources/icon/icon.png")));
 
 		//primaryStage.setScene(new Scene(allPane));
 		primaryStage.setScene(primaryScene);

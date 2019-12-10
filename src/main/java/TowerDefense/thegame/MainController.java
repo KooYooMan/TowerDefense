@@ -10,7 +10,6 @@ import javafx.stage.WindowEvent;
 import java.io.FileNotFoundException;
 
 public class MainController extends AnimationTimer {
-    //private Pane allPane;
     private Scene scene;
     private StartScreenController startScreenController;
     private ClosingScreenController closingScreenController;
@@ -21,15 +20,15 @@ public class MainController extends AnimationTimer {
     public MainController(Scene scene, StartScreenController startScreenController,
                           ClosingScreenController closingScreenController,
                           GameController gameController, ShopController shopController) {
-        //this.allPane = allPane;
         this.scene = scene;
         this.startScreenController = startScreenController;
         this.closingScreenController = closingScreenController;
         this.gameController = gameController;
         this.shopController = shopController;
-        this.buttonHandler = new ButtonHandler(gameController, gameController.getGameStage(),
-                gameController.getGamePane(), gameController.getGameDrawer(), shopController.getShopDrawer());
+        this.buttonHandler = new ButtonHandler(gameController, shopController);
+    }
 
+    private void handleButton() {
         this.shopController.getShopHandler().getTowerButtonDrawerList().forEach(towerButtonDrawer ->
                 this.buttonHandler.handleEventTower(towerButtonDrawer)
         );
@@ -46,6 +45,7 @@ public class MainController extends AnimationTimer {
 
         this.buttonHandler.handlePauseEvent(this.shopController.getShopHandler().getPauseButton());
         this.buttonHandler.handleResumeEvent(this.shopController.getShopHandler().getResumeButton());
+        this.buttonHandler.handleSaveButton(this.shopController.getShopHandler().getSaveButton());
     }
 
     final void closeRequestHandler(WindowEvent windowEvent) {
@@ -60,42 +60,58 @@ public class MainController extends AnimationTimer {
             if (startScreenController.getStartScreen().isInStartScreen()) {
                 startScreenController.handle(l);
             } else {
-                //GameController backupGameController = gameController;
                 if (startScreenController.getStartScreen().getMapPickingScreen().isPickedMap1()) {
-//                    gameController.getGameDrawer().setMap(1);
-//                    gameController.setGameAutoplay(new GameAutoplay(gameController.getGameDrawer().getStageLoader().getLayout()));
-
                     try {
-                        gameController = new GameController(gameController.getGraphicsContext(), gameController.getGamePane(),
+                        gameController = new GameController(gameController.getGraphicsContext(),
+                                gameController.getGamePane(),
                                 "resources/map/layout/Map1.txt"
                         );
+                        buttonHandler.setGameController(gameController);
+                        handleButton();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
                     startScreenController.getStartScreen().getMapPickingScreen().setPickedMap1(false);
                 } else if (startScreenController.getStartScreen().getMapPickingScreen().isPickedMap2()) {
-//                    gameController.getGameDrawer().setMap(2);
-//                    gameController.setGameAutoplay(new GameAutoplay(gameController.getGameDrawer().getStageLoader().getLayout()));
-
                     try {
-                        gameController = new GameController(gameController.getGraphicsContext(), gameController.getGamePane(),
+                        gameController = new GameController(gameController.getGraphicsContext(),
+                                gameController.getGamePane(),
                                 "resources/map/layout/Map2.txt"
                         );
+                        buttonHandler.setGameController(gameController);
+                        handleButton();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
                     startScreenController.getStartScreen().getMapPickingScreen().setPickedMap2(false);
+                } else if (startScreenController.getStartScreen().isContinuePicked()) {
+                    try {
+                        gameController = new GameController(gameController.getGraphicsContext(),
+                                gameController.getGamePane(),
+                                "save/save1.txt"
+                        );
+                        buttonHandler.setGameController(gameController);
+                        handleButton();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    startScreenController.getStartScreen().setContinuePicked(false);
                 }
 
                 scene.setRoot(new HBox(gameController.getGamePane(), shopController.getShopPane()));
 
-                if (!gameController.isGameOver()) {
+                if (!gameController.isGameOver() && !gameController.isGameClear()) {
                     if (!gameController.isPause()) {
                         gameController.handle(l);
                     }
                     shopController.handle(l);
                 } else {
                     closingScreenController.getClosingScreen().setInClosingScreen(true);
+                    if (gameController.isGameOver()) {
+                        closingScreenController.setLose(true);
+                    } else if (gameController.isGameClear()) {
+                        closingScreenController.setLose(false);
+                    }
                     scene.setRoot(closingScreenController.getPane());
                     closingScreenController.handle(l);
                 }

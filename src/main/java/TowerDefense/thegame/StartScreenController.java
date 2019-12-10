@@ -24,6 +24,8 @@ public class StartScreenController extends AnimationTimer {
                     Config.SCREEN_WIDTH + Config.SHOP_WIDTH, Config.SCREEN_HEIGHT
             );
 
+            startScreenGraphicsContext.drawImage(startScreen.getLogo(), 250, 25, 500, 250);
+
             startScreen.handleEvent();
         }
     }

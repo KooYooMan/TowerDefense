@@ -23,6 +23,7 @@ public class ShopHandler {
     private HBox utilitiesHBox = new HBox();
     private Button pauseButton;
     private Button resumeButton;
+    private Button saveButton;
 
     public ShopHandler(Pane pane) throws IOException {
         this.buttonContainerDrawer = new ButtonContainerDrawer(pane);
@@ -43,9 +44,12 @@ public class ShopHandler {
         this.resumeButton = new Button("", new ImageView(new Image(
                 new FileInputStream("resources/icon/resume.png")
         )));
+        this.saveButton = new Button("", new ImageView(new Image(
+                new FileInputStream("resources/icon/save.png")
+        )));
         this.utilitiesHBox.setSpacing(24);
         this.utilitiesHBox.setLayoutY(582);
-        this.utilitiesHBox.getChildren().addAll(pauseButton, resumeButton);
+        this.utilitiesHBox.getChildren().addAll(pauseButton, resumeButton, saveButton);
 
         pane.getChildren().addAll(autoplayHBox, utilitiesHBox);
     }
@@ -60,4 +64,5 @@ public class ShopHandler {
 
     public Button getPauseButton() { return pauseButton; }
     public Button getResumeButton() { return resumeButton; }
+    public Button getSaveButton() { return saveButton; }
 }
