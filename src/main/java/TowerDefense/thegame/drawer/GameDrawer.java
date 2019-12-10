@@ -135,7 +135,7 @@ public final class GameDrawer {
 		this.gameField = gameField;
 
 		try {
-			this.stageLoader = new StageLoader(filePath);
+			this.stageLoader = StageLoader.loadStage(filePath);
 			this.stageDrawer = new StageDrawer(graphicsContext, stageLoader);
 			this.moneyDrawer = new MoneyDrawer(graphicsContext);
 		} catch (IOException e) {

@@ -47,10 +47,7 @@ public class StageLoader {
         this.currentMap = currentMap;
     }
 
-    public static StageLoader loadStage(int i) throws IOException {
-        return new StageLoader(Config.MAP_LAYOUT + i + ".txt", i);
-    }
-    public StageLoader(String filePath) throws FileNotFoundException {
+    private StageLoader(String filePath) throws FileNotFoundException {
         Scanner scan = new Scanner(new FileInputStream(filePath));
         int idMap = Integer.parseInt(scan.nextLine());
         for (int i = 0; i < Config.TILE_VERTICAL; ++i) {
@@ -65,8 +62,17 @@ public class StageLoader {
         this.background = new Image(new FileInputStream(Config.MAP_IMAGE + idMap + ".png"));
         this.currentMap = idMap;
     }
+
     public static StageLoader nullStage() {
         return new StageLoader();
+    }
+
+    public static StageLoader loadStage(int i) throws IOException {
+        return new StageLoader(Config.MAP_LAYOUT + i + ".txt", i);
+    }
+
+    public static StageLoader loadStage(String filePath) throws IOException {
+        return new StageLoader(filePath);
     }
 
     public int getCurrentMap() { return currentMap; }

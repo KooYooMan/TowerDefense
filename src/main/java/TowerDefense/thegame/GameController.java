@@ -11,7 +11,6 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.Buffer;
 
 public class GameController extends AnimationTimer {
     private final GraphicsContext graphicsContext;
@@ -54,6 +53,7 @@ public class GameController extends AnimationTimer {
         autoplay = false;
         this.gameAutoplay = new GameAutoplay(gameDrawer.getStageLoader().getLayout());
     }
+
     public GameController(GraphicsContext graphicsContext, Pane gamePane, String filePath) throws FileNotFoundException {
         this.graphicsContext = graphicsContext;
         this.gameStage = new GameStage(filePath);
@@ -63,8 +63,8 @@ public class GameController extends AnimationTimer {
         this.gamePane = gamePane;
         pause = false;
         autoplay = false;
-
     }
+
     final void closeRequestHandler(WindowEvent windowEvent) {
         stop();
         Platform.exit();
@@ -116,7 +116,12 @@ public class GameController extends AnimationTimer {
     }
     public void setAutoplay(boolean autoplay) { this.autoplay = autoplay; }
 
+    public void setGameAutoplay(GameAutoplay gameAutoplay) {
+        this.gameAutoplay = gameAutoplay;
+    }
+
     public GameStage getGameStage() { return gameStage; }
+    public GraphicsContext getGraphicsContext() { return graphicsContext; }
     public Pane getGamePane() { return gamePane; }
     public GameDrawer getGameDrawer() { return gameDrawer; }
 

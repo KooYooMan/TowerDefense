@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.stage.WindowEvent;
 
+import java.io.FileNotFoundException;
+
 public class MainController extends AnimationTimer {
     //private Pane allPane;
     private Scene scene;
@@ -58,11 +60,30 @@ public class MainController extends AnimationTimer {
             if (startScreenController.getStartScreen().isInStartScreen()) {
                 startScreenController.handle(l);
             } else {
+                //GameController backupGameController = gameController;
                 if (startScreenController.getStartScreen().getMapPickingScreen().isPickedMap1()) {
-                    gameController.getGameDrawer().setMap(1);
+//                    gameController.getGameDrawer().setMap(1);
+//                    gameController.setGameAutoplay(new GameAutoplay(gameController.getGameDrawer().getStageLoader().getLayout()));
+
+                    try {
+                        gameController = new GameController(gameController.getGraphicsContext(), gameController.getGamePane(),
+                                "resources/map/layout/Map1.txt"
+                        );
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     startScreenController.getStartScreen().getMapPickingScreen().setPickedMap1(false);
                 } else if (startScreenController.getStartScreen().getMapPickingScreen().isPickedMap2()) {
-                    gameController.getGameDrawer().setMap(2);
+//                    gameController.getGameDrawer().setMap(2);
+//                    gameController.setGameAutoplay(new GameAutoplay(gameController.getGameDrawer().getStageLoader().getLayout()));
+
+                    try {
+                        gameController = new GameController(gameController.getGraphicsContext(), gameController.getGamePane(),
+                                "resources/map/layout/Map2.txt"
+                        );
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     startScreenController.getStartScreen().getMapPickingScreen().setPickedMap2(false);
                 }
 

@@ -11,10 +11,13 @@ public class ClosingScreenController extends AnimationTimer {
     private final Pane pane;
     private final ClosingScreen closingScreen;
 
+    private boolean isClickedOnPane;
+
     public ClosingScreenController(GraphicsContext graphicsContext, Pane pane) throws IOException {
         this.graphicsContext = graphicsContext;
         this.pane = pane;
         this.closingScreen = new ClosingScreen();
+        this.isClickedOnPane = false;
     }
 
     @Override
@@ -24,10 +27,11 @@ public class ClosingScreenController extends AnimationTimer {
                     Config.SCREEN_WIDTH + Config.SHOP_WIDTH, Config.SCREEN_HEIGHT
             );
 
-            //pane.setOnMousePressed();
+            pane.setOnMousePressed(mouseEvent -> isClickedOnPane = true);
         }
     }
 
     public Pane getPane() { return pane; }
     public ClosingScreen getClosingScreen() { return closingScreen; }
+    public boolean isClickedOnPane() { return isClickedOnPane; }
 }
