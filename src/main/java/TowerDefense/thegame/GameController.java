@@ -61,7 +61,7 @@ public class GameController extends AnimationTimer {
         this.gameWave = this.gameField.getGameWave();
         this.gamePane = gamePane;
         pause = false;
-        autoplay = true;
+        autoplay = false;
         this.gameAutoplay = new GameAutoplay(gameField, gameDrawer.getStageLoader().getLayout());
     }
 
