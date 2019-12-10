@@ -313,7 +313,7 @@ public class ButtonHandler {
 
     public void handleSaveButton(Button button) {
         button.setOnMousePressed(mouseEvent -> {
-            gameController.save("save/save1copy.txt");
+            gameController.save("save/save1.txt");
         });
 
         button.setOnMouseEntered(mouseEnteredEvent -> {

@@ -33,5 +33,9 @@ public class StartScreenController extends AnimationTimer {
     public StartScreen getStartScreen() { return startScreen; }
     public Pane getPane() { return pane; }
 
+    public void reset() {
+        startScreen.reset();
+    }
+
     public void start() { super.start(); }
 }

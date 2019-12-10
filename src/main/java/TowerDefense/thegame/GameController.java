@@ -104,6 +104,11 @@ public class GameController extends AnimationTimer {
     public boolean isGameOver() { return isGameOver; }
     public boolean isGameClear() { return isGameClear; }
 
+    public void reset() {
+        isGameOver = false;
+        isGameClear = false;
+    }
+
     public void save(String filePath) {
         BufferedWriter writer = null;
         try {
