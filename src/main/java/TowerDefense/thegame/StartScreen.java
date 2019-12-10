@@ -73,6 +73,17 @@ public class StartScreen {
             mapPickingScreen.handleEvent();
         }
     }
+
+    public void reset() {
+        this.isInStartScreen = true;
+        this.isInWelcomeScreen = true;
+        this.isInMapPickingScreen = false;
+        this.isQuit = false;
+        this.isContinuePicked = false;
+
+        startScreenPane.getChildren().remove(mapPickingScreen.getHBox());
+        startScreenPane.getChildren().add(welcomeScreen.getVBox());
+    }
 }
 
 class WelcomeScreen {

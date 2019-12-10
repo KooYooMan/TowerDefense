@@ -113,7 +113,14 @@ public class MainController extends AnimationTimer {
                         closingScreenController.setLose(false);
                     }
                     scene.setRoot(closingScreenController.getPane());
-                    closingScreenController.handle(l);
+
+                    if (!closingScreenController.getReset()) {
+                        closingScreenController.handle(l);
+                    } else {
+                        scene.setRoot(startScreenController.getPane());
+                        closingScreenController.setReset(false);
+                        this.reset();
+                    }
                 }
             }
         } else {
@@ -126,4 +133,10 @@ public class MainController extends AnimationTimer {
     public void start() { super.start(); }
 
     public void stop() { super.stop(); }
+
+    public void reset() {
+        gameController.reset();
+        startScreenController.reset();
+        closingScreenController.reset();
+    }
 }
