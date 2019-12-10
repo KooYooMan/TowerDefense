@@ -45,6 +45,7 @@ public class MainController extends AnimationTimer {
 
         this.buttonHandler.handlePauseEvent(this.shopController.getShopHandler().getPauseButton());
         this.buttonHandler.handleResumeEvent(this.shopController.getShopHandler().getResumeButton());
+        this.buttonHandler.handleSaveButton(this.shopController.getShopHandler().getSaveButton());
     }
 
     final void closeRequestHandler(WindowEvent windowEvent) {
@@ -83,6 +84,18 @@ public class MainController extends AnimationTimer {
                         e.printStackTrace();
                     }
                     startScreenController.getStartScreen().getMapPickingScreen().setPickedMap2(false);
+                } else if (startScreenController.getStartScreen().isContinuePicked()) {
+                    try {
+                        gameController = new GameController(gameController.getGraphicsContext(),
+                                gameController.getGamePane(),
+                                "save/save1.txt"
+                        );
+                        buttonHandler.setGameController(gameController);
+                        handleButton();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    startScreenController.getStartScreen().setContinuePicked(false);
                 }
 
                 scene.setRoot(new HBox(gameController.getGamePane(), shopController.getShopPane()));

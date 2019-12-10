@@ -97,7 +97,7 @@ public class GameController extends AnimationTimer {
     public boolean isAutoplay() { return autoplay; }
     public boolean isGameOver() { return isGameOver; }
 
-    void save(String filePath) {
+    public void save(String filePath) {
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(filePath));

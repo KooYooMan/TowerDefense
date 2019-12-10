@@ -72,6 +72,7 @@ public class ButtonHandler {
 
             shopDrawer.setRenderingPauseFunction(false);
             shopDrawer.setRenderingResumeFunction(false);
+            shopDrawer.setRenderingSaveButton(false);
 
             shopDrawer.setBulletClass(null);
             shopDrawer.setRenderingBulletStats(false);
@@ -120,6 +121,7 @@ public class ButtonHandler {
 
             shopDrawer.setRenderingPauseFunction(false);
             shopDrawer.setRenderingResumeFunction(false);
+            shopDrawer.setRenderingSaveButton(false);
 
             shopDrawer.setTowerClass(null);
             shopDrawer.setRenderingTowerStats(false);
@@ -154,6 +156,7 @@ public class ButtonHandler {
 
             shopDrawer.setRenderingPauseFunction(false);
             shopDrawer.setRenderingResumeFunction(false);
+            shopDrawer.setRenderingSaveButton(false);
 
             shopDrawer.setTowerClass(null);
             shopDrawer.setRenderingTowerStats(false);
@@ -191,6 +194,7 @@ public class ButtonHandler {
 
             shopDrawer.setRenderingPauseFunction(false);
             shopDrawer.setRenderingResumeFunction(false);
+            shopDrawer.setRenderingSaveButton(false);
 
             shopDrawer.setTowerClass(null);
             shopDrawer.setRenderingTowerStats(false);
@@ -222,6 +226,7 @@ public class ButtonHandler {
 
             shopDrawer.setRenderingPauseFunction(false);
             shopDrawer.setRenderingResumeFunction(false);
+            shopDrawer.setRenderingSaveButton(false);
 
             shopDrawer.setRenderingDisablingAutoplayFunction(false);
             shopDrawer.setRenderingEnablingAutoplayFunction(true);
@@ -247,6 +252,7 @@ public class ButtonHandler {
 
             shopDrawer.setRenderingPauseFunction(false);
             shopDrawer.setRenderingResumeFunction(false);
+            shopDrawer.setRenderingSaveButton(false);
 
             shopDrawer.setRenderingEnablingAutoplayFunction(false);
             shopDrawer.setRenderingDisablingAutoplayFunction(true);
@@ -274,6 +280,7 @@ public class ButtonHandler {
             shopDrawer.setRenderingDisablingAutoplayFunction(false);
 
             shopDrawer.setRenderingResumeFunction(false);
+            shopDrawer.setRenderingSaveButton(false);
             shopDrawer.setRenderingPauseFunction(true);
         });
     }
@@ -299,7 +306,32 @@ public class ButtonHandler {
             shopDrawer.setRenderingDisablingAutoplayFunction(false);
 
             shopDrawer.setRenderingPauseFunction(false);
+            shopDrawer.setRenderingSaveButton(false);
             shopDrawer.setRenderingResumeFunction(true);
+        });
+    }
+
+    public void handleSaveButton(Button button) {
+        button.setOnMousePressed(mouseEvent -> {
+            gameController.save("save/save1copy.txt");
+        });
+
+        button.setOnMouseEntered(mouseEnteredEvent -> {
+            shopDrawer.setTowerClass(null);
+            shopDrawer.setRenderingTowerStats(false);
+
+            shopDrawer.setBulletClass(null);
+            shopDrawer.setRenderingBulletStats(false);
+
+            shopDrawer.setRenderingRemovingTowerFunction(false);
+            shopDrawer.setRenderingUpgradingTowerFunction(false);
+
+            shopDrawer.setRenderingEnablingAutoplayFunction(false);
+            shopDrawer.setRenderingDisablingAutoplayFunction(false);
+
+            shopDrawer.setRenderingPauseFunction(false);
+            shopDrawer.setRenderingResumeFunction(false);
+            shopDrawer.setRenderingSaveButton(true);
         });
     }
 }

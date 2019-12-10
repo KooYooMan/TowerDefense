@@ -16,10 +16,12 @@ public class StartScreen {
     private Pane startScreenPane;
 
     private Image startScreenImage;
+
     private boolean isInStartScreen;
     private boolean isInWelcomeScreen;
     private boolean isInMapPickingScreen;
     private boolean isQuit;
+    private boolean isContinuePicked;
 
     private WelcomeScreen welcomeScreen;
     private MapPickingScreen mapPickingScreen;
@@ -38,6 +40,7 @@ public class StartScreen {
         this.isInWelcomeScreen = true;
         this.isInMapPickingScreen = false;
         this.isQuit = false;
+        this.isContinuePicked = false;
     }
 
     public Image getStartScreenImage() { return startScreenImage; }
@@ -48,11 +51,13 @@ public class StartScreen {
     public boolean isInWelcomeScreen() { return isInWelcomeScreen; }
     public boolean isInMapPickingScreen() { return isInMapPickingScreen; }
     public boolean isQuit() { return isQuit; }
+    public boolean isContinuePicked() { return isContinuePicked; }
 
     public void setInStartScreen(boolean inStartScreen) { isInStartScreen = inStartScreen; }
     public void setInWelcomeScreen(boolean inWelcomeScreen) { isInWelcomeScreen = inWelcomeScreen; }
     public void setInMapPickingScreen(boolean inMapPickingScreen) { isInMapPickingScreen = inMapPickingScreen; }
     public void setQuit(boolean quit) { isQuit = quit; }
+    public void setContinuePicked(boolean continuePicked) { isContinuePicked = continuePicked; }
 
     public WelcomeScreen getWelcomeScreen() { return welcomeScreen; }
     public MapPickingScreen getMapPickingScreen() { return mapPickingScreen; }
@@ -71,7 +76,7 @@ public class StartScreen {
 class WelcomeScreen {
     private VBox vBox;
     private Button startButton;
-    private Button loadButton;
+    private Button continueButton;
     private Button quitButton;
 
     private StartScreen startScreen;
@@ -85,15 +90,15 @@ class WelcomeScreen {
         this.startButton.setFont(Font.font(20));
         this.startButton.setPrefSize(420, 69);
 
-        this.loadButton = new Button("Load");
-        this.loadButton.setFont(Font.font(20));
-        this.loadButton.setPrefSize(420, 69);
+        this.continueButton = new Button("Continue");
+        this.continueButton.setFont(Font.font(20));
+        this.continueButton.setPrefSize(420, 69);
 
         this.quitButton = new Button("Quit");
         this.quitButton.setFont(Font.font(20));
         this.quitButton.setPrefSize(420, 69);
 
-        this.vBox.getChildren().addAll(startButton, loadButton, quitButton);
+        this.vBox.getChildren().addAll(startButton, continueButton, quitButton);
 
         this.vBox.setAlignment(Pos.CENTER);
     }
@@ -109,10 +114,11 @@ class WelcomeScreen {
             startScreen.setInMapPickingScreen(true);
         });
 
-//        loadButton.setOnMousePressed(mouseEvent -> {
-//            //isInStartScreen = false;
-//            isInMapPickingScreen = true;
-//        });
+        continueButton.setOnMousePressed(mouseEvent -> {
+            startScreen.setInWelcomeScreen(false);
+            startScreen.setInStartScreen(false);
+            startScreen.setContinuePicked(true);
+        });
 
         quitButton.setOnMousePressed(mouseEvent -> startScreen.setQuit(true));
     }
@@ -183,8 +189,4 @@ class MapPickingScreen {
             startScreen.setInStartScreen(false);
         });
     }
-}
-
-class LoadingScreen {
-
 }
