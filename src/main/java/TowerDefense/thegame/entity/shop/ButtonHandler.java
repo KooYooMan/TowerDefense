@@ -3,6 +3,7 @@ package TowerDefense.thegame.entity.shop;
 import TowerDefense.thegame.Config;
 import TowerDefense.thegame.GameController;
 import TowerDefense.thegame.GameStage;
+import TowerDefense.thegame.ShopController;
 import TowerDefense.thegame.drawer.GameDrawer;
 import TowerDefense.thegame.drawer.shop.ShopDrawer;
 import TowerDefense.thegame.drawer.shop.button.BulletButtonDrawer;
@@ -24,13 +25,19 @@ public class ButtonHandler {
     private GameDrawer gameDrawer;
     private ShopDrawer shopDrawer;
 
-    public ButtonHandler(GameController gameController, GameStage gameStage,
-                         Pane gamePane, GameDrawer gameDrawer, ShopDrawer shopDrawer) {
+    public ButtonHandler(GameController gameController, ShopController shopController) {
         this.gameController = gameController;
-        this.gameStage = gameStage;
-        this.gamePane = gamePane;
-        this.gameDrawer = gameDrawer;
-        this.shopDrawer = shopDrawer;
+        this.gameStage = gameController.getGameStage();
+        this.gamePane = gameController.getGamePane();
+        this.gameDrawer = gameController.getGameDrawer();
+        this.shopDrawer = shopController.getShopDrawer();
+    }
+
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
+        this.gameStage = gameController.getGameStage();
+        this.gamePane = gameController.getGamePane();
+        this.gameDrawer = gameController.getGameDrawer();
     }
 
     public void handleEventTower(TowerButtonDrawer button) {
