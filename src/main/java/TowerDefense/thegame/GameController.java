@@ -5,12 +5,11 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.WindowEvent;
 
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class GameController extends AnimationTimer {
     private final GraphicsContext graphicsContext;
@@ -101,8 +100,16 @@ public class GameController extends AnimationTimer {
 
     public boolean isPause() { return pause; }
     public boolean isAutoplay() { return autoplay; }
-    public boolean isGameOver() { return isGameOver; }
-    public boolean isGameClear() { return isGameClear; }
+    public boolean isGameOver() {
+//        MediaPlayer defeatSound = new MediaPlayer(new Media(new File(Config.DEFEAT_SOUND_PATH).toURI().toString()));
+//        defeatSound.play();
+        return isGameOver;
+    }
+    public boolean isGameClear() {
+//        MediaPlayer victorySound = new MediaPlayer(new Media(new File(Config.DEFEAT_SOUND_PATH).toURI().toString()));
+//        victorySound.play();
+        return isGameClear;
+    }
 
     public void save(String filePath) {
         BufferedWriter writer = null;

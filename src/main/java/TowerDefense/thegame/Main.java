@@ -6,13 +6,18 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
+import java.io.File;
 import java.io.FileInputStream;
 
 public final class Main extends Application {
 	//SSSDSSDDSSDSDSSSSSSSSSDSDS
 	public static void main(String[] args) {
+        Config.setSound();
 		Application.launch(args);
 	}
 
@@ -48,6 +53,12 @@ public final class Main extends Application {
 		primaryStage.setResizable(false);
 		primaryStage.setTitle(Config.GAME_NAME);
 		primaryStage.getIcons().add(new Image(new FileInputStream("resources/icon/icon.png")));
+        Config.THEME_SOUND.setOnEndOfMedia(new Runnable() {
+            public void run() {
+                Config.THEME_SOUND.seek(Duration.ZERO);
+            }
+        });
+		Config.THEME_SOUND.play();
 
 		//primaryStage.setScene(new Scene(allPane));
 		primaryStage.setScene(primaryScene);
