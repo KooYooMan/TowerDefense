@@ -4,7 +4,10 @@ import TowerDefense.thegame.entity.AbstractEntity;
 import TowerDefense.thegame.entity.DestroyableEntity;
 import TowerDefense.thegame.entity.UpdatableEntity;
 import TowerDefense.thegame.entity.tile.wave.Wave;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,13 +38,6 @@ public class GameWave extends AbstractEntity implements UpdatableEntity, Destroy
     public int getCurrentWaveID() {
         return currentWaveID;
     }
-    public boolean isHasSpawned() {
-        if (hasSpawned == true) {
-            hasSpawned = false;
-            return true;
-        }
-        return false;
-    }
     public int getNumberWave() { return waveList.size(); }
     public void addWave(Wave wave) {
         waveList.add(wave);
@@ -58,6 +54,9 @@ public class GameWave extends AbstractEntity implements UpdatableEntity, Destroy
 
         if (currentWaveID == -1 || waveList.get(currentWaveID).isDestroyed()) {
             currentWaveID++;
+            MediaPlayer waveSound = new MediaPlayer(new Media(new File(Config.MINION_SPAWMING_PATH).toURI().toString()));
+            waveSound.play();
+
             hasSpawned = true;
             if (currentWaveID == waveList.size()) {
                 return;

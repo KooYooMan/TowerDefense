@@ -92,10 +92,10 @@ public final class GameField {
 
     public final void handle() {
 
-        //4.Destroy entities
+//        //4.Destroy entities
 //        if (!destroyedEntities.isEmpty()) {
-//            MediaPlayer SOUND_HIT = new MediaPlayer(new Media(new File(Config.SOUND_HIT_PATH).toURI().toString()));
-//            SOUND_HIT.play();
+//            MediaPlayer soundHit = new MediaPlayer(new Media(new File(Config.ENEMY_HIT_SOUND_PATH).toURI().toString()));
+//            soundHit.play();
 //        }
         entities.removeAll(destroyedEntities);
 

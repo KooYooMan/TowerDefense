@@ -24,7 +24,7 @@ public class GameController extends AnimationTimer {
 
     private boolean isGameOver;
     private boolean isGameClear;
-
+    private boolean firstTime;
     public GameController(GraphicsContext graphicsContext, Pane gamePane) throws FileNotFoundException {
         this.graphicsContext = graphicsContext;
         String loadFile = Config.MAP_LAYOUT + 1 + ".txt";
@@ -52,6 +52,7 @@ public class GameController extends AnimationTimer {
         pause = false;
         autoplay = false;
         this.gameAutoplay = new GameAutoplay(gameField, gameDrawer.getStageLoader().getLayout());
+        firstTime = true;
     }
     public GameController(GraphicsContext graphicsContext, Pane gamePane, String filePath) throws FileNotFoundException {
         this.graphicsContext = graphicsContext;
@@ -65,6 +66,7 @@ public class GameController extends AnimationTimer {
         this.gameAutoplay = new GameAutoplay(gameField, gameDrawer.getStageLoader().getLayout());
         isGameOver = false;
         isGameClear = false;
+        firstTime = true;
     }
 
     final void closeRequestHandler(WindowEvent windowEvent) {
@@ -97,14 +99,21 @@ public class GameController extends AnimationTimer {
 
     public boolean isPause() { return pause; }
     public boolean isAutoplay() { return autoplay; }
+
     public boolean isGameOver() {
-//        MediaPlayer defeatSound = new MediaPlayer(new Media(new File(Config.DEFEAT_SOUND_PATH).toURI().toString()));
-//        defeatSound.play();
+        if (isGameOver && firstTime) {
+            MediaPlayer defeatSound = new MediaPlayer(new Media(new File(Config.DEFEAT_SOUND_PATH).toURI().toString()));
+            defeatSound.play();
+            firstTime = false;
+        }
         return isGameOver;
     }
     public boolean isGameClear() {
-//        MediaPlayer victorySound = new MediaPlayer(new Media(new File(Config.DEFEAT_SOUND_PATH).toURI().toString()));
-//        victorySound.play();
+        if (isGameClear && firstTime) {
+            MediaPlayer victorySound = new MediaPlayer(new Media(new File(Config.VICTORY_SOUND_PATH).toURI().toString()));
+            victorySound.play();
+            firstTime = false;
+        }
         return isGameClear;
     }
 

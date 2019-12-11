@@ -191,6 +191,9 @@ public final class Config {
 
 	public static final String DEFEAT_SOUND_PATH = path + "/sound/Defeat.mp3";
 
+	public static final String MINION_SPAWMING_PATH = path + "/sound/MinionSpawning.mp3";
+
+
 	public static MediaPlayer THEME_SOUND = new MediaPlayer(new Media(new File(Config.THEME_SOUND_PATH).toURI().toString()));
 
 	public static void setSound() {
