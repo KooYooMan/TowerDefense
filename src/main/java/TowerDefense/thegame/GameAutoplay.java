@@ -209,6 +209,5 @@ public class GameAutoplay {
     public void doAutoplay() {
         Pair<Integer, Integer> best = getMaxScore();
         setTower(best.getKey(), best.getValue());
-
     }
 }

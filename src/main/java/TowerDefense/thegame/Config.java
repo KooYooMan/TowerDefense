@@ -93,9 +93,9 @@ public final class Config {
 	public static final double NORMAL_TOWER_HEIGHT = TILE_SIZE * 1.0;
 	public static final double SNIPER_TOWER_HEIGHT = TILE_SIZE * 1.0;
 
-	public static final double MACHINE_TOWER_SCALE = 1.0;
-	public static final double NORMAL_TOWER_SCALE = 0.7;
-	public static final double SNIPER_TOWER_SCALE = 2.0;
+	public static final double MACHINE_TOWER_SCALE = 0.4;
+	public static final double NORMAL_TOWER_SCALE = 1.0;
+	public static final double SNIPER_TOWER_SCALE = 3.0;
 
 	public static final double MACHINE_TOWER_UPGRADED_SCALE = 1.3;
 	public static final double NORMAL_TOWER_UPGRADED_SCALE = 1.2;
@@ -121,25 +121,25 @@ public final class Config {
 	public static final long NORMAL_ENEMY_HEALTH = 100;
 	public static final long NORMAL_ENEMY_ARMOR = 5;
 	public static final double NORMAL_ENEMY_SPEED = 1.5;
-	public static final long NORMAL_ENEMY_REWARD = 1;
+	public static final long NORMAL_ENEMY_REWARD = 5;
 
 	public static final double SMALLER_ENEMY_SIZE = 0.3 * TILE_SIZE;
 	public static final long SMALLER_ENEMY_HEALTH = 50;
 	public static final long SMALLER_ENEMY_ARMOR = 0;
 	public static final double SMALLER_ENEMY_SPEED = 3;
-	public static final long SMALLER_ENEMY_REWARD = 2;
+	public static final long SMALLER_ENEMY_REWARD = 5;
 
 	public static final double TANKER_ENEMY_SIZE = 0.7 * TILE_SIZE;
 	public static final long TANKER_ENEMY_HEALTH = 300;
 	public static final long TANKER_ENEMY_ARMOR = 20;
 	public static final double TANKER_ENEMY_SPEED = 0.7;
-	public static final long TANKER_ENEMY_REWARD = 3;
+	public static final long TANKER_ENEMY_REWARD = 13;
 
 	public static final double BOSS_ENEMY_SIZE = 1.0 * TILE_SIZE;
 	public static final long BOSS_ENEMY_HEALTH = 500;
 	public static final long BOSS_ENEMY_ARMOR = 20;
 	public static final double BOSS_ENEMY_SPEED = 0.3;
-	public static final long BOSS_ENEMY_REWARD = 10;
+	public static final long BOSS_ENEMY_REWARD = 20;
 	//endregion
 
 	//spawn interval
@@ -165,7 +165,7 @@ public final class Config {
 	// buff region
 	public static final long NUMBER_OF_BUFFED = 2;
 	public static final long BURNING_BUFF_TIME = 300;
-	public static final long BURNING_BUFF_DAMAGE = 10;
+	public static final long BURNING_BUFF_DAMAGE = 40;
 	public static final long BURNING_BUFF_DAMAGE_INTERVAL = 100;
 
 	public static final long FROZEN_BUFF_TIME = 100;

@@ -176,6 +176,8 @@ public abstract class AbstractEnemy extends AbstractEntity implements UpdatableE
     public boolean isDestroyed() {
         return getHealth() <= 0;
     }
-
+    public boolean isBurning() {
+        return buffed[0].isAvailable();
+    }
     public long getReward() { return reward; }
 }

@@ -15,10 +15,12 @@ import java.io.FileNotFoundException;
 
 public class AbstractEnemyDrawer extends AbstractDrawer implements EntityDrawer {
     Image boomImage;
+    Image fireImage;
     protected AbstractEnemyDrawer(String path) {
         super(path);
 
         try {
+            fireImage = new Image(new FileInputStream("resources/asset/icon/Burning.png"));
             boomImage = new Image(new FileInputStream("resources/asset/vfx/boom.png"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -44,5 +46,9 @@ public class AbstractEnemyDrawer extends AbstractDrawer implements EntityDrawer 
         rotate(graphicsContext, rotateDegree, screenPosX + screenWidth / 2, screenPosY + screenHeight / 2);
         graphicsContext.drawImage(image, screenPosX, screenPosY, screenWidth, screenHeight);
         graphicsContext.restore();
+        if (((AbstractEnemy) entity).isBurning()) {
+            graphicsContext.drawImage(fireImage, screenPosX + screenWidth / 4, screenPosY + screenHeight / 4, screenWidth / 2, screenHeight / 2);
+        }
+
     }
 }

@@ -141,6 +141,7 @@ public abstract class AbstractTower extends AbstractEntity implements Upgradable
         if (distance > range) return;
         this.tick ++;
         long len = bulletClassList.size();
+        if (len == 0) return;
         int id = new Random().nextInt((int) len);
         //System.out.printf("id = %d", id);
         try {
