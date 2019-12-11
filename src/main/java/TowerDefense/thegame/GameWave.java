@@ -11,6 +11,7 @@ import java.util.List;
 public class GameWave extends AbstractEntity implements UpdatableEntity, DestroyableEntity {
     private int currentWaveID;
     private List<Wave> waveList;
+    boolean hasSpawned;
 
     @Override
     public String toString() {
@@ -27,13 +28,19 @@ public class GameWave extends AbstractEntity implements UpdatableEntity, Destroy
         currentWaveID = -1;
         waveList = new ArrayList<>();
     }
-
     public void setCurrentWaveID(int currentWaveID) {
         this.currentWaveID = currentWaveID;
     }
 
     public int getCurrentWaveID() {
         return currentWaveID;
+    }
+    public boolean isHasSpawned() {
+        if (hasSpawned == true) {
+            hasSpawned = false;
+            return true;
+        }
+        return false;
     }
     public int getNumberWave() { return waveList.size(); }
     public void addWave(Wave wave) {
@@ -51,6 +58,7 @@ public class GameWave extends AbstractEntity implements UpdatableEntity, Destroy
 
         if (currentWaveID == -1 || waveList.get(currentWaveID).isDestroyed()) {
             currentWaveID++;
+            hasSpawned = true;
             if (currentWaveID == waveList.size()) {
                 return;
             }
