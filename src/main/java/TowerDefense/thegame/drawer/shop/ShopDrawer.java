@@ -22,6 +22,7 @@ public final class ShopDrawer {
     private boolean isRenderingPauseFunction;
     private boolean isRenderingResumeFunction;
     private boolean isRenderingSaveButton;
+    private boolean isRenderingExitButton;
     private Class<? extends AbstractTower> towerClass;
     private Class<? extends AbstractBullet> bulletClass;
 
@@ -36,6 +37,7 @@ public final class ShopDrawer {
         this.isRenderingPauseFunction = false;
         this.isRenderingResumeFunction = false;
         this.isRenderingSaveButton = false;
+        this.isRenderingExitButton = false;
 
         this.towerClass = null;
         this.bulletClass = null;
@@ -66,6 +68,7 @@ public final class ShopDrawer {
     public void setRenderingSaveButton(boolean renderingSaveButton) {
         isRenderingSaveButton = renderingSaveButton;
     }
+    public void setRenderingExitButton(boolean renderingExitButton) { isRenderingExitButton = renderingExitButton; }
 
     public void setTowerClass(Class<? extends AbstractTower> towerClass) { this.towerClass = towerClass; }
     public void setBulletClass(Class<? extends AbstractBullet> bulletClass) { this.bulletClass = bulletClass; }
@@ -107,6 +110,10 @@ public final class ShopDrawer {
 
         if (isRenderingSaveButton) {
             renderSaveFunction();
+        }
+
+        if (isRenderingExitButton) {
+            renderExitFunction();
         }
     }
 
@@ -186,5 +193,9 @@ public final class ShopDrawer {
 
     public final void renderSaveFunction() {
         graphicsContext.fillText("Save current game", 5, 260);
+    }
+
+    public final void renderExitFunction() {
+        graphicsContext.fillText("Exit to main menu", 5, 260);
     }
 }

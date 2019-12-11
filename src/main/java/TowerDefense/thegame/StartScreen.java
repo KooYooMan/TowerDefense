@@ -88,7 +88,7 @@ public class StartScreen {
 
 class WelcomeScreen {
     private VBox vBox;
-    private Button startButton;
+    private Button newGameButton;
     private Button continueButton;
     private Button quitButton;
 
@@ -99,9 +99,9 @@ class WelcomeScreen {
 
         this.vBox = new VBox(8);
 
-        this.startButton = new Button("Start");
-        this.startButton.setFont(Font.font(20));
-        this.startButton.setPrefSize(420, 69);
+        this.newGameButton = new Button("New Game");
+        this.newGameButton.setFont(Font.font(20));
+        this.newGameButton.setPrefSize(420, 69);
 
         this.continueButton = new Button("Continue");
         this.continueButton.setFont(Font.font(20));
@@ -111,7 +111,7 @@ class WelcomeScreen {
         this.quitButton.setFont(Font.font(20));
         this.quitButton.setPrefSize(420, 69);
 
-        this.vBox.getChildren().addAll(startButton, continueButton, quitButton);
+        this.vBox.getChildren().addAll(newGameButton, continueButton, quitButton);
 
         this.vBox.setLayoutX(290);
         this.vBox.setLayoutY(330);
@@ -120,7 +120,7 @@ class WelcomeScreen {
     public VBox getVBox() { return vBox; }
 
     public void handleEvent() {
-        startButton.setOnMousePressed(mouseEvent -> {
+        newGameButton.setOnMousePressed(mouseEvent -> {
             startScreen.getStartScreenPane().getChildren().remove(vBox);
             startScreen.getStartScreenPane().getChildren().add(startScreen.getMapPickingScreen().getHBox());
 
