@@ -55,7 +55,6 @@ public class GameAutoplay {
             currLane++;
             int x = p.getKey();
             int y = p.getValue();
-            boolean isEnd = false;
             while (true) {
                 isVisited[x][y] = true;
                 lane[x][y] = currLane;
@@ -70,7 +69,6 @@ public class GameAutoplay {
                         y = y2;
                         break;
                     }
-
                 }
             }
         }
@@ -132,13 +130,13 @@ public class GameAutoplay {
         score[x][y][lane[x][y]]--;
     }
     private void setTower(int x, int y) {
-        if (layout[x][y] == Config.TOWER_LAYOUT)
+        if (layout[x][y] != Config.MOUNTAIN_LAYOUT)
             return;
         int randomBullet = (int)(Math.random() * 1000);
         int randomTower = (int)(Math.random() * 1000);
         long totalCost = -1;
         AbstractTower tower;
-        System.out.printf("%d %d\n", randomBullet, randomTower);
+        //System.out.printf("%d %d\n", randomBullet, randomTower);
         double X = y * Config.TILE_SIZE;
         double Y = x * Config.TILE_SIZE;
         if (randomTower <= 333) {
@@ -211,5 +209,6 @@ public class GameAutoplay {
     public void doAutoplay() {
         Pair<Integer, Integer> best = getMaxScore();
         setTower(best.getKey(), best.getValue());
+
     }
 }

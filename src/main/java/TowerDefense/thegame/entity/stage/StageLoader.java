@@ -18,8 +18,9 @@ public class StageLoader {
         String stageString = currentMap + "\n";
         for (int i = 0; i < Config.TILE_VERTICAL; i++) {
             for (int j = 0; j < Config.TILE_HORIZONTAL; j++) {
+                stageString += layout[i][j];
                 if (j != Config.TILE_HORIZONTAL - 1)
-                    stageString += layout[i][j] + " ";
+                     stageString += " ";
 
             }
             stageString += "\n";

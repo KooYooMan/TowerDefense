@@ -48,7 +48,6 @@ public class Target extends AbstractTile implements LivingEntity {
 
     @Override
     public boolean isDestroyed() {
-        System.out.printf("Health = %d\n", health);
         return health <= 0;
     }
 }

@@ -78,9 +78,6 @@ public class GameController extends AnimationTimer {
     }
     @Override
     public void handle(long l) {
-        System.out.println(autoplay);
-        System.out.println(gameDrawer.getStageLoader().getLayout());
-        System.out.println(gameAutoplay.getLayout());
 
         if (isAutoplay()) {
             doAutoplay();

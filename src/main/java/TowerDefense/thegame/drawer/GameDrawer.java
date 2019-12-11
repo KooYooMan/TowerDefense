@@ -194,7 +194,7 @@ public final class GameDrawer {
 		}
 
 		moneyDrawer.draw(gameField.getGameStage().getMoney());
-		waveDrawer.draw(gameField.getGameWave().getCurrentWaveID(), gameField.getGameWave().getNumberWave());
+		waveDrawer.draw(gameField.getGameWave().getCurrentWaveID() + 1, gameField.getGameWave().getNumberWave());
 	}
 
 	public StageDrawer getStageDrawer() { return stageDrawer; }
@@ -244,6 +244,10 @@ class WaveDrawer {
 
 	public void draw(int currentWave, int waveNumber) {
 		graphicsContext.setFill(Color.BLACK);
-		graphicsContext.fillText("Wave: " + currentWave + "/" + waveNumber, 5, 48);
+		if (1 <= currentWave && currentWave < waveNumber)
+			graphicsContext.fillText("Wave: " + currentWave + "/" + waveNumber, 5, 48);
+		else
+			graphicsContext.fillText("Final Wave", 5, 48);
+
 	}
 }

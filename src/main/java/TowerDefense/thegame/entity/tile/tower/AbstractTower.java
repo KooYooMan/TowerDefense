@@ -142,7 +142,7 @@ public abstract class AbstractTower extends AbstractEntity implements Upgradable
         this.tick ++;
         long len = bulletClassList.size();
         int id = new Random().nextInt((int) len);
-        System.out.printf("id = %d", id);
+        //System.out.printf("id = %d", id);
         try {
             field.getSpawnEntities().add(bulletClassList.get(id).getDeclaredConstructor(cArg)
                     .newInstance(centerX, centerY, targetX - centerX, targetY - centerY, range, scale));

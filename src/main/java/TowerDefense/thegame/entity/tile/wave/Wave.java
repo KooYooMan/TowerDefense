@@ -43,6 +43,7 @@ public class Wave extends AbstractEntity implements UpdatableEntity, Destroyable
     @Override
     public void onUpdate(@Nonnull  GameField field) {
         timeToLive--;
+        if (isSpawned()) timeToLive = Math.min(timeToLive, 600);
         for (AbstractSpawner spawner : spawnerList) {
             spawner.onUpdate(field);
         }
@@ -55,13 +56,15 @@ public class Wave extends AbstractEntity implements UpdatableEntity, Destroyable
 
     @Override
     public boolean isDestroyed() {
+        return timeToLive <= 0;
+    }
+    private boolean isSpawned() {
         long maxNumOfSpawn = 0;
         for (int i = 0; i < spawnerList.size(); i++) {
             maxNumOfSpawn = Math.max(maxNumOfSpawn, spawnerList.get(i).getNumOfSpawn());
         }
         if (maxNumOfSpawn == 0) return true;
-        return timeToLive <= 0;
+        return false;
     }
-
 
 }
