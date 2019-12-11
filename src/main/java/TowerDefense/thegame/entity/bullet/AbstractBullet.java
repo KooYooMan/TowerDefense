@@ -5,6 +5,11 @@ import TowerDefense.thegame.GameField;
 import TowerDefense.thegame.entity.*;
 import TowerDefense.thegame.entity.buff.AbstractBuff;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
+import java.net.URL;
+
 public abstract class AbstractBullet extends AbstractEntity implements UpdatableEntity, DestroyableEntity, EffectEntity, RotatableEntity, SpawnListener {
 	private final double deltaX;
 	private final double deltaY;
@@ -66,7 +71,6 @@ public abstract class AbstractBullet extends AbstractEntity implements Updatable
 	}
 	public long getDamage() {
 		return this.damage;
-
 	}
 
 	@Override

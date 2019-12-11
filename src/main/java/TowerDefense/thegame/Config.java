@@ -1,5 +1,10 @@
 package TowerDefense.thegame;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.io.File;
+
 public final class Config {
 	private static final String path = "resources/asset";
 	public static final String MAP_IMAGE = "resources/map/image/Map";
@@ -175,6 +180,22 @@ public final class Config {
 
     public static final String GAME_NAME = "Tower Defense";
 	public static final String SAVE_FOLDER = "save/";
+
+	public static final String THEME_SOUND_PATH = path + "/sound/ThemeSound.mp4";
+
+	public static final String SOUND_HIT_PATH = path + "/sound/Hit.wav";
+
+	public static final String ENEMY_HIT_SOUND_PATH = path + "/sound/EnemyHit.wav";
+
+	public static final String VICTORY_SOUND_PATH = path + "/sound/Victory.mp3";
+
+	public static final String DEFEAT_SOUND_PATH = path + "/sound/Defeat.mp3";
+
+	public static MediaPlayer THEME_SOUND = new MediaPlayer(new Media(new File(Config.THEME_SOUND_PATH).toURI().toString()));
+
+	public static void setSound() {
+		THEME_SOUND.setVolume(0.05);
+	}
 
     private Config() {}
 }
