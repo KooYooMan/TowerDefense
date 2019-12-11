@@ -24,6 +24,7 @@ public class ShopHandler {
     private Button pauseButton;
     private Button resumeButton;
     private Button saveButton;
+    private Button exitButton;
 
     public ShopHandler(Pane pane) throws IOException {
         this.buttonContainerDrawer = new ButtonContainerDrawer(pane);
@@ -34,7 +35,7 @@ public class ShopHandler {
         this.disableAutoButton = new Button("", new ImageView(new Image(
                 new FileInputStream("resources/icon/noai.png")
         )));
-        this.autoplayHBox.setSpacing(24);
+        this.autoplayHBox.setSpacing(32);
         this.autoplayHBox.setLayoutY(496);
         this.autoplayHBox.getChildren().addAll(enableAutoButton, disableAutoButton);
 
@@ -47,9 +48,12 @@ public class ShopHandler {
         this.saveButton = new Button("", new ImageView(new Image(
                 new FileInputStream("resources/icon/save.png")
         )));
-        this.utilitiesHBox.setSpacing(24);
+        this.exitButton = new Button("", new ImageView(new Image(
+                new FileInputStream("resources/icon/exit.png")
+        )));
+        this.utilitiesHBox.setSpacing(32);
         this.utilitiesHBox.setLayoutY(582);
-        this.utilitiesHBox.getChildren().addAll(pauseButton, resumeButton, saveButton);
+        this.utilitiesHBox.getChildren().addAll(pauseButton, resumeButton, saveButton, exitButton);
 
         pane.getChildren().addAll(autoplayHBox, utilitiesHBox);
     }
@@ -65,4 +69,5 @@ public class ShopHandler {
     public Button getPauseButton() { return pauseButton; }
     public Button getResumeButton() { return resumeButton; }
     public Button getSaveButton() { return saveButton; }
+    public Button getExitButton() { return exitButton; }
 }

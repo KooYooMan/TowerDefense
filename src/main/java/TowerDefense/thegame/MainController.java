@@ -25,7 +25,7 @@ public class MainController extends AnimationTimer {
         this.closingScreenController = closingScreenController;
         this.gameController = gameController;
         this.shopController = shopController;
-        this.buttonHandler = new ButtonHandler(gameController, shopController);
+        this.buttonHandler = new ButtonHandler(this);
     }
 
     private void handleButton() {
@@ -46,6 +46,7 @@ public class MainController extends AnimationTimer {
         this.buttonHandler.handlePauseEvent(this.shopController.getShopHandler().getPauseButton());
         this.buttonHandler.handleResumeEvent(this.shopController.getShopHandler().getResumeButton());
         this.buttonHandler.handleSaveButton(this.shopController.getShopHandler().getSaveButton());
+        this.buttonHandler.handleExitButton(this.shopController.getShopHandler().getExitButton());
     }
 
     final void closeRequestHandler(WindowEvent windowEvent) {
@@ -139,4 +140,11 @@ public class MainController extends AnimationTimer {
         startScreenController.reset();
         closingScreenController.reset();
     }
+
+    public Scene getScene() { return scene; }
+
+    public GameController getGameController() { return gameController; }
+    public ShopController getShopController() { return shopController; }
+    public ClosingScreenController getClosingScreenController() { return closingScreenController; }
+    public StartScreenController getStartScreenController() { return startScreenController; }
 }
