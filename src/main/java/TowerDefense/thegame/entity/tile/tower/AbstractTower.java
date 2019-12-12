@@ -9,6 +9,7 @@ import TowerDefense.thegame.entity.bullet.FrozenBullet;
 import TowerDefense.thegame.entity.bullet.NormalBullet;
 import TowerDefense.thegame.entity.enemy.AbstractEnemy;
 import TowerDefense.thegame.entity.gun.AbstractGun;
+import TowerDefense.thegame.sound.GameSound;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -155,8 +156,9 @@ public abstract class AbstractTower extends AbstractEntity implements Upgradable
         }
         this.gun.update(targetX - centerX,  centerY - targetY);
 
-        MediaPlayer SOUND_HIT = new MediaPlayer(new Media(new File(Config.SOUND_HIT_PATH).toURI().toString()));
-        SOUND_HIT.play();
+        //MediaPlayer soundHit = new MediaPlayer(new Media(new File(Config.SOUND_HIT_PATH).toURI().toString()));
+        //soundHit.play();
+        GameSound.playHit();
     }
 
     @Override

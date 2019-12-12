@@ -185,7 +185,7 @@ public final class Config {
 
 	public static final String SOUND_HIT_PATH = path + "/sound/Hit.wav";
 
-	public static final String ENEMY_HIT_SOUND_PATH = path + "/sound/EnemyHit.wav";
+	public static final String ENEMY_HIT_SOUND_PATH = path + "/sound/EnemyHitSound.mp3";
 
 	public static final String VICTORY_SOUND_PATH = path + "/sound/Victory.mp3";
 

@@ -4,6 +4,7 @@ import TowerDefense.thegame.entity.AbstractEntity;
 import TowerDefense.thegame.entity.DestroyableEntity;
 import TowerDefense.thegame.entity.UpdatableEntity;
 import TowerDefense.thegame.entity.tile.wave.Wave;
+import TowerDefense.thegame.sound.GameSound;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -51,16 +52,15 @@ public class GameWave extends AbstractEntity implements UpdatableEntity, Destroy
             System.out.println("Spawned everything");
             return;
         }
-
+        System.out.println(currentWaveID);
         if (currentWaveID == -1 || waveList.get(currentWaveID).isDestroyed()) {
             currentWaveID++;
-            MediaPlayer waveSound = new MediaPlayer(new Media(new File(Config.MINION_SPAWMING_PATH).toURI().toString()));
-            waveSound.play();
-
-            hasSpawned = true;
+            System.out.println(currentWaveID);
             if (currentWaveID == waveList.size()) {
                 return;
             }
+            GameSound.playSpawning();
+
             Wave currentWave = waveList.get(currentWaveID);
             field.getSpawnEntities().add(currentWave);
             currentWave.spawnSpawner(field);

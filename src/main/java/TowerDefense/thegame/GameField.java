@@ -4,6 +4,7 @@ package TowerDefense.thegame;
 import TowerDefense.thegame.entity.*;
 import TowerDefense.thegame.entity.enemy.AbstractEnemy;
 import TowerDefense.thegame.entity.tile.Target;
+import TowerDefense.thegame.sound.GameSound;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -92,11 +93,19 @@ public final class GameField {
 
     public final void handle() {
 
-//        //4.Destroy entities
+        //4.Destroy entities
 //        if (!destroyedEntities.isEmpty()) {
-//            MediaPlayer soundHit = new MediaPlayer(new Media(new File(Config.ENEMY_HIT_SOUND_PATH).toURI().toString()));
-//            soundHit.play();
+//            GameSound.playEnemyHitSound();
 //        }
+        boolean hasEnemyDestroyed = false;
+        for (GameEntity entity : destroyedEntities) {
+            if (entity instanceof AbstractEnemy) {
+                hasEnemyDestroyed = true;
+            }
+        }
+        if (hasEnemyDestroyed) {
+            GameSound.playEnemyHitSound();
+        }
         entities.removeAll(destroyedEntities);
 
         //5.Destroy out-map entities

@@ -1,6 +1,7 @@
 package TowerDefense.thegame;
 
 import TowerDefense.thegame.drawer.GameDrawer;
+import TowerDefense.thegame.sound.GameSound;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.canvas.GraphicsContext;
@@ -102,16 +103,16 @@ public class GameController extends AnimationTimer {
 
     public boolean isGameOver() {
         if (isGameOver && firstTime) {
-            MediaPlayer defeatSound = new MediaPlayer(new Media(new File(Config.DEFEAT_SOUND_PATH).toURI().toString()));
-            defeatSound.play();
+            GameSound.playDefeat();
             firstTime = false;
         }
         return isGameOver;
     }
     public boolean isGameClear() {
         if (isGameClear && firstTime) {
-            MediaPlayer victorySound = new MediaPlayer(new Media(new File(Config.VICTORY_SOUND_PATH).toURI().toString()));
-            victorySound.play();
+            //MediaPlayer victorySound = new MediaPlayer(new Media(new File(Config.VICTORY_SOUND_PATH).toURI().toString()));
+            //victorySound.play();
+            GameSound.playVictory();
             firstTime = false;
         }
         return isGameClear;
